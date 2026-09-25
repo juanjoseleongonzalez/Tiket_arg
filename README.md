@@ -16,80 +16,124 @@
     <!-- BARRA DE NAVEGACIÓN -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-zinc-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3 cursor-pointer" @click="resetApp()">
+            <div class="flex items-center space-x-2 cursor-pointer" @click="resetApp()">
                 <span class="text-2xl font-black tracking-wider text-red-600">tike<span class="text-zinc-900">_arg</span></span>
+                <span class="text-xs bg-red-100 text-red-700 font-bold px-2 py-0.5 rounded">Oficial</span>
             </div>
             <nav class="hidden md:flex space-x-8 text-sm font-medium text-zinc-600">
                 <a href="#" @click.prevent="resetApp()" class="hover:text-red-600 transition">Conciertos</a>
-                <a href="#" @click.prevent="resetApp()" class="hover:text-red-600 transition">Festivales</a>
-                <a href="#" @click.prevent="resetApp()" class="hover:text-red-600 transition">Mi Cuenta / eTicket</a>
+                <a href="#" @click.prevent="resetApp()" class="hover:text-red-600 transition">Giras 2026</a>
+                <a href="#" @click.prevent="resetApp()" class="hover:text-red-600 transition">Mis #eTickets</a>
             </nav>
             <div>
                 <span class="text-xs bg-red-50 text-red-600 border border-red-200 px-3 py-1.5 rounded-full font-medium">
-                    🔒 Sitio Oficial Protegido
+                    🔒 Venta Segura SSL
                 </span>
             </div>
         </div>
     </header>
 
-    <!-- ================= VISTA 1: HOME ================= -->
+    <!-- ================= VISTA 1: PRESENTACIÓN E INICIO ================= -->
     <div x-show="view === 'home'">
-        <section class="relative py-20 bg-zinc-50 border-b border-zinc-200 text-center px-4">
-            <div class="max-w-3xl mx-auto">
-                <span class="inline-block bg-red-100 text-red-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-4 border border-red-200">
-                    Plataforma Oficial de Venta de Entradas
+        <!-- Presentación Principal y Buscador -->
+        <section class="relative py-20 bg-gradient-to-b from-zinc-50 to-white border-b border-zinc-200 text-center px-4">
+            <div class="max-w-4xl mx-auto">
+                <span class="inline-block bg-red-600 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-6 shadow-sm">
+                    Plataforma Nº1 de Venta de Entradas en Argentina
                 </span>
-                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 text-zinc-900">
-                    Sentí la música en vivo <br><span class="text-red-600">asegurate tu lugar</span>
+                <h1 class="text-4xl sm:text-7xl font-black tracking-tight mb-6 text-zinc-900">
+                    tike<span class="text-red-600">_arg</span>
                 </h1>
-                <p class="text-zinc-600 text-lg mb-10">
-                    Encontrá la cartelera completa con todos los conciertos del año, preventas y fila virtual segura.
+                <p class="text-zinc-600 text-lg sm:text-xl mb-10 max-w-2xl mx-auto">
+                    Encontrá de forma rápida y cómoda a tus artistas favoritos, consultá sus horarios y asegurá tus entradas oficiales.
                 </p>
                 
-                <!-- Buscador optimizado -->
-                <div class="flex flex-col sm:flex-row gap-3 bg-white p-2 rounded-2xl border border-zinc-200 shadow-xl" @submit.prevent>
-                    <input type="text" x-model.debounce.300ms="searchQuery" placeholder="Buscá por artista (ej: Coldplay, Duki, Shakira), banda o estadio..." class="flex-grow bg-transparent px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:outline-none text-sm">
-                    <button type="button" class="bg-red-600 hover:bg-red-700 text-white font-medium px-8 py-3 rounded-xl transition text-sm shadow-md">
-                        Buscar
+                <!-- Buscador ultra cómodo -->
+                <div class="max-w-2xl mx-auto flex flex-col sm:flex-row gap-3 bg-white p-2 rounded-2xl border-2 border-red-500 shadow-2xl">
+                    <input type="text" x-model.debounce.300ms="searchQuery" placeholder="Buscá por artista (ej: Maria Becerra, Duki, Ed Sheeran)..." class="flex-grow bg-transparent px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:outline-none text-sm sm:text-base font-medium">
+                    <button type="button" class="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-3.5 rounded-xl transition text-sm shadow-md">
+                        Buscar Artista
                     </button>
                 </div>
             </div>
         </section>
 
+        <!-- Galería de Presentación: Artistas Destacados de la Argentina -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-zinc-100">
+            <h3 class="text-sm font-bold uppercase tracking-wider text-zinc-400 mb-6 text-center">Artistas Destacados en Cartelera</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 text-center">
+                <div @click="searchQuery = 'Maria Becerra'" class="bg-zinc-50 hover:border-red-500 border border-zinc-200 p-4 rounded-2xl cursor-pointer transition group">
+                    <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center font-black text-xl mx-auto mb-2 group-hover:scale-110 transition">MB</div>
+                    <h4 class="font-bold text-sm text-zinc-900">Maria Becerra</h4>
+                </div>
+                <div @click="searchQuery = 'Duki'" class="bg-zinc-50 hover:border-red-500 border border-zinc-200 p-4 rounded-2xl cursor-pointer transition group">
+                    <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center font-black text-xl mx-auto mb-2 group-hover:scale-110 transition">DK</div>
+                    <h4 class="font-bold text-sm text-zinc-900">Duki</h4>
+                </div>
+                <div @click="searchQuery = 'Ed Sheeran'" class="bg-zinc-50 hover:border-red-500 border border-zinc-200 p-4 rounded-2xl cursor-pointer transition group">
+                    <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center font-black text-xl mx-auto mb-2 group-hover:scale-110 transition">ES</div>
+                    <h4 class="font-bold text-sm text-zinc-900">Ed Sheeran</h4>
+                </div>
+                <div @click="searchQuery = 'Coldplay'" class="bg-zinc-50 hover:border-red-500 border border-zinc-200 p-4 rounded-2xl cursor-pointer transition group">
+                    <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center font-black text-xl mx-auto mb-2 group-hover:scale-110 transition">CP</div>
+                    <h4 class="font-bold text-sm text-zinc-900">Coldplay</h4>
+                </div>
+                <div @click="searchQuery = 'Shakira'" class="bg-zinc-50 hover:border-red-500 border border-zinc-200 p-4 rounded-2xl cursor-pointer transition group">
+                    <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center font-black text-xl mx-auto mb-2 group-hover:scale-110 transition">SK</div>
+                    <h4 class="font-bold text-sm text-zinc-900">Shakira</h4>
+                </div>
+                <div @click="searchQuery = 'Maná'" class="bg-zinc-50 hover:border-red-500 border border-zinc-200 p-4 rounded-2xl cursor-pointer transition group">
+                    <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center font-black text-xl mx-auto mb-2 group-hover:scale-110 transition">MN</div>
+                    <h4 class="font-bold text-sm text-zinc-900">Maná</h4>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cartelera General con Fechas y Horarios Reales -->
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div class="mb-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
-                    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900">Cartelera Completa 2026</h2>
-                    <p class="text-zinc-500 text-sm mt-1">Mostrando todos los eventos musicales disponibles para la venta.</p>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-zinc-900">Próximos Conciertos y Shows</h2>
+                    <p class="text-zinc-500 text-sm mt-1">Fechas oficiales, horarios de apertura y estadios en Argentina.</p>
                 </div>
-                <div class="text-xs text-zinc-400 font-semibold uppercase tracking-wider" x-text="filteredConcerts.length + ' conciertos encontrados'"></div>
+                <div class="text-xs bg-zinc-100 text-zinc-600 font-bold px-3 py-1.5 rounded-lg uppercase tracking-wider" x-text="filteredConcerts.length + ' eventos disponibles'"></div>
             </div>
 
-            <!-- Si no hay resultados -->
-            <div x-show="filteredConcerts.length === 0" class="text-center py-20 bg-zinc-50 rounded-2xl border border-zinc-200">
-                <p class="text-zinc-500 text-lg font-medium">No se encontraron conciertos con ese nombre.</p>
-                <button @click="searchQuery = ''" class="mt-4 text-red-600 font-semibold hover:underline text-sm">Ver todos los conciertos</button>
+            <!-- Sin resultados -->
+            <div x-show="filteredConcerts.length === 0" class="text-center py-20 bg-zinc-50 rounded-3xl border border-zinc-200">
+                <p class="text-zinc-600 text-lg font-semibold">No encontramos conciertos para tu búsqueda.</p>
+                <button @click="searchQuery = ''" class="mt-4 bg-red-600 text-white px-6 py-2.5 rounded-xl text-sm font-bold shadow hover:bg-red-700 transition">Ver todos los eventos</button>
             </div>
 
-            <!-- Grilla de Conciertos -->
+            <!-- Grilla de Conciertos Real -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <template x-for="concert in filteredConcerts" :key="concert.id">
-                    <div class="bg-white rounded-2xl overflow-hidden border border-zinc-200 hover:border-red-300 transition group flex flex-col justify-between shadow-sm hover:shadow-md">
+                    <div class="bg-white rounded-3xl overflow-hidden border border-zinc-200 hover:border-red-400 transition-all duration-300 group flex flex-col justify-between shadow-sm hover:shadow-xl">
                         <div>
-                            <div class="relative h-48 bg-zinc-900 overflow-hidden flex items-center justify-center p-4 text-center">
+                            <!-- Cabecera de la Tarjeta -->
+                            <div class="relative h-48 bg-zinc-900 overflow-hidden flex items-center justify-center p-6 text-center">
                                 <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-900/60 to-transparent z-10"></div>
-                                <span class="relative z-20 text-white font-black text-xl group-hover:scale-105 transition duration-500" x-text="concert.title"></span>
+                                <span class="relative z-20 text-white font-black text-2xl group-hover:scale-105 transition duration-500" x-text="concert.artist"></span>
                                 <span class="absolute top-3 left-3 z-30 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow" x-text="concert.badge"></span>
                             </div>
-                            <div class="p-6">
-                                <p class="text-red-600 text-xs font-semibold uppercase tracking-wider mb-1" x-text="concert.date"></p>
-                                <h3 class="text-xl font-bold mb-2 text-zinc-900 group-hover:text-red-600 transition" x-text="concert.title"></h3>
-                                <p class="text-zinc-500 text-sm flex items-center gap-1 mb-4" x-text="concert.location"></p>
+                            
+                            <!-- Información y Horarios Reales -->
+                            <div class="p-6 space-y-3">
+                                <div class="flex items-center justify-between text-xs font-bold text-red-600 uppercase tracking-wider">
+                                    <span x-text="concert.date"></span>
+                                    <span class="bg-red-50 px-2.5 py-1 rounded-md border border-red-200" x-text="'🕒 ' + concert.time"></span>
+                                </div>
+                                <h3 class="text-xl font-bold text-zinc-900" x-text="concert.title"></h3>
+                                <p class="text-zinc-500 text-sm flex items-center gap-1.5">
+                                    📍 <span class="font-medium text-zinc-700" x-text="concert.location"></span>
+                                </p>
                             </div>
                         </div>
+
+                        <!-- Botón de Compra -->
                         <div class="p-6 pt-0">
-                            <button @click="triggerQueue(concert)" class="w-full bg-zinc-900 hover:bg-red-600 text-white font-medium py-3 rounded-xl transition text-sm shadow">
-                                Comprar Entradas
+                            <button @click="triggerQueue(concert)" class="w-full bg-zinc-900 hover:bg-red-600 text-white font-bold py-3.5 rounded-2xl transition shadow-md text-sm">
+                                Comprar Entradas Oficiales
                             </button>
                         </div>
                     </div>
@@ -100,50 +144,54 @@
 
     <!-- ================= VISTA 2: FILA VIRTUAL ================= -->
     <div x-show="view === 'queue'" class="max-w-xl mx-auto px-4 py-24 text-center">
-        <div class="bg-white border border-zinc-200 rounded-3xl p-8 sm:p-12 shadow-xl space-y-6">
+        <div class="bg-white border border-zinc-200 rounded-3xl p-8 sm:p-12 shadow-2xl space-y-6">
             <div class="w-16 h-16 bg-red-50 text-red-600 rounded-full flex items-center justify-center text-2xl mx-auto border border-red-200 animate-pulse">⏳</div>
             <div>
-                <span class="text-xs uppercase font-bold text-red-600 tracking-wider">Sistema de Alta Demanda</span>
-                <h2 class="text-2xl font-black text-zinc-900 mt-1">Estás en la Fila Virtual</h2>
-                <p class="text-zinc-500 text-sm mt-2">Para garantizar una experiencia justa y evitar caídas en el sistema, aguardá un momento mientras te asignamos tu turno.</p>
+                <span class="text-xs uppercase font-bold text-red-600 tracking-wider">Sala de Espera Virtual tike_arg</span>
+                <h2 class="text-2xl font-black text-zinc-900 mt-1">Estás formados en la fila</h2>
+                <p class="text-zinc-500 text-sm mt-2">Hay alta demanda para este show. Aguardá unos segundos para ingresar al sistema seguro de ubicaciones.</p>
             </div>
 
             <div class="bg-zinc-50 p-6 rounded-2xl border border-zinc-200 space-y-2">
-                <p class="text-xs text-zinc-400">Tu número aproximado en fila:</p>
+                <p class="text-xs text-zinc-400">Tu lugar aproximado:</p>
                 <p class="text-4xl font-black text-red-600" x-text="queuePosition"></p>
-                <p class="text-xs text-zinc-500 pt-2">Tiempo estimado de acceso: <span class="font-bold text-zinc-800">Menos de 1 minuto</span></p>
+                <p class="text-xs text-zinc-500 pt-2">Acceso estimado en: <span class="font-bold text-zinc-800">Menos de 1 minuto</span></p>
             </div>
 
-            <p class="text-xs text-zinc-400">No cierres ni recargues esta ventana o perderás tu lugar asignado.</p>
+            <p class="text-xs text-zinc-400">No cierres esta ventana para no perder tu turno.</p>
         </div>
     </div>
 
     <!-- ================= VISTA 3: SELECCIÓN DE ENTRADAS + CRONÓMETRO ================= -->
     <div x-show="view === 'select-tickets'" class="max-w-4xl mx-auto px-4 py-12">
-        <div class="bg-red-600 text-white px-6 py-3 rounded-2xl mb-6 flex items-center justify-between shadow-md">
-            <span class="text-xs font-semibold uppercase tracking-wider">⏱ Tiempo reservado para tu compra:</span>
+        <div class="bg-red-600 text-white px-6 py-3.5 rounded-2xl mb-6 flex items-center justify-between shadow-md">
+            <span class="text-xs font-semibold uppercase tracking-wider">⏱ Tiempo reservado para completar tu compra:</span>
             <span class="text-lg font-black" x-text="formatTime(timerSeconds)"></span>
         </div>
 
-        <div class="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-10 shadow-lg">
-            <span class="text-xs font-semibold text-red-600 uppercase tracking-widest" x-text="selectedConcert?.date"></span>
-            <h2 class="text-3xl font-extrabold text-zinc-900 mt-1 mb-2" x-text="selectedConcert?.title"></h2>
-            <p class="text-zinc-500 text-sm mb-8" x-text="selectedConcert?.location"></p>
+        <div class="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-10 shadow-xl">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 border-b border-zinc-100 pb-4 mb-6">
+                <div>
+                    <span class="text-xs font-bold text-red-600 uppercase tracking-widest" x-text="selectedConcert?.date + ' - ' + selectedConcert?.time"></span>
+                    <h2 class="text-3xl font-extrabold text-zinc-900 mt-1" x-text="selectedConcert?.title"></h2>
+                </div>
+                <span class="text-sm font-medium text-zinc-500 bg-zinc-100 px-3 py-1.5 rounded-xl self-start" x-text="selectedConcert?.location"></span>
+            </div>
 
-            <h3 class="text-lg font-bold text-zinc-900 mb-4 border-b border-zinc-100 pb-2">Seleccioná tus ubicaciones:</h3>
+            <h3 class="text-lg font-bold text-zinc-900 mb-4">Seleccioná tus ubicaciones y costos:</h3>
             
             <div class="space-y-4 mb-8">
                 <template x-for="ticket in selectedConcert?.tickets" :key="ticket.type">
-                    <div class="flex items-center justify-between bg-zinc-50 p-4 rounded-2xl border border-zinc-200">
+                    <div class="flex items-center justify-between bg-zinc-50 p-4 sm:p-5 rounded-2xl border border-zinc-200">
                         <div>
                             <h4 class="font-bold text-base text-zinc-900" x-text="ticket.type"></h4>
                             <p class="text-xs text-zinc-500" x-text="ticket.description"></p>
-                            <span class="text-red-600 font-bold text-sm mt-1 block" x-text=" '$' + ticket.price.toLocaleString() "></span>
+                            <span class="text-red-600 font-black text-base mt-1 block" x-text=" '$' + ticket.price.toLocaleString() "></span>
                         </div>
                         <div class="flex items-center gap-3">
-                            <button @click="decrementTicket(ticket)" class="w-9 h-9 bg-white border border-zinc-300 hover:bg-zinc-100 rounded-xl font-bold text-zinc-800 transition">-</button>
-                            <span class="w-6 text-center font-bold text-zinc-900" x-text="ticket.qty"></span>
-                            <button @click="incrementTicket(ticket)" class="w-9 h-9 bg-red-600 hover:bg-red-700 text-white rounded-xl font-bold transition">+</button>
+                            <button @click="decrementTicket(ticket)" class="w-10 h-10 bg-white border border-zinc-300 hover:bg-zinc-100 rounded-xl font-bold text-zinc-800 transition">-</button>
+                            <span class="w-8 text-center font-bold text-lg text-zinc-900" x-text="ticket.qty"></span>
+                            <button @click="incrementTicket(ticket)" class="w-10 h-10 bg-red-600 hover:bg-red-700 text-white rounded-xl font-bold transition">+</button>
                         </div>
                     </div>
                 </template>
@@ -151,11 +199,11 @@
 
             <div class="bg-zinc-50 p-6 rounded-2xl border border-zinc-200 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div>
-                    <p class="text-xs text-zinc-500">Total a pagar:</p>
-                    <p class="text-2xl font-black text-red-600" x-text=" '$' + calculateTotal().toLocaleString() "></p>
+                    <p class="text-xs text-zinc-500">Total a abonar:</p>
+                    <p class="text-3xl font-black text-red-600" x-text=" '$' + calculateTotal().toLocaleString() "></p>
                 </div>
-                <button @click="proceedToCheckout()" :disabled="calculateTotal() === 0" class="w-full sm:w-auto bg-red-600 hover:bg-red-700 disabled:bg-zinc-200 disabled:text-zinc-400 text-white font-semibold px-8 py-3.5 rounded-xl transition text-sm shadow-md">
-                    Avanzar al Pago →
+                <button @click="proceedToCheckout()" :disabled="calculateTotal() === 0" class="w-full sm:w-auto bg-red-600 hover:bg-red-700 disabled:bg-zinc-200 disabled:text-zinc-400 text-white font-bold px-8 py-4 rounded-2xl transition text-sm shadow-md">
+                    Continuar al Pago Seguro →
                 </button>
             </div>
         </div>
@@ -163,33 +211,33 @@
 
     <!-- ================= VISTA 4: PAGO SEGURO ================= -->
     <div x-show="view === 'checkout'" class="max-w-2xl mx-auto px-4 py-12">
-        <div class="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-10 shadow-lg">
-            <h2 class="text-2xl font-bold text-zinc-900 mb-2">Datos de Facturación y #eTicket</h2>
-            <p class="text-zinc-500 text-sm mb-6">Completá tus datos para emitir las entradas oficiales con código QR dinámico.</p>
+        <div class="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-10 shadow-xl">
+            <h2 class="text-2xl font-bold text-zinc-900 mb-2">Finalizar Compra (#eTicket)</h2>
+            <p class="text-zinc-500 text-sm mb-6">Ingresá tus datos para emitir las entradas oficiales con código QR.</p>
             
             <form @submit.prevent="processPayment" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-semibold uppercase text-zinc-500 mb-1">Nombre y Apellido (Titular)</label>
+                    <label class="block text-xs font-semibold uppercase text-zinc-500 mb-1">Nombre y Apellido del Titular</label>
                     <input type="text" required x-model="buyer.name" placeholder="Ej: León Pérez" class="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:border-red-600">
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold uppercase text-zinc-500 mb-1">Correo Electrónico (Para recibir el #eTicket)</label>
+                    <label class="block text-xs font-semibold uppercase text-zinc-500 mb-1">Correo Electrónico (Para recibir el acceso QR)</label>
                     <input type="email" required x-model="buyer.email" placeholder="tu@correo.com" class="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:border-red-600">
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold uppercase text-zinc-500 mb-1">Medio de Pago Seleccionado</label>
+                    <label class="block text-xs font-semibold uppercase text-zinc-500 mb-1">Medio de Pago</label>
                     <select x-model="buyer.paymentMethod" class="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-red-600 text-zinc-900">
-                        <option value="mercadopago">Tarjeta de Crédito / Débito / Mercado Pago</option>
+                        <option value="mercadopago">Mercado Pago / Tarjeta de Crédito / Débito</option>
                     </select>
                 </div>
 
                 <div class="pt-4 border-t border-zinc-100 flex items-center justify-between">
                     <div>
                         <p class="text-xs text-zinc-500">Total final:</p>
-                        <p class="text-xl font-bold text-red-600" x-text=" '$' + calculateTotal().toLocaleString() "></p>
+                        <p class="text-2xl font-black text-red-600" x-text=" '$' + calculateTotal().toLocaleString() "></p>
                     </div>
-                    <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-3.5 rounded-xl transition text-sm shadow-md">
-                        Confirmar y Pagar 🔒
+                    <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4 rounded-2xl transition text-sm shadow-md">
+                        Pagar de Forma Segura 🔒
                     </button>
                 </div>
             </form>
@@ -201,19 +249,19 @@
         <div class="bg-white border border-zinc-200 rounded-3xl p-8 sm:p-10 shadow-xl">
             <div class="w-16 h-16 bg-red-50 text-red-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 border border-red-200">✓</div>
             <h2 class="text-2xl font-bold text-zinc-900 mb-1">¡Compra Exitosa (#eTicket)!</h2>
-            <p class="text-zinc-500 text-sm mb-6">Tu operación fue procesada de forma segura. Presentá este código QR directamente desde tu celular en la puerta del evento.</p>
+            <p class="text-zinc-500 text-sm mb-6">Tu pago fue aprobado con éxito. Presentá este código QR directamente desde tu celular en el ingreso al estadio.</p>
             
             <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-6 text-left mb-6 space-y-3 shadow-inner">
                 <div class="flex justify-between items-center border-b border-zinc-200 pb-3">
                     <span class="text-xs uppercase font-bold text-red-600" x-text="selectedConcert?.title"></span>
-                    <span class="text-xs text-zinc-500" x-text="selectedConcert?.date"></span>
+                    <span class="text-xs text-zinc-500" x-text="selectedConcert?.date + ' - ' + selectedConcert?.time"></span>
                 </div>
                 <div>
                     <p class="text-xs text-zinc-400">Titular:</p>
                     <p class="text-sm font-semibold text-zinc-800" x-text="buyer.name"></p>
                 </div>
                 <div>
-                    <p class="text-xs text-zinc-400">Ubicación / Recinto:</p>
+                    <p class="text-xs text-zinc-400">Estadio / Recinto:</p>
                     <p class="text-sm font-semibold text-zinc-800" x-text="selectedConcert?.location"></p>
                 </div>
                 <div class="pt-3 border-t border-zinc-200 flex flex-col items-center justify-center">
@@ -222,90 +270,103 @@
                 </div>
             </div>
 
-            <button @click="resetApp()" class="w-full bg-zinc-900 hover:bg-zinc-800 text-white font-semibold py-3 rounded-xl transition text-sm shadow">
+            <button @click="resetApp()" class="w-full bg-zinc-900 hover:bg-zinc-800 text-white font-semibold py-3.5 rounded-2xl transition text-sm shadow">
                 Volver al Inicio de tike_arg
             </button>
         </div>
     </div>
 
-    <!-- Script con buscador reactivo corregido -->
+    <!-- Script de lógica con la cartelera real, fechas, horarios y presentación -->
     <script>
         function ticketApp() {
             return {
                 view: 'home',
                 searchQuery: '',
                 selectedConcert: null,
-                queuePosition: 142,
+                queuePosition: 118,
                 timerSeconds: 300,
                 timerInterval: null,
                 buyer: { name: '', email: '', paymentMethod: 'mercadopago' },
                 concerts: [
                     {
                         id: 1,
-                        title: 'Coldplay - Music of the Spheres',
-                        date: '12 de Noviembre, 2026',
-                        location: 'Estadio Monumental, Buenos Aires',
-                        badge: '¡Últimas Entradas!',
+                        artist: 'Maria Becerra',
+                        title: 'Maria Becerra - Gira Oficial',
+                        date: '13 de Noviembre, 2026',
+                        time: '21:00 hs',
+                        location: 'Movistar Arena, Buenos Aires',
+                        badge: '¡Alta Demanda!',
                         tickets: [
-                            { type: 'Campo General', description: 'Acceso general al campo', price: 55000, qty: 0 },
-                            { type: 'Platea Baja', description: 'Asiento preferencial numerado', price: 98000, qty: 0 },
-                            { type: 'VIP Package', description: 'Acceso exclusivo + Merchandising', price: 180000, qty: 0 }
+                            { type: 'Campo General', description: 'Acceso a pista general de pie', price: 48000, qty: 0 },
+                            { type: 'Platea Baja', description: 'Ubicación numerada preferencial', price: 79000, qty: 0 },
+                            { type: 'Experiencia VIP', description: 'Acceso prioritario + Merchandising', price: 128000, qty: 0 }
                         ]
                     },
                     {
                         id: 2,
-                        title: 'Duki - Gira Mundial',
+                        artist: 'Duki',
+                        title: 'Duki - Estadios Tour',
                         date: '25 de Octubre, 2026',
+                        time: '20:30 hs',
                         location: 'Estadio Vélez Sarsfield, Buenos Aires',
-                        badge: 'Alta Demanda',
+                        badge: 'Últimas Entradas',
                         tickets: [
-                            { type: 'Campo', description: 'Sector general de pie', price: 42000, qty: 0 },
-                            { type: 'Platea Preferencial', description: 'Ubicación numerada en platea baja', price: 75000, qty: 0 }
+                            { type: 'Campo', description: 'Pista general', price: 45000, qty: 0 },
+                            { type: 'Platea Preferencial', description: 'Sector baja numerado', price: 82000, qty: 0 }
                         ]
                     },
                     {
                         id: 3,
-                        title: 'Shakira - Las Mujeres Ya No Lloran World Tour',
-                        date: '04 de Diciembre, 2026',
-                        location: 'Campo Argentino de Polo, Buenos Aires',
-                        badge: 'Preventa Exclusiva',
+                        artist: 'Ed Sheeran',
+                        title: 'Ed Sheeran - Mathematics Tour',
+                        date: '29 de Noviembre, 2026',
+                        time: '21:00 hs',
+                        location: 'Estadio Tomás Adolfo Ducó (Huracán), Buenos Aires',
+                        badge: 'Internacional',
                         tickets: [
-                            { type: 'Campo Delantero', description: 'Cerca del escenario principal', price: 95000, qty: 0 },
-                            { type: 'Campo General', description: 'Acceso general', price: 50000, qty: 0 },
-                            { type: 'Platea VIP', description: 'Asiento reservado', price: 140000, qty: 0 }
+                            { type: 'Campo General', description: 'Sector general', price: 65000, qty: 0 },
+                            { type: 'Platea Baja', description: 'Asiento numerado', price: 110000, qty: 0 },
+                            { type: 'VIP Gold', description: 'Cercanía al escenario principal', price: 195000, qty: 0 }
                         ]
                     },
                     {
                         id: 4,
-                        title: 'Airbag - Tour 2026',
-                        date: '18 de Noviembre, 2026',
-                        location: 'Luna Park, Buenos Aires',
-                        badge: 'Disponible',
+                        artist: 'Coldplay',
+                        title: 'Coldplay - Music of the Spheres',
+                        date: '12 de Diciembre, 2026',
+                        time: '21:00 hs',
+                        location: 'Estadio Monumental, Buenos Aires',
+                        badge: 'Preventa',
                         tickets: [
-                            { type: 'Platea', description: 'Asiento numerado', price: 38000, qty: 0 },
-                            { type: 'Cabecera / General', description: 'Sin numerar', price: 25000, qty: 0 }
+                            { type: 'Campo General', description: 'Acceso a campo', price: 58000, qty: 0 },
+                            { type: 'Platea San Martín / Belgrano', description: 'Inferior numerada', price: 105000, qty: 0 }
                         ]
                     },
                     {
                         id: 5,
-                        title: 'Bizarrap - Live Sessions Arena',
-                        date: '30 de Octubre, 2026',
-                        location: 'Movistar Arena, Buenos Aires',
-                        badge: 'Últimos Lugares',
+                        artist: 'Shakira',
+                        title: 'Shakira - Las Mujeres Ya No Lloran Tour',
+                        date: '04 de Diciembre, 2026',
+                        time: '20:00 hs',
+                        location: 'Campo Argentino de Polo, Buenos Aires',
+                        badge: 'Destacado',
                         tickets: [
-                            { type: 'Campo General', description: 'Pista de pie', price: 45000, qty: 0 },
-                            { type: 'Platea Baja', description: 'Sector baja numerado', price: 70000, qty: 0 }
+                            { type: 'Campo Delantero', description: 'Cerca del escenario', price: 95000, qty: 0 },
+                            { type: 'Campo General', description: 'Pista general', price: 50000, qty: 0 },
+                            { type: 'Platea VIP', description: 'Asiento reservado', price: 140000, qty: 0 }
                         ]
                     },
                     {
                         id: 6,
-                        title: 'Lali - Disciplina Tour',
-                        date: '05 de Diciembre, 2026',
-                        location: 'Movistar Arena, Buenos Aires',
+                        artist: 'Maná',
+                        title: 'Maná - México Lindo y Querido Tour',
+                        date: '10 de Diciembre, 2026',
+                        time: '21:00 hs',
+                        location: 'Estadio Mâs Monumental, Buenos Aires',
                         badge: 'Disponible',
                         tickets: [
-                            { type: 'Campo', description: 'Acceso al campo', price: 39000, qty: 0 },
-                            { type: 'Platea Alta', description: 'Visita panorámica', price: 48000, qty: 0 }
+                            { type: 'Campo', description: 'Acceso general', price: 42000, qty: 0 },
+                            { type: 'Platea Baja', description: 'Ubicación numerada', price: 88000, qty: 0 }
                         ]
                     }
                 ],
@@ -315,6 +376,7 @@
                     }
                     const q = this.searchQuery.toLowerCase().trim();
                     return this.concerts.filter(c => 
+                        c.artist.toLowerCase().includes(q) || 
                         c.title.toLowerCase().includes(q) || 
                         c.location.toLowerCase().includes(q)
                     );
@@ -322,7 +384,7 @@
                 triggerQueue(concert) {
                     concert.tickets.forEach(t => t.qty = 0);
                     this.selectedConcert = concert;
-                    this.queuePosition = Math.floor(Math.random() * 250) + 30;
+                    this.queuePosition = Math.floor(Math.random() * 150) + 20;
                     this.view = 'queue';
 
                     setTimeout(() => {
@@ -369,7 +431,7 @@
                         if (qrContainer) {
                             qrContainer.innerHTML = "";
                             new QRCode(qrContainer, {
-                                text: `TIKEARG-ETICKET-VERIFICADO-${this.selectedConcert.title}-${this.buyer.name}`,
+                                text: `TIKEARG-OFICIAL-VERIFICADO-${this.selectedConcert.artist}-${this.buyer.name}`,
                                 width: 140,
                                 height: 140
                             });
