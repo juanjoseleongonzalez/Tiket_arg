@@ -26,8 +26,7 @@
                 </div>
                 <span class="text-[11px] text-zinc-400 font-medium tracking-wide">Plataforma de eTickets</span>
             </div>
-
-            <!-- Navegación -->
+ !-- Navegación -->
             <nav class="hidden md:flex space-x-8 text-sm font-semibold text-zinc-300">
                 <a href="#" onclick="resetApp(); return false;" class="hover:text-red-500 transition">Conciertos</a>
                 <a href="#" onclick="filterByGira(); return false;" class="hover:text-red-500 transition">Giras 2026</a>
