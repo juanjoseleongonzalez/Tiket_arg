@@ -66,8 +66,10 @@
                             <span class="text-zinc-500 text-lg">🔍</span>
                             <input type="text" id="searchInput" oninput="filterConcerts()" onfocus="showSuggestions()" placeholder="Buscá entre más de 15 artistas (ej: Lali, Emilia, Trueno, Tini)..." class="w-full bg-transparent py-3 text-white placeholder-zinc-500 focus:outline-none text-sm sm:text-base font-semibold">
                         </div>
-                        <button type="button" onclick="filterConcerts()" class="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-3.5 rounded-xl transition text-sm shadow-lg shadow-red-600/30">
-                            Buscar Show
+<button type="button" onclick="showFullCatalog()" class="bg-zinc-800 hover:bg-zinc-700 text-white font-bold px-6 py-3.5 rounded-xl transition text-sm border border-zinc-700 flex items-center gap-2">
+    📋 Lista
+</button>
+
                         </button>
                     </div>
 
@@ -1162,6 +1164,13 @@ if (!query) {
             document.getElementById('view-success').classList.add('hidden');
             document.getElementById('view-home').classList.remove('hidden');
             clearSearch();
+        }
+// Función para el botón "Lista": muestra todos los eventos y hace scroll hacia la cartelera
+        function showFullCatalog() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('suggestionsBox').classList.add('hidden');
+            renderConcerts(concerts);
+            window.scrollTo({ top: 500, behavior: 'smooth' });
         }
 
         initApp();
