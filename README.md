@@ -13,18 +13,12 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
     </style>
 </head>
-<body class="bg-zinc-950 text-zinc-100 antialiased selection:bg-red-600 selection:text-white">
-
-    <!-- ================= BANNER SUPERIOR INFORMATIVO ================= -->
+<body class="bg-zinc-950 text-zinc-100 antialiased selection:bg-red-600 selection:text-whiterounded-lgcursor-pointer<!-- ================= BANNER SUPERIOR INFORMATIVO ================= -->
     <div class="bg-gradient-to-r from-red-700 via-rose-600 to-red-600 text-white text-xs font-bold py-2 px-4 text-center tracking-wide flex items-center justify-center gap-2 shadow-inner">
         <span>🔥 Giras 2026 Confirmadas:</span>
-        <span class="underline underline-offset-2 opacity-95">¡Encontrá tus artistas favoritos al mejor precio y con cupos oficiales!</span>
-    </div>
-
-    <!-- ================= PASO 1: CABEZAL / HEADER OFICIAL ================= -->
+        <span class="underline underline-offset-2 opacity-95">¡Encontrá tus artistas favoritos al mejor precio y con cupos oficiales!</!-- ================= PASO 1: CABEZAL / HEADER OFICIAL ================= -->
     <header class="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur-md border-b border-zinc-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
-            <!-- Logo gigante con estilo -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">!-- Logo gigante con estilo -->
             <div class="flex flex-col cursor-pointer group" onclick="resetApp()">
                 <div class="flex items-center space-x-1">
                     <span class="text-3xl sm:text-4xl font-black tracking-tighter text-white group-hover:text-red-500 transition">tiket<span class="text-red-600">_arg</span></span>
@@ -63,7 +57,7 @@
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                       <span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
                     </span>
-                    <span>Estadios 2026 • Shows Internacionales • Trap, Rock & Cuarteto</span>
+                    <span>Estadios 2026 • Rock, Cumbia, Cuarteto, RKT & Trap</span>
                 </div>
                 
                 <h1 class="text-4xl sm:text-7xl font-black tracking-tight text-white leading-tight">
@@ -74,14 +68,14 @@
                     Encontrá cartelera de artistas, ubicaciones en estadios y comprá tus entradas oficiales en segundos de forma 100% segura.
                 </p>
                 
-                <!-- Buscador Rápido y Nuevo Botón Estilizado ("Buscar" / Catálogo) -->
+                <!-- Buscador Rápido y Botón "Buscar" (Catálogo y Precios) -->
                 <div class="max-w-2xl mx-auto relative pt-4 flex flex-col sm:flex-row gap-3 justify-center items-center">
                     <div class="flex items-center px-4 bg-zinc-900/90 backdrop-blur rounded-2xl border-2 border-red-600/60 shadow-2xl shadow-red-950/30 flex-grow w-full">
                         <span class="text-zinc-500 text-lg mr-2">🔍</span>
-                        <input type="text" id="searchInput" oninput="filterConcerts()" onfocus="showSuggestions()" placeholder="Buscá tu artista (ej: Maria Becerra, Duki, Wos)..." class="w-full bg-transparent py-4 text-white placeholder-zinc-500 focus:outline-none text-sm font-semibold">
+                        <input type="text" id="searchInput" oninput="filterConcerts()" onfocus="showSuggestions()" placeholder="Buscá tu artista (ej: La Renga, Ke Personajes, Q' Lokura)..." class="w-full bg-transparent py-4 text-white placeholder-zinc-500 focus:outline-none text-sm font-semibold">
                     </div>
 
-                    <!-- Botón "Buscar" que cumple exactamente la misma función de desplegar el catálogo y precios -->
+                    <!-- Botón "Buscar" que despliega el catálogo y precios -->
                     <div class="relative w-full sm:w-auto">
                         <button type="button" onclick="toggleCatalogDropdown()" class="w-full sm:w-auto bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold px-8 py-4 rounded-2xl transition text-sm border border-red-500/40 flex items-center justify-center gap-2 shadow-xl shadow-red-950/50 whitespace-nowrap cursor-pointer">
                             <span>🔍 Buscar</span>
@@ -323,114 +317,170 @@
             },
             {
                 id: 5,
-                artist: 'Lali',
-                title: 'Lali - Disciplina Tour',
-                date: '08 de Diciembre, 2026',
+                artist: 'La Renga',
+                title: 'La Renga - Banquete de Rock',
+                date: '06 de Diciembre, 2026',
                 time: '21:00 hs',
-                location: 'DirecTV Arena, Buenos Aires',
-                badge: 'Destacado',
-                image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80',
+                location: 'Estadio Único de La Plata, Buenos Aires',
+                badge: 'Rock Nacional',
+                image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
                 tickets: [
-                    { type: 'Campo', description: 'Acceso general', price: 44000, qty: 0 },
-                    { type: 'Platea Preferencial', description: 'Asiento reservado', price: 78000, qty: 0 }
+                    { type: 'Campo', description: 'Campo de pie', price: 40000, qty: 0 },
+                    { type: 'Platea', description: 'Tribuna numerada', price: 65000, qty: 0 }
                 ]
             },
             {
                 id: 6,
-                artist: 'Tini',
-                title: 'Tini - Tour Oficial 2026',
-                date: '15 de Diciembre, 2026',
-                time: '20:30 hs',
-                location: 'Tecnópolis, Buenos Aires',
-                badge: 'Popular',
-                image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
+                artist: 'Ke Personajes',
+                title: 'Ke Personajes - Cumbia Tour Nacional',
+                date: '10 de Diciembre, 2026',
+                time: '22:00 hs',
+                location: 'Movistar Arena, Buenos Aires',
+                badge: 'Cumbia',
+                image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80',
                 tickets: [
-                    { type: 'Campo General', description: 'Pista libre', price: 42000, qty: 0 },
-                    { type: 'Platea VIP', description: 'Cercano al escenario', price: 85000, qty: 0 }
+                    { type: 'Pista General', description: 'Baile y pista general', price: 35000, qty: 0 },
+                    { type: 'Platea Baja', description: 'Asiento preferencial', price: 60000, qty: 0 }
                 ]
             },
             {
                 id: 7,
-                artist: 'Bizarrap',
-                title: 'Bizarrap - Live Experience',
-                date: '20 de Diciembre, 2026',
-                time: '22:00 hs',
-                location: 'Hipódromo de Palermo, Buenos Aires',
-                badge: 'Fiesta Total',
-                image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80',
+                artist: 'Q\' Lokura',
+                title: 'Q\' Lokura - Cuarteto en Vivo',
+                date: '14 de Diciembre, 2026',
+                time: '23:30 hs',
+                location: 'Luna Park, Buenos Aires',
+                badge: 'Cuarteto',
+                image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
                 tickets: [
-                    { type: 'Campo General', description: 'Pista principal', price: 50000, qty: 0 },
-                    { type: 'VIP Deck', description: 'Sector exclusivo con barra', price: 115000, qty: 0 }
+                    { type: 'Pista Baile', description: 'Pista principal', price: 32000, qty: 0 },
+                    { type: 'Platea VIP', description: 'Sector preferencial numerado', price: 58000, qty: 0 }
                 ]
             },
             {
                 id: 8,
-                artist: 'Wos',
-                title: 'Wos - Descartable Tour',
-                date: '22 de Diciembre, 2026',
-                time: '21:00 hs',
-                location: 'Estadio Único de La Plata, Buenos Aires',
-                badge: 'Últimas Fechas',
+                artist: 'L-Gante',
+                title: 'L-Gante - Cumbia 420 & RKT Tour',
+                date: '18 de Diciembre, 2026',
+                time: '21:30 hs',
+                location: 'Tecnópolis, Buenos Aires',
+                badge: 'RKT / Cumbia',
                 image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80',
                 tickets: [
-                    { type: 'Campo', description: 'Campo general', price: 43000, qty: 0 },
-                    { type: 'Platea', description: 'Tribuna numerada', price: 71000, qty: 0 }
+                    { type: 'Campo General', description: 'Pista libre', price: 30000, qty: 0 },
+                    { type: 'VIP RKT', description: 'Zona exclusiva', price: 55000, qty: 0 }
                 ]
             },
             {
                 id: 9,
-                artist: 'Charly García',
-                title: 'Charly García - Único en Vivo',
-                date: '10 de Enero, 2027',
+                artist: 'Ciro y los Persas',
+                title: 'Ciro y los Persas - Rock Tour',
+                date: '21 de Diciembre, 2026',
                 time: '21:00 hs',
-                location: 'Teatro Colón, Buenos Aires',
-                badge: 'Leyenda',
-                image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
+                location: 'Estadio Vélez Sarsfield, Buenos Aires',
+                badge: 'Rock Nacional',
+                image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80',
                 tickets: [
-                    { type: 'Luneta', description: 'Planta baja preferencial', price: 95000, qty: 0 },
-                    { type: 'Tertulia', description: 'Primer piso numerado', price: 65000, qty: 0 }
+                    { type: 'Campo', description: 'Pista general', price: 38000, qty: 0 },
+                    { type: 'Platea Preferencial', description: 'Ubicación numerada', price: 72000, qty: 0 }
                 ]
             },
             {
                 id: 10,
-                artist: 'La Konga',
-                title: 'La Konga - Cuarteto Tour',
-                date: '16 de Enero, 2027',
-                time: '23:30 hs',
+                artist: 'Los Palmeras',
+                title: 'Los Palmeras - La Fiesta de la Cumbia',
+                date: '28 de Diciembre, 2026',
+                time: '21:00 hs',
                 location: 'Luna Park, Buenos Aires',
-                badge: 'Baile',
-                image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80',
+                badge: 'Cumbia Tradicional',
+                image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80',
                 tickets: [
-                    { type: 'Pista General', description: 'Baile y pie', price: 32000, qty: 0 },
-                    { type: 'Platea VIP', description: 'Mesas exclusivas', price: 68000, qty: 0 }
+                    { type: 'Pista', description: 'Pista general', price: 34000, qty: 0 },
+                    { type: 'Platea', description: 'Sector numerado', price: 58000, qty: 0 }
                 ]
             },
             {
                 id: 11,
-                artist: 'Nicki Nicole',
-                title: 'Nicki Nicole - Alma Tour',
-                date: '24 de Enero, 2027',
-                time: '21:00 hs',
+                artist: 'La Konga',
+                title: 'La Konga - Gira Federal Cuarteto',
+                date: '04 de Enero, 2027',
+                time: '23:00 hs',
                 location: 'Movistar Arena, Buenos Aires',
-                badge: 'Destacado',
+                badge: 'Cuarteto Top',
                 image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80',
                 tickets: [
-                    { type: 'Campo', description: 'Pista principal', price: 44000, qty: 0 },
-                    { type: 'Platea Baja', description: 'Ubicación numerada', price: 74000, qty: 0 }
+                    { type: 'Pista General', description: 'Pista de baile', price: 35000, qty: 0 },
+                    { type: 'Platea Baja', description: 'Asiento preferencial', price: 70000, qty: 0 }
                 ]
             },
             {
                 id: 12,
-                artist: 'Airbag',
-                title: 'Airbag - Rock Nacional Tour',
-                date: '05 de Febrero, 2027',
-                time: '21:30 hs',
-                location: 'Estadio Luna Park, Buenos Aires',
-                badge: 'Rock',
+                artist: 'Callejero Fino',
+                title: 'Callejero Fino - RKT Session Tour',
+                date: '08 de Enero, 2027',
+                time: '22:00 hs',
+                location: 'Teatro Vorterix, Buenos Aires',
+                badge: 'RKT',
                 image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
                 tickets: [
-                    { type: 'Campo', description: 'Pista de pie', price: 38000, qty: 0 },
-                    { type: 'Platea', description: 'Sector numerado', price: 60000, qty: 0 }
+                    { type: 'General', description: 'Campo de pie', price: 28000, qty: 0 },
+                    { type: 'Balcón', description: 'Sector alto', price: 45000, qty: 0 }
+                ]
+            },
+            {
+                id: 13,
+                artist: 'Divididos',
+                title: 'Divididos - La Aplanadora del Rock',
+                date: '15 de Enero, 2027',
+                time: '21:00 hs',
+                location: 'Estadio Obras Sanitarias, Buenos Aires',
+                badge: 'Rock',
+                image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Campo', description: 'Pista general', price: 36000, qty: 0 },
+                    { type: 'Platea', description: 'Tribuna', price: 62000, qty: 0 }
+                ]
+            },
+            {
+                id: 14,
+                artist: 'Damas Gratis',
+                title: 'Damas Gratis - Cumbia Villera Tour',
+                date: '20 de Enero, 2027',
+                time: '23:00 hs',
+                location: 'Luna Park, Buenos Aires',
+                badge: 'Cumbia',
+                image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Pista General', description: 'Pista de baile', price: 30000, qty: 0 },
+                    { type: 'Platea', description: 'Asiento numerado', price: 50000, qty: 0 }
+                ]
+            },
+            {
+                id: 15,
+                artist: 'Ulises Bueno',
+                title: 'Ulises Bueno - El Caño Tour',
+                date: '25 de Enero, 2027',
+                time: '23:30 hs',
+                location: 'Movistar Arena, Buenos Aires',
+                badge: 'Cuarteto',
+                image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Pista', description: 'Pista general', price: 33000, qty: 0 },
+                    { type: 'Platea Preferencial', description: 'Platea baja', price: 64000, qty: 0 }
+                ]
+            },
+            {
+                id: 16,
+                artist: 'No Te Va Gustar',
+                title: 'NTVG - Gira Sudamericana',
+                date: '02 de Febrero, 2027',
+                time: '21:00 hs',
+                location: 'Estadio Único de La Plata, Buenos Aires',
+                badge: 'Rock / Pop Rock',
+                image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Campo', description: 'Campo general', price: 39000, qty: 0 },
+                    { type: 'Platea', description: 'Tribuna numerada', price: 68000, qty: 0 }
                 ]
             }
         ];
@@ -498,10 +548,10 @@
             }
         }
 
-        function renderCatalogDropdownList() {
+function renderCatalogDropdownList() {
             const listContainer = document.getElementById('catalogDropdownList');
             listContainer.innerHTML = concerts.map(c => `
-                <div onclick="selectArtistFromCatalog(${c.id})" class="bg-zinc-950 hover:bg-red-600/10 border border-zinc-800 hover:border-red-600/50 p-3 rounded-xl cursor-pointer transition group">
+<div onclick="selectArtistFromCatalog(${c.id})" class="bg-zinc-950 hover:bg-red-600/10 border border-zinc-800 hover:border-red-600/50 p-3 rounded-xl cursor-pointer transition group">
                     <div class="flex justify-between items-center">
                         <h4 class="font-black text-sm text-white group-hover:text-red-500 transition">🎤 ${c.artist}</h4>
                         <span class="text-[10px] bg-red-600/20 text-red-500 px-2 py-0.5 rounded-full font-bold">${c.date.split(',')[0]}</span>
@@ -515,28 +565,28 @@
             `).join('');
         }
 
-        function selectArtistFromCatalog(id) {
+function selectArtistFromCatalog(id) {
             document.getElementById('catalogDropdown').classList.add('hidden');
             triggerQueue(id);
         }
 
-        // Buscador inteligente en tiempo real
+// Buscador inteligente en tiempo real
         function filterConcerts() {
             const query = document.getElementById('searchInput').value.toLowerCase().trim();
             document.getElementById('suggestionsBox').classList.add('hidden');
 
-            if (!query) {
+if (!query) {
                 renderConcerts(concerts);
                 return;
             }
 
-            const foundConcert = concerts.find(c => 
+const foundConcert = concerts.find(c => 
                 c.artist.toLowerCase().includes(query) || 
                 c.title.toLowerCase().includes(query) ||
                 c.location.toLowerCase().includes(query)
             );
 
-            if (foundConcert && (query.length > 2 || concerts.some(c => c.artist.toLowerCase() === query))) {
+ if (foundConcert && (query.length > 2 || concerts.some(c => c.artist.toLowerCase() === query))) {
                 triggerQueue(foundConcert.id);
             } else {
                 const filtered = concerts.filter(c => 
@@ -549,26 +599,26 @@
             }
         }
 
-        // Renderizado de la cartelera principal
+// Renderizado de la cartelera principal
         function renderConcerts(list) {
             const grid = document.getElementById('concertsGrid');
             const noResults = document.getElementById('noResults');
             const eventCount = document.getElementById('eventCount');
             const btnClear = document.getElementById('btnClear');
 
-            eventCount.innerText = `${list.length} evento${list.length !== 1 ? 's' : ''}`;
+ eventCount.innerText = `${list.length} evento${list.length !== 1 ? 's' : ''}`;
             if (list.length > 0) btnClear.classList.remove('hidden');
             else btnClear.classList.add('hidden');
 
-            if (list.length === 0) {
+if (list.length === 0) {
                 grid.innerHTML = '';
                 noResults.classList.remove('hidden');
                 return;
             }
 
-            noResults.classList.add('hidden');
+noResults.classList.add('hidden');
             
-            grid.innerHTML = list.map(c => {
+grid.innerHTML = list.map(c => {
                 const minPrice = Math.min(...c.tickets.map(t => t.price));
                 return `
                     <div class="bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800 hover:border-red-600/60 transition-all duration-300 group flex flex-col justify-between shadow-xl">
@@ -582,7 +632,7 @@
                                 </div>
                             </div>
                             
-                            <div class="p-6 space-y-4">
+ <div class="p-6 space-y-4">
                                 <div class="flex items-center justify-between text-xs font-bold text-red-500 uppercase tracking-wider">
                                     <span class="flex items-center gap-1">📅 ${c.date}</span>
                                     <span class="bg-zinc-950 px-2.5 py-1 rounded-lg border border-zinc-800 text-zinc-300">🕒 ${c.time}</span>
@@ -597,8 +647,8 @@
                             </div>
                         </div>
 
-                        <div class="p-6 pt-0">
-                            <button onclick="triggerQueue(${c.id})" class="w-full bg-zinc-800 hover:bg-red-600 text-white font-bold py-3.5 rounded-2xl transition shadow-md text-sm flex items-center justify-center gap-2">
+<div class="p-6 pt-0">
+ <button onclick="triggerQueue(${c.id})" class="w-full bg-zinc-800 hover:bg-red-600 text-white font-bold py-3.5 rounded-2xl transition shadow-md text-sm flex items-center justify-center gap-2">
                                 Comprar Entradas Oficiales 🎟️
                             </button>
                         </div>
@@ -607,31 +657,31 @@
             }).join('');
         }
 
-        function clearSearch() {
+ function clearSearch() {
             document.getElementById('searchInput').value = '';
             document.getElementById('suggestionsBox').classList.add('hidden');
             renderConcerts(concerts);
         }
 
-        function filterByGira() {
+function filterByGira() {
             resetApp();
             window.scrollTo({ top: 400, behavior: 'smooth' });
         }
 
-        function showMyTicketsInfo() {
+function showMyTicketsInfo() {
             alert("Para ver tus #eTickets comprados, completá el proceso de compra de cualquier concierto para generar tu código QR oficial.");
         }
 
-        // Fila virtual de espera
+// Fila virtual de espera
         function triggerQueue(id) {
             selectedConcert = JSON.parse(JSON.stringify(concerts.find(c => c.id === id)));
             selectedConcert.tickets.forEach(t => t.qty = 0);
 
-            document.getElementById('view-home').classList.add('hidden');
+ document.getElementById('view-home').classList.add('hidden');
             document.getElementById('view-queue').classList.remove('hidden');
             document.getElementById('queuePosText').innerText = Math.floor(Math.random() * 50) + 10;
 
-            setTimeout(() => {
+ setTimeout(() => {
                 document.getElementById('view-queue').classList.add('hidden');
                 document.getElementById('view-select').classList.remove('hidden');
                 setupSelectTickets();
@@ -639,15 +689,14 @@
             }, 1500);
         }
 
-        // Selección de ubicaciones y precios
+// Selección de ubicaciones y precios
         function setupSelectTickets() {
             document.getElementById('selConcertMeta').innerText = selectedConcert.date + ' - ' + selectedConcert.time;
             document.getElementById('selConcertTitle').innerText = selectedConcert.title;
             document.getElementById('selConcertLoc').innerText = selectedConcert.location;
 
-            const container = document.getElementById('ticketsListContainer');
-            container.innerHTML = selectedConcert.tickets.map((t, idx) => `
-                <div class="flex items-center justify-between bg-zinc-950 p-4 sm:p-5 rounded-2xl border border-zinc-800">
+const container = document.getElementById('ticketsListContainer');
+            container.innerHTML = selectedConcert.tickets.map((t, idx) =>  <div class="flex items-center justify-between bg-zinc-950 p-4 sm:p-5 rounded-2xl border border-zinc-800">
                     <div>
                         <h4 class="font-bold text-base text-white">${t.type}</h4>
                         <p class="text-xs text-zinc-400">${t.description}</p>
@@ -663,23 +712,22 @@
             updateTotal();
         }
 
-        function changeQty(idx, delta) {
+function changeQty(idx, delta) {
             selectedConcert.tickets[idx].qty = Math.max(0, selectedConcert.tickets[idx].qty + delta);
             document.getElementById(`qty-${idx}`).innerText = selectedConcert.tickets[idx].qty;
             updateTotal();
         }
-
-        function updateTotal() {
+    function updateTotal() {
             let total = selectedConcert.tickets.reduce((sum, t) => sum + (t.price * t.qty), 0);
             document.getElementById('totalPriceText').innerText = '$' + total.toLocaleString();
             document.getElementById('checkoutTotalText').innerText = '$' + total.toLocaleString();
             
-            const btn = document.getElementById('btnCheckout');
+  const btn = document.getElementById('btnCheckout');
             if (total > 0) btn.removeAttribute('disabled');
             else btn.setAttribute('disabled', 'true');
         }
 
-        function startTimer() {
+function startTimer() {
             timerSeconds = 300;
             clearInterval(timerInterval);
             timerInterval = setInterval(() => {
@@ -694,28 +742,26 @@
                     resetApp();
                 }
             }, 1000);
-        }
-
         function proceedToCheckout() {
             clearInterval(timerInterval);
             document.getElementById('view-select').classList.add('hidden');
             document.getElementById('view-checkout').classList.remove('hidden');
         }
 
-        // Procesamiento de pago seguro y generación de QR
+// Procesamiento de pago seguro y generación de QR
         function processPayment(e) {
             e.preventDefault();
             const name = document.getElementById('buyerName').value;
 
-            document.getElementById('view-checkout').classList.add('hidden');
+document.getElementById('view-checkout').classList.add('hidden');
             document.getElementById('view-success').classList.remove('hidden');
 
-            document.getElementById('successTitle').innerText = selectedConcert.title;
+document.getElementById('successTitle').innerText = selectedConcert.title;
             document.getElementById('successDate').innerText = selectedConcert.date + ' - ' + selectedConcert.time;
             document.getElementById('successBuyer').innerText = name;
             document.getElementById('successLoc').innerText = selectedConcert.location;
 
-            setTimeout(() => {
+setTimeout(() => {
                 const qrContainer = document.getElementById("qrcode");
                 qrContainer.innerHTML = "";
                 new QRCode(qrContainer, {
@@ -726,7 +772,7 @@
             }, 100);
         }
 
-        function resetApp() {
+function resetApp() {
             clearInterval(timerInterval);
             document.getElementById('view-queue').classList.add('hidden');
             document.getElementById('view-select').classList.add('hidden');
@@ -737,7 +783,7 @@
             clearSearch();
         }
 
-        // Cierre de menús al hacer clic fuera
+// Cierre de menús al hacer clic fuera
         document.addEventListener('click', function(e) {
             const dropdown = document.getElementById('catalogDropdown');
             const catalogBtn = document.querySelector('button[onclick="toggleCatalogDropdown()"]');
