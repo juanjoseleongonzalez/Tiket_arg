@@ -16,7 +16,7 @@
 <body class="bg-zinc-950 text-zinc-100 antialiased selection:bg-red-600 selection:text-white">
 
     <!-- ================= CABEZAL / HEADER ================= -->
-    <header class="sticky top-0 z-50 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800">
+    <header class="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur-md border-b border-zinc-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <!-- Logo Oficial -->
             <div class="flex items-center space-x-2 cursor-pointer group" onclick="resetApp()">
@@ -24,11 +24,11 @@
                 <span class="text-[10px] uppercase font-extrabold bg-red-600/20 text-red-500 border border-red-500/30 px-2 py-0.5 rounded-full">Oficial</span>
             </div>
 
-            <!-- Navegación -->
-            <nav class="hidden md:flex space-x-8 text-sm font-semibold text-zinc-400">
-                <a href="#" onclick="resetApp(); return false;" class="hover:text-white transition">Conciertos</a>
-                <a href="#" onclick="resetApp(); return false;" class="hover:text-white transition">Giras 2026</a>
-                <a href="#" onclick="resetApp(); return false;" class="hover:text-white transition">Mis #eTickets</a>
+            <!-- Navegación Funcional -->
+            <nav class="hidden md:flex space-x-8 text-sm font-semibold text-zinc-300">
+                <a href="#" onclick="resetApp(); return false;" class="hover:text-red-500 transition">Conciertos</a>
+                <a href="#" onclick="filterByGira(); return false;" class="hover:text-red-500 transition">Giras 2026</a>
+                <a href="#" onclick="showMyTicketsInfo(); return false;" class="hover:text-red-500 transition">Mis #eTickets</a>
             </nav>
 
             <!-- Seguridad -->
@@ -40,10 +40,10 @@
         </div>
     </header>
 
-    <!-- ================= VISTA 1: INICIO & BUSCADOR ================= -->
+    <!-- ================= VISTA 1: INICIO & BUSCADOR INTELIGENTE ================= -->
     <div id="view-home">
         <!-- Hero / Presentación Atractiva -->
-        <section class="relative py-24 lg:py-32 overflow-hidden border-b border-zinc-800/80 bg-gradient-to-b from-zinc-900 to-zinc-950 text-center px-4">
+        <section class="relative py-20 lg:py-28 overflow-hidden border-b border-zinc-800/80 bg-gradient-to-b from-zinc-900 to-zinc-950 text-center px-4">
             <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#dc2626_1px,transparent_1px)] [background-size:16px_16px]"></div>
             
             <div class="relative max-w-4xl mx-auto space-y-6">
@@ -56,65 +56,50 @@
                 </h1>
                 
                 <p class="text-zinc-400 text-base sm:text-xl max-w-2xl mx-auto font-medium">
-                    Encontrá tus artistas favoritos, consultá fechas, horarios y estadios, y asegurá tus entradas oficiales en segundos.
+                    Encontrá tus artistas favoritos entre una gran variedad de shows, consultá fechas, horarios y estadios, y asegurá tus entradas.
                 </p>
                 
-                <!-- Buscador Rápido y Potente -->
-                <div class="max-w-2xl mx-auto pt-4">
+                <!-- Buscador Rápido con Sugerencias y Lista Larga -->
+                <div class="max-w-2xl mx-auto relative pt-2">
                     <div class="flex flex-col sm:flex-row gap-2 bg-zinc-900/90 backdrop-blur p-2 rounded-2xl border-2 border-red-600/60 shadow-2xl shadow-red-950/30">
-                        <div class="flex items-center px-3 flex-grow gap-2">
+                        <div class="flex items-center px-3 flex-grow gap-2 relative">
                             <span class="text-zinc-500 text-lg">🔍</span>
-                            <input type="text" id="searchInput" oninput="filterConcerts()" placeholder="Buscá por artista (ej: Maria Becerra, Duki), fecha u horario..." class="w-full bg-transparent py-3 text-white placeholder-zinc-500 focus:outline-none text-sm sm:text-base font-semibold">
+                            <input type="text" id="searchInput" oninput="filterConcerts()" onfocus="showSuggestions()" placeholder="Buscá entre más de 15 artistas (ej: Lali, Emilia, Trueno, Tini)..." class="w-full bg-transparent py-3 text-white placeholder-zinc-500 focus:outline-none text-sm sm:text-base font-semibold">
                         </div>
                         <button type="button" onclick="filterConcerts()" class="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-3.5 rounded-xl transition text-sm shadow-lg shadow-red-600/30">
                             Buscar Show
                         </button>
                     </div>
+
+                    <!-- Panel desplegable con la lista larga de artistas populares -->
+                    <div id="suggestionsBox" class="absolute left-0 right-0 mt-2 bg-zinc-900 border border-zinc-800 rounded-2xl shadow-2xl z-50 hidden max-h-64 overflow-y-auto p-2 text-left">
+                        <div class="px-3 py-2 text-xs font-bold text-zinc-400 uppercase tracking-wider border-b border-zinc-800 mb-1">Artistas más buscados:</div>
+                        <div id="suggestionsList" class="grid grid-cols-2 sm:grid-cols-3 gap-1">
+                            <!-- Se llena por JavaScript con todos los artistas -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Galería Rápida de Artistas Destacados -->
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-zinc-900">
-            <h3 class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-6 text-center">Artistas Destacados en Cartelera</h3>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 text-center">
-                <div onclick="setSearch('Maria Becerra')" class="bg-zinc-900/60 hover:bg-zinc-900 hover:border-red-600/50 border border-zinc-800 p-4 rounded-2xl cursor-pointer transition group">
-                    <div class="w-14 h-14 bg-red-600/10 text-red-500 rounded-full flex items-center justify-center font-black text-lg mx-auto mb-2 group-hover:scale-110 transition border border-red-500/20">MB</div>
-                    <h4 class="font-bold text-xs sm:text-sm text-white">Maria Becerra</h4>
-                </div>
-                <div onclick="setSearch('Duki')" class="bg-zinc-900/60 hover:bg-zinc-900 hover:border-red-600/50 border border-zinc-800 p-4 rounded-2xl cursor-pointer transition group">
-                    <div class="w-14 h-14 bg-red-600/10 text-red-500 rounded-full flex items-center justify-center font-black text-lg mx-auto mb-2 group-hover:scale-110 transition border border-red-500/20">DK</div>
-                    <h4 class="font-bold text-xs sm:text-sm text-white">Duki</h4>
-                </div>
-                <div onclick="setSearch('Ed Sheeran')" class="bg-zinc-900/60 hover:bg-zinc-900 hover:border-red-600/50 border border-zinc-800 p-4 rounded-2xl cursor-pointer transition group">
-                    <div class="w-14 h-14 bg-red-600/10 text-red-500 rounded-full flex items-center justify-center font-black text-lg mx-auto mb-2 group-hover:scale-110 transition border border-red-500/20">ES</div>
-                    <h4 class="font-bold text-xs sm:text-sm text-white">Ed Sheeran</h4>
-                </div>
-                <div onclick="setSearch('Coldplay')" class="bg-zinc-900/60 hover:bg-zinc-900 hover:border-red-600/50 border border-zinc-800 p-4 rounded-2xl cursor-pointer transition group">
-                    <div class="w-14 h-14 bg-red-600/10 text-red-500 rounded-full flex items-center justify-center font-black text-lg mx-auto mb-2 group-hover:scale-110 transition border border-red-500/20">CP</div>
-                    <h4 class="font-bold text-xs sm:text-sm text-white">Coldplay</h4>
-                </div>
-                <div onclick="setSearch('Shakira')" class="bg-zinc-900/60 hover:bg-zinc-900 hover:border-red-600/50 border border-zinc-800 p-4 rounded-2xl cursor-pointer transition group">
-                    <div class="w-14 h-14 bg-red-600/10 text-red-500 rounded-full flex items-center justify-center font-black text-lg mx-auto mb-2 group-hover:scale-110 transition border border-red-500/20">SK</div>
-                    <h4 class="font-bold text-xs sm:text-sm text-white">Shakira</h4>
-                </div>
-                <div onclick="setSearch('Maná')" class="bg-zinc-900/60 hover:bg-zinc-900 hover:border-red-600/50 border border-zinc-800 p-4 rounded-2xl cursor-pointer transition group">
-                    <div class="w-14 h-14 bg-red-600/10 text-red-500 rounded-full flex items-center justify-center font-black text-lg mx-auto mb-2 group-hover:scale-110 transition border border-red-500/20">MN</div>
-                    <h4 class="font-bold text-xs sm:text-sm text-white">Maná</h4>
-                </div>
+        <!-- Galería de Artistas Destacados -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 border-b border-zinc-900">
+            <h3 class="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-6 text-center">Seleccioná un Artista Popular</h3>
+            <div id="quickArtistsGrid" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-3 text-center">
+                <!-- Se llena por JS dinámicamente -->
             </div>
         </section>
 
-        <!-- Cuerpo de la Página: Lista de Conciertos Más Cercanos -->
+        <!-- Cuerpo de la Página: Lista de Conciertos -->
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div class="mb-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
-                    <h2 class="text-2xl sm:text-3xl font-black tracking-tight text-white">Próximos Conciertos y Shows Cercanos</h2>
+                    <h2 class="text-2xl sm:text-3xl font-black tracking-tight text-white">Cartelera Completa de Conciertos</h2>
                     <p class="text-zinc-400 text-sm mt-1">Fechas oficiales confirmadas, horarios de apertura y estadios en Argentina.</p>
                 </div>
                 <div class="flex items-center gap-3">
                     <button onclick="clearSearch()" id="btnClear" class="text-xs text-red-500 hover:underline font-bold hidden">Limpiar filtro ✕</button>
-                    <div id="eventCount" class="text-xs bg-zinc-900 text-zinc-300 border border-zinc-800 font-bold px-3 py-1.5 rounded-lg uppercase tracking-wider">6 eventos</div>
+                    <div id="eventCount" class="text-xs bg-zinc-900 text-zinc-300 border border-zinc-800 font-bold px-3 py-1.5 rounded-lg uppercase tracking-wider">0 eventos</div>
                 </div>
             </div>
 
@@ -124,7 +109,7 @@
                 <button onclick="clearSearch()" class="mt-4 bg-red-600 text-white px-6 py-2.5 rounded-xl text-sm font-bold shadow hover:bg-red-700 transition">Ver todos los eventos</button>
             </div>
 
-            <!-- Grilla Dinámica con Imágenes y Precios -->
+            <!-- Grilla Dinámica de Conciertos -->
             <div id="concertsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Se rellena vía JavaScript -->
             </div>
@@ -250,7 +235,7 @@
         </div>
     </div>
 
-    <!-- ================= SCRIPT DE FUNCIONAMIENTO ================= -->
+    <!-- ================= SCRIPT DE FUNCIONAMIENTO COMPLETO ================= -->
     <script>
         const concerts = [
             {
@@ -284,11 +269,123 @@
             },
             {
                 id: 3,
+                artist: 'Emilia',
+                title: 'Emilia - .MP3 Tour Argentina',
+                date: '18 de Noviembre, 2026',
+                time: '21:00 hs',
+                location: 'Movistar Arena, Buenos Aires',
+                badge: 'Sold Out Parcial',
+                image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Campo General', description: 'Acceso general pista', price: 46000, qty: 0 },
+                    { type: 'Platea Baja', description: 'Ubicación numerada', price: 75000, qty: 0 }
+                ]
+            },
+            {
+                id: 4,
+                artist: 'Trueno',
+                title: 'Trueno - El Último Baile Tour',
+                date: '02 de Diciembre, 2026',
+                time: '21:30 hs',
+                location: 'Luna Park, Buenos Aires',
+                badge: 'Nuevo Show',
+                image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Campo', description: 'Pista de pie', price: 39000, qty: 0 },
+                    { type: 'Platea', description: 'Sector numerado', price: 62000, qty: 0 }
+                ]
+            },
+            {
+                id: 5,
+                artist: 'Lali',
+                title: 'Lali - Disciplina Tour',
+                date: '08 de Diciembre, 2026',
+                time: '21:00 hs',
+                location: 'DirecTV Arena, Buenos Aires',
+                badge: 'Destacado',
+                image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Campo', description: 'Acceso general', price: 44000, qty: 0 },
+                    { type: 'Platea Preferencial', description: 'Asiento reservado', price: 78000, qty: 0 }
+                ]
+            },
+            {
+                id: 6,
+                artist: 'Tini',
+                title: 'Tini - Tour Oficial 2026',
+                date: '15 de Diciembre, 2026',
+                time: '20:30 hs',
+                location: 'Tecnópolis, Buenos Aires',
+                badge: 'Popular',
+                image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Campo General', description: 'Pista libre', price: 42000, qty: 0 },
+                    { type: 'Platea VIP', description: 'Cercano al escenario', price: 85000, qty: 0 }
+                ]
+            },
+            {
+                id: 7,
+                artist: 'Bizarrap',
+                title: 'Bizarrap - Live Experience',
+                date: '20 de Diciembre, 2026',
+                time: '22:00 hs',
+                location: 'Hipódromo de Palermo, Buenos Aires',
+                badge: 'Fiesta Total',
+                image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Campo General', description: 'Pista principal', price: 50000, qty: 0 },
+                    { type: 'VIP Deck', description: 'Sector exclusivo con barra', price: 115000, qty: 0 }
+                ]
+            },
+            {
+                id: 8,
+                artist: 'Wos',
+                title: 'Wos - Descartable Tour',
+                date: '22 de Diciembre, 2026',
+                time: '21:00 hs',
+                location: 'Estadio Único de La Plata, Buenos Aires',
+                badge: 'Últimas Fechas',
+                image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Campo', description: 'Campo general', price: 43000, qty: 0 },
+                    { type: 'Platea', description: 'Tribuna numerada', price: 71000, qty: 0 }
+                ]
+            },
+            {
+                id: 9,
+                artist: 'Ke Personajes',
+                title: 'Ke Personajes - Cumbia Tour',
+                date: '28 de Diciembre, 2026',
+                time: '23:00 hs',
+                location: 'Luna Park, Buenos Aires',
+                badge: '¡A Bailar!',
+                image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Pista General', description: 'Pista de baile', price: 35000, qty: 0 },
+                    { type: 'Platea', description: 'Asiento numerado', price: 55000, qty: 0 }
+                ]
+            },
+            {
+                id: 10,
+                artist: 'Airbag',
+                title: 'Airbag - Rock Nacional Tour',
+                date: '05 de Enero, 2027',
+                time: '21:00 hs',
+                location: 'Luna Park, Buenos Aires',
+                badge: 'Rock',
+                image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Campo', description: 'Campo general', price: 40000, qty: 0 },
+                    { type: 'Platea Preferencial', description: 'Platea baja', price: 72000, qty: 0 }
+                ]
+            },
+            {
+                id: 11,
                 artist: 'Ed Sheeran',
                 title: 'Ed Sheeran - Mathematics Tour',
                 date: '29 de Noviembre, 2026',
                 time: '21:00 hs',
-                location: 'Estadio Tomás Adolfo Ducó (Huracán), Buenos Aires',
+                location: 'Estadio Huracán, Buenos Aires',
                 badge: 'Internacional',
                 image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
                 tickets: [
@@ -298,28 +395,28 @@
                 ]
             },
             {
-                id: 4,
+                id: 12,
                 artist: 'Coldplay',
                 title: 'Coldplay - Music of the Spheres',
                 date: '12 de Diciembre, 2026',
                 time: '21:00 hs',
                 location: 'Estadio Monumental, Buenos Aires',
                 badge: 'Preventa',
-                image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80',
+                image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80',
                 tickets: [
                     { type: 'Campo General', description: 'Acceso a campo', price: 58000, qty: 0 },
                     { type: 'Platea San Martín / Belgrano', description: 'Inferior numerada', price: 105000, qty: 0 }
                 ]
             },
             {
-                id: 5,
+                id: 13,
                 artist: 'Shakira',
                 title: 'Shakira - Las Mujeres Ya No Lloran Tour',
                 date: '04 de Diciembre, 2026',
                 time: '20:00 hs',
                 location: 'Campo Argentino de Polo, Buenos Aires',
-                badge: 'Destacado',
-                image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80',
+                badge: 'Estrella Mundial',
+                image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80',
                 tickets: [
                     { type: 'Campo Delantero', description: 'Cerca del escenario', price: 95000, qty: 0 },
                     { type: 'Campo General', description: 'Pista general', price: 50000, qty: 0 },
@@ -327,14 +424,14 @@
                 ]
             },
             {
-                id: 6,
+                id: 14,
                 artist: 'Maná',
                 title: 'Maná - México Lindo y Querido Tour',
                 date: '10 de Diciembre, 2026',
                 time: '21:00 hs',
                 location: 'Estadio Mâs Monumental, Buenos Aires',
-                badge: 'Disponible',
-                image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
+                badge: 'Clásico',
+                image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80',
                 tickets: [
                     { type: 'Campo', description: 'Acceso general', price: 42000, qty: 0 },
                     { type: 'Platea Baja', description: 'Ubicación numerada', price: 88000, qty: 0 }
@@ -346,6 +443,57 @@
         let timerInterval = null;
         let timerSeconds = 300;
 
+        // Inicializar elementos de la interfaz
+        function initApp() {
+            renderConcerts(concerts);
+            renderQuickArtists();
+            renderSuggestionsList();
+        }
+
+        function renderQuickArtists() {
+            const container = document.getElementById('quickArtistsGrid');
+            // Tomamos los primeros 8 artistas para accesos directos
+            const topArtists = concerts.slice(0, 8);
+            container.innerHTML = topArtists.map(c => `
+                <div onclick="setSearch('${c.artist}')" class="bg-zinc-900/60 hover:bg-zinc-900 hover:border-red-600/50 border border-zinc-800 p-3 rounded-xl cursor-pointer transition group">
+                    <div class="w-10 h-10 bg-red-600/10 text-red-500 rounded-full flex items-center justify-center font-black text-xs mx-auto mb-1 group-hover:scale-110 transition border border-red-500/20">
+                        ${c.artist.substring(0, 2).toUpperCase()}
+                    </div>
+                    <h4 class="font-bold text-xs text-white truncate">${c.artist}</h4>
+                </div>
+            `).join('');
+        }
+
+        function renderSuggestionsList() {
+            const list = document.getElementById('suggestionsList');
+            list.innerHTML = concerts.map(c => `
+                <div onclick="selectSuggestion('${c.artist}')" class="px-3 py-2 text-xs font-medium text-zinc-300 hover:bg-red-600/20 hover:text-white rounded-lg cursor-pointer transition truncate">
+                    🎤 ${c.artist}
+                </div>
+            `).join('');
+        }
+
+        function showSuggestions() {
+            document.getElementById('suggestionsBox').classList.remove('hidden');
+        }
+
+        // Ocultar sugerencias al hacer clic fuera
+        document.addEventListener('click', function(e) {
+            const searchInput = document.getElementById('searchInput');
+            const suggestionsBox = document.getElementById('suggestionsBox');
+            if (searchInput && suggestionsBox) {
+                if (!searchInput.contains(e.target) && !suggestionsBox.contains(e.target)) {
+                    suggestionsBox.classList.add('hidden');
+                }
+            }
+        });
+
+        function selectSuggestion(artistName) {
+            document.getElementById('searchInput').value = artistName;
+            document.getElementById('suggestionsBox').classList.add('hidden');
+            filterConcerts();
+        }
+
         function renderConcerts(list) {
             const grid = document.getElementById('concertsGrid');
             const noResults = document.getElementById('noResults');
@@ -354,7 +502,7 @@
 
             eventCount.innerText = list.length + ' eventos';
             
-            if (list.length > 0) {
+            if (list.length > 0 && list.length < concerts.length) {
                 btnClear.classList.remove('hidden');
             } else {
                 btnClear.classList.add('hidden');
@@ -368,7 +516,6 @@
 
             noResults.classList.add('hidden');
             
-            // Renderizar las tarjetas con imagen de fondo del artista, fecha, horario y precios
             grid.innerHTML = list.map(c => {
                 const minPrice = Math.min(...c.tickets.map(t => t.price));
                 return `
@@ -429,12 +576,24 @@
 
         function setSearch(val) {
             document.getElementById('searchInput').value = val;
+            document.getElementById('suggestionsBox').classList.add('hidden');
             filterConcerts();
         }
 
         function clearSearch() {
             document.getElementById('searchInput').value = '';
+            document.getElementById('suggestionsBox').classList.add('hidden');
             renderConcerts(concerts);
+        }
+
+        function filterByGira() {
+            resetApp();
+            // Scroll hacia la sección de conciertos
+            window.scrollTo({ top: 400, behavior: 'smooth' });
+        }
+
+        function showMyTicketsInfo() {
+            alert("Para ver tus #eTickets comprados, completá el proceso de compra de cualquier concierto para generar tu código QR oficial.");
         }
 
         function triggerQueue(id) {
@@ -552,8 +711,8 @@
             clearSearch();
         }
 
-        // Cargar los conciertos al iniciar
-        renderConcerts(concerts);
+        // Ejecutar al cargar la página
+        initApp();
     </script>
 </body>
 </html>
