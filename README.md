@@ -21,12 +21,13 @@
         <span class="underline underline-offset-2 opacity-95">¡Encontrá tus artistas favoritos al mejor precio y con cupos oficiales!</span>
     </div>
 
-        <!-- ================= PASO 1: CABEZAL / HEADER OFICIAL CON IMAGEN ================= -->
+    <!-- ================= PASO 1: CABEZAL / HEADER OFICIAL ================= -->
     <header class="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur-md border-b border-zinc-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
             <!-- Logo con Imagen Integrada -->
             <div class="flex items-center space-x-3 cursor-pointer group" onclick="resetApp()">
                 <div class="w-12 h-12 rounded-xl overflow-hidden border border-red-500/40 shadow-lg shadow-red-950/40 flex-shrink-0 bg-zinc-900">
+                    <!-- Imagen añadida en el logo del header -->
                     <img src="1000171439.png" alt="tiket_arg Logo" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
                 </div>
                 <div class="flex flex-col">
@@ -37,35 +38,6 @@
                     <span class="text-[11px] text-zinc-400 font-medium tracking-wide">Plataforma de eTickets</span>
                 </div>
             </div>
-
-            <!-- Navegación -->
-            <nav class="hidden md:flex space-x-8 text-sm font-semibold text-zinc-300">
-                <a href="#" onclick="resetApp(); return false;" class="hover:text-red-500 transition">Conciertos</a>
-                <a href="#" onclick="filterByGira(); return false;" class="hover:text-red-500 transition">Giras 2026</a>
-                <a href="#" onclick="showMyTicketsInfo(); return false;" class="hover:text-red-500 transition">Mis #eTickets</a>
-            </nav>
-
-            <!-- Seguridad SSL -->
-            <div class="flex items-center space-x-2">
-                <span class="text-xs bg-zinc-900 text-zinc-300 border border-zinc-800 px-3.5 py-2 rounded-full font-medium flex items-center gap-1.5 shadow-inner">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Venta Segura SSL
-                </span>
-            </div>
-        </div>
-    </header>
-
-    <!-- ================= BANNER / FOTO PRINCIPAL DEL CABEZAL ================= -->
-    <div class="w-full bg-zinc-950 border-b border-zinc-800/80 px-4 py-4">
-        <div class="max-w-7xl mx-auto rounded-3xl overflow-hidden border border-red-500/30 shadow-2xl shadow-red-950/40 relative group">
-            <img src="1000171671.png" alt="Conciertos en Vivo 2026[span_0](start_span)[span_0](end_span)" class="w-full h-48 sm:h-72 object-cover group-hover:scale-105 transition duration-700">
-            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent"></div>
-            <div class="absolute bottom-4 left-6 right-6 flex items-center justify-between text-xs font-bold text-zinc-300">
-                <span class="bg-red-600/90 text-white px-3 py-1.5 rounded-full uppercase tracking-wider backdrop-blur">🎸 Estadios Argentina 2026</span>
-                <span class="bg-zinc-900/80 px-3 py-1.5 rounded-full border border-zinc-700 backdrop-blur">Cupos Oficiales Disponibles</span>
-            </div>
-        </div>
-    </div>
-
 
             <!-- Navegación -->
             <nav class="hidden md:flex space-x-8 text-sm font-semibold text-zinc-300">
