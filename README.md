@@ -72,32 +72,23 @@
                     Encontrá cartelera de artistas, ubicaciones en estadios y comprá tus entradas oficiales en segundos de forma 100% segura.
                 </p>
                 
-                <!-- Buscador Rápido y Botón con Catálogo y Precios -->
+                <!-- Buscador Rápido y Botón con Catálogo Lateral -->
                 <div class="max-w-2xl mx-auto relative pt-4 flex flex-col sm:flex-row gap-3 justify-center items-center">
                     <div class="flex items-center px-4 bg-zinc-900/90 backdrop-blur rounded-2xl border-2 border-red-600/60 shadow-2xl shadow-red-950/30 flex-grow w-full">
                         <span class="text-zinc-500 text-lg mr-2">🔍</span>
                         <input type="text" id="searchInput" oninput="filterConcerts()" onfocus="showSuggestions()" placeholder="Buscá tu artista (ej: La Renga, Ke Personajes, Q' Lokura)..." class="w-full bg-transparent py-4 text-white placeholder-zinc-500 focus:outline-none text-sm font-semibold">
                     </div>
 
-                    <!-- Botón "Buscar" y Menú de Precios -->
-                    <div class="relative w-full sm:w-auto">
+                    <!-- Botón "Buscar" que activa el Panel Lateral -->
+                    <div class="w-full sm:w-auto">
                         <button type="button" onclick="toggleCatalogDropdown()" class="w-full sm:w-auto bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold px-8 py-4 rounded-2xl transition text-sm border border-red-500/40 flex items-center justify-center gap-2 shadow-xl shadow-red-950/50 whitespace-nowrap cursor-pointer">
-                            <span>🔍 Buscar</span>
-                            <span class="text-xs opacity-75 font-normal">▾</span>
+                            <span>🔍 Buscar Artistas</span>
+                            <span class="text-xs opacity-75 font-normal">→</span>
                         </button>
-
-                        <!-- Menú Desplegable con los Artistas y sus Precios -->
-                        <div id="catalogDropdown" class="absolute left-0 sm:right-0 sm:left-auto mt-2 w-full sm:w-96 bg-zinc-900 border border-zinc-800 rounded-2xl shadow-2xl z-50 hidden max-h-96 overflow-y-auto p-3 text-left">
-                            <div class="px-3 py-2 text-xs font-bold text-zinc-400 uppercase tracking-wider border-b border-zinc-800 mb-2 flex justify-between items-center">
-                                <span>Seleccioná un Artista</span>
-                                <span class="text-[10px] text-red-500">Ver precios</span>
-                            </div>
-                            <div id="catalogDropdownList" class="space-y-2"></div>
-                        </div>
                     </div>
 
                     <!-- Sugerencias de búsqueda -->
-                    <div id="suggestionsBox" class="absolute left-0 right-0 top-24 mt-2 bg-zinc-900 border border-zinc-800 rounded-2xl shadow-2xl z-50 hidden max-h-64 overflow-y-auto p-2 text-left">
+                    <div id="suggestionsBox" class="absolute left-0 right-0 top-24 mt-2 bg-zinc-900 border border-zinc-800 rounded-2xl shadow-2xl z-40 hidden max-h-64 overflow-y-auto p-2 text-left">
                         <div class="px-3 py-2 text-xs font-bold text-zinc-400 uppercase tracking-wider border-b border-zinc-800 mb-1">Artistas sugeridos:</div>
                         <div id="suggestionsList" class="grid grid-cols-2 gap-1"></div>
                     </div>
@@ -136,6 +127,27 @@
             <!-- Grilla Dinámica -->
             <div id="concertsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
         </main>
+    </div>
+
+    <!-- ================= PANEL LATERAL (SIDEBAR) DE ARTISTAS Y PRECIOS ================= -->
+    <div id="catalogBackdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden transition-opacity" onclick="toggleCatalogDropdown()"></div>
+    <div id="catalogDropdown" class="fixed top-0 right-0 h-full w-full sm:w-[440px] bg-zinc-900 border-l border-zinc-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+        <!-- Cabecera del Panel -->
+        <div class="p-5 border-b border-zinc-800 flex items-center justify-between bg-zinc-950">
+            <div class="flex items-center space-x-2">
+                <span class="text-xl font-black text-white">Listado de Artistas</span>
+                <span class="text-[10px] bg-red-600/20 text-red-500 border border-red-500/30 px-2 py-0.5 rounded-full font-bold">Precios Oficiales</span>
+            </div>
+            <button onclick="toggleCatalogDropdown()" class="w-9 h-9 bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-zinc-300 rounded-xl flex items-center justify-center font-bold transition">✕</button>
+        </div>
+        
+        <!-- Cuerpo con la Lista Desplazable -->
+        <div id="catalogDropdownList" class="p-4 space-y-3 overflow-y-auto flex-grow bg-zinc-900"></div>
+
+        <!-- Pie del Panel -->
+        <div class="p-4 border-t border-zinc-800 bg-zinc-950 text-center">
+            <p class="text-xs text-zinc-500">Seleccioná un artista para acceder directo a las ubicaciones.</p>
+        </div>
     </div>
 
     <!-- ================= PASO 3: SALA DE ESPERA / FILA VIRTUAL ================= -->
@@ -534,27 +546,30 @@
 
         function toggleCatalogDropdown() {
             const dropdown = document.getElementById('catalogDropdown');
-            const isHidden = dropdown.classList.contains('hidden');
+            const backdrop = document.getElementById('catalogBackdrop');
+            const isOpen = !dropdown.classList.contains('translate-x-full');
             document.getElementById('suggestionsBox').classList.add('hidden');
 
-            if (isHidden) {
+            if (!isOpen) {
                 renderCatalogDropdownList();
-                dropdown.classList.remove('hidden');
+                backdrop.classList.remove('hidden');
+                dropdown.classList.remove('translate-x-full');
             } else {
-                dropdown.classList.add('hidden');
+                dropdown.classList.add('translate-x-full');
+                setTimeout(() => backdrop.classList.add('hidden'), 300);
             }
         }
 
         function renderCatalogDropdownList() {
             const listContainer = document.getElementById('catalogDropdownList');
             listContainer.innerHTML = concerts.map(c => `
-                <div onclick="selectArtistFromCatalog(${c.id})" class="bg-zinc-950 hover:bg-red-600/10 border border-zinc-800 hover:border-red-600/50 p-3 rounded-xl cursor-pointer transition group">
+                <div onclick="selectArtistFromCatalog(${c.id})" class="bg-zinc-950 hover:bg-red-600/10 border border-zinc-800 hover:border-red-600/50 p-3.5 rounded-xl cursor-pointer transition group">
                     <div class="flex justify-between items-center">
                         <h4 class="font-black text-sm text-white group-hover:text-red-500 transition">🎤 ${c.artist}</h4>
-                        <span class="text-[10px] bg-red-600/20 text-red-500 px-2 py-0.5 rounded-full font-bold">${c.date.split(',')[0]}</span>
+                        <span class="text-[10px] bg-red-600/20 text-red-500 px-2.5 py-0.5 rounded-full font-bold">${c.date.split(',')[0]}</span>
                     </div>
                     <p class="text-[11px] text-zinc-400 truncate mt-1">📍 ${c.location}</p>
-                    <div class="mt-2 pt-2 border-t border-zinc-800/80 flex justify-between items-center text-[11px]">
+                    <div class="mt-2.5 pt-2 border-t border-zinc-800/80 flex justify-between items-center text-[11px]">
                         <span class="text-zinc-500">Entradas y Precios:</span>
                         <span class="font-bold text-red-400">Desde $${Math.min(...c.tickets.map(t => t.price)).toLocaleString()}</span>
                     </div>
@@ -563,7 +578,7 @@
         }
 
         function selectArtistFromCatalog(id) {
-            document.getElementById('catalogDropdown').classList.add('hidden');
+            toggleCatalogDropdown();
             triggerQueue(id);
         }
 
@@ -775,17 +790,14 @@
             document.getElementById('view-checkout').classList.add('hidden');
             document.getElementById('view-success').classList.add('hidden');
             document.getElementById('view-home').classList.remove('hidden');
-            document.getElementById('catalogDropdown').classList.add('hidden');
+            
+            const dropdown = document.getElementById('catalogDropdown');
+            const backdrop = document.getElementById('catalogBackdrop');
+            dropdown.classList.add('translate-x-full');
+            backdrop.classList.add('hidden');
+            
             clearSearch();
         }
-
-        document.addEventListener('click', function(e) {
-            const dropdown = document.getElementById('catalogDropdown');
-            const catalogBtn = document.querySelector('button[onclick="toggleCatalogDropdown()"]');
-            if (dropdown && catalogBtn && !dropdown.contains(e.target) && !catalogBtn.contains(e.target)) {
-                dropdown.classList.add('hidden');
-            }
-        });
 
         initApp();
     </script>
