@@ -55,57 +55,22 @@
         </div>
     </header>
 
-        <!-- ================= PASO 2: VISTA PRINCIPAL (INICIO, HERO Y CATÁLOGO) ================= -->
+    <!-- ================= PASO 2: VISTA PRINCIPAL (INICIO, HERO Y CATÁLOGO) ================= -->
     <div id="view-home">
-        <!-- Hero / Presentación Mejorado -->
-        <section class="relative py-20 lg:py-32 overflow-hidden border-b border-zinc-800/80 bg-zinc-950 text-center px-4">
-            <!-- Imagen de Fondo Estética con Degradados -->
-            <div class="absolute inset-0 z-0">
-                <img src="1000171437.png" alt="Conciertos masivos Argentina 2026" class="w-full h-full object-cover opacity-35 scale-105 filter brightness-75">
-                <div class="absolute inset-0 bg-gradient-to-b from-zinc-950/80 via-zinc-950/95 to-zinc-950"></div>
-            </div>
+        <!-- Hero / Presentación -->
+        <section class="relative py-20 lg:py-28 overflow-hidden border-b border-zinc-800/80 bg-gradient-to-b from-zinc-900 to-zinc-950 text-center px-4">
+            <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#dc2626_1px,transparent_1px)] [background-size:16px_16px]"></div>
             
-            <div class="relative z-10 max-w-4xl mx-auto space-y-6">
-                <div class="inline-flex items-center gap-2.5 bg-zinc-900/90 border border-zinc-800 text-zinc-300 text-xs font-bold px-5 py-2 rounded-full shadow-lg backdrop-blur-md">
-                    <span class="flex h-2 w-2 relative">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
-                    </span>
-                    <span>Estadios 2026 • Rock, Folklore, Chamamé, Tango, Cumbia, RKT & Trap</span>
-                </div>
-                
-                <h1 class="text-4xl sm:text-7xl font-black tracking-tight text-white leading-tight">
-                    Viví la música en vivo <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-500 to-red-600">sin límites</span>
-                </h1>
-                
-                <p class="text-zinc-300 text-base sm:text-xl max-w-2xl mx-auto font-medium drop-shadow">
-                    Encontrá cartelera de artistas, ubicaciones en estadios y comprá tus entradas oficiales en segundos de forma 100% segura.
-                </p>
-                
-                <!-- Buscador Rápido y Botón con Catálogo Lateral -->
-                <div class="max-w-2xl mx-auto relative pt-4 flex flex-col sm:flex-row gap-3 justify-center items-center">
-                    <div class="flex items-center px-4 bg-zinc-900/90 backdrop-blur-md rounded-2xl border-2 border-red-600/60 shadow-2xl shadow-red-950/50 flex-grow w-full">
-                        <span class="text-zinc-500 text-lg mr-2">🔍</span>
-                        <input type="text" id="searchInput" oninput="filterConcerts()" onfocus="showSuggestions()" placeholder="Buscá tu artista (ej: Abel Pintos, Chango Spasiuk, Callejero Fino)..." class="w-full bg-transparent py-4 text-white placeholder-zinc-500 focus:outline-none text-sm font-semibold">
-                    </div>
-
-                    <!-- Botón "Buscar" que activa el Panel Lateral -->
-                    <div class="w-full sm:w-auto">
-                        <button type="button" onclick="toggleCatalogDropdown()" class="w-full sm:w-auto bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold px-8 py-4 rounded-2xl transition text-sm border border-red-500/40 flex items-center justify-center gap-2 shadow-xl shadow-red-950/50 whitespace-nowrap cursor-pointer">
-                            <span>🔍 Buscar Artistas</span>
-                            <span class="text-xs opacity-75 font-normal">→</span>
-                        </button>
-                    </div>
-
-                    <!-- Sugerencias de búsqueda -->
-                    <div id="suggestionsBox" class="absolute left-0 right-0 top-24 mt-2 bg-zinc-900 border border-zinc-800 rounded-2xl shadow-2xl z-40 hidden max-h-64 overflow-y-auto p-2 text-left">
-                        <div class="px-3 py-2 text-xs font-bold text-zinc-400 uppercase tracking-wider border-b border-zinc-800 mb-1">Artistas sugeridos:</div>
-                        <div id="suggestionsList" class="grid grid-cols-2 gap-1"></div>
+            <div class="relative max-w-4xl mx-auto space-y-6">
+                <!-- Imagen del Recital / Concierto en el Cuerpo Principal -->
+                <div class="max-w-3xl mx-auto rounded-3xl overflow-hidden border border-red-500/30 shadow-2xl shadow-red-950/40 mb-8 relative group">
+                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80" alt="Conciertos en Vivo 2026" class="w-full h-64 sm:h-80 object-cover group-hover:scale-105 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent"></div>
+                    <div class="absolute bottom-4 left-6 right-6 flex items-center justify-between text-xs font-bold text-zinc-300">
+                        <span class="bg-red-600/90 text-white px-3 py-1.5 rounded-full uppercase tracking-wider backdrop-blur">🎸 Estadios Argentina 2026</span>
+                        <span class="bg-zinc-900/80 px-3 py-1.5 rounded-full border border-zinc-700 backdrop-blur">Cupos Oficiales Disponibles</span>
                     </div>
                 </div>
-            </div>
-        </section>
-
 
                 <div class="inline-flex items-center gap-2.5 bg-zinc-900/90 border border-zinc-800 text-zinc-300 text-xs font-bold px-5 py-2 rounded-full shadow-lg">
                     <span class="flex h-2 w-2 relative">
