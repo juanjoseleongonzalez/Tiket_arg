@@ -204,7 +204,7 @@
     <div id="view-checkout" class="max-w-2xl mx-auto px-4 py-12 hidden">
         <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 sm:p-10 shadow-xl">
             <h2 class="text-2xl font-bold text-white mb-2">Finalizar Compra (#eTicket)</h2>
-            <p class="text-zinc-400 text-sm mb-6">Ingresá tus datos para emitir las entradas oficiales con código QR de acceso al estadio.</p>
+            <p class="text-zinc-400 text-sm mb-6">Ingresá tus datos para coordinar el pago y emitir tu entrada oficial con código QR.</p>
             
             <form onsubmit="processPayment(event)" class="space-y-4">
                 <div>
@@ -216,19 +216,21 @@
                     <input type="email" id="buyerEmail" required placeholder="tu@correo.com" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-red-600 font-medium">
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold uppercase text-zinc-400 mb-1">Método de Pago Seleccionado</label>
-                    <select class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-red-600 text-white font-medium">
-                        <option value="mercadopago">Mercado Pago / Tarjeta de Crédito / Débito / Rapipago</option>
+                    <label class="block text-xs font-semibold uppercase text-zinc-400 mb-1">Seleccionar Método de Pago</label>
+                    <select id="paymentMethod" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-red-600 text-white font-medium">
+                        <option value="WhatsApp - Mercado Pago / Transferencia">Mercado Pago / Transferencia Bancaria (Vía WhatsApp)</option>
+                        <option value="WhatsApp - Efectivo / Rapipago / Pago Fácil">Efectivo / Rapipago / Pago Fácil (Vía WhatsApp)</option>
+                        <option value="WhatsApp - Tarjeta de Crédito/Débito">Tarjeta de Crédito / Débito (Vía WhatsApp)</option>
                     </select>
                 </div>
 
                 <div class="pt-4 border-t border-zinc-800 flex items-center justify-between">
                     <div>
-                        <p class="text-xs text-zinc-400">Total final a pagar:</p>
+                        <p class="text-xs text-zinc-400">Total final a abonar:</p>
                         <p id="checkoutTotalText" class="text-2xl font-black text-red-500">$0</p>
                     </div>
-                    <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4 rounded-2xl transition text-sm shadow-lg shadow-red-600/30">
-                        Pagar de Forma Segura 🔒
+                    <button type="submit" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 sm:px-8 py-4 rounded-2xl transition text-sm shadow-lg shadow-emerald-950/50 flex items-center gap-2">
+                        <span>Pagar por WhatsApp 💬</span>
                     </button>
                 </div>
             </form>
@@ -239,8 +241,8 @@
     <div id="view-success" class="max-w-xl mx-auto px-4 py-12 text-center hidden">
         <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 sm:p-10 shadow-xl">
             <div class="w-16 h-16 bg-emerald-500/10 text-emerald-500 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 border border-emerald-500/20">✓</div>
-            <h2 class="text-2xl font-bold text-white mb-1">¡Compra Exitosa (#eTicket)!</h2>
-            <p class="text-zinc-400 text-sm mb-6">Tu pago fue aprobado con éxito. Presentá este código QR dinámico directamente desde tu celular en el ingreso al estadio.</p>
+            <h2 class="text-2xl font-bold text-white mb-1">¡Solicitud Enviada a WhatsApp!</h2>
+            <p class="text-zinc-400 text-sm mb-6">Tu orden fue procesada. Se abrió WhatsApp para que completes tu pago y recibas tu código QR de acceso oficial.</p>
             
             <div class="bg-zinc-950 border border-zinc-800 rounded-2xl p-6 text-left mb-6 space-y-3 shadow-inner">
                 <div class="flex justify-between items-center border-b border-zinc-800 pb-3">
@@ -256,7 +258,7 @@
                     <p id="successLoc" class="text-sm font-semibold text-zinc-200"></p>
                 </div>
                 <div class="pt-3 border-t border-zinc-800 flex flex-col items-center justify-center">
-                    <p class="text-xs text-zinc-500 mb-2">Código QR Verificado:</p>
+                    <p class="text-xs text-zinc-500 mb-2">Código QR de Reserva:</p>
                     <div id="qrcode" class="bg-white p-3 rounded-xl border border-zinc-800 shadow-sm"></div>
                 </div>
             </div>
@@ -763,7 +765,28 @@
         function processPayment(e) {
             e.preventDefault();
             const name = document.getElementById('buyerName').value;
+            const email = document.getElementById('buyerEmail').value;
+            const paymentMethod = document.getElementById('paymentMethod').value;
 
+            // Calcular total y entradas seleccionadas para el mensaje de WhatsApp
+            let total = 0;
+            let ticketsSummary = "";
+            selectedConcert.tickets.forEach(t => {
+                if(t.qty > 0) {
+                    ticketsSummary += `\n- ${t.qty}x ${t.type} ($${(t.price * t.qty).toLocaleString()})`;
+                    total += t.price * t.qty;
+                }
+            });
+
+            // Número de WhatsApp al que llegará el pedido (reemplazá con tu número real sin el + y con código de país/área, ej: 5491112345678)
+            const whatsappNumber = "5491112345678";
+
+            // Armar texto del mensaje codificado para URL
+            const message = `Hola! 👋 Quiero confirmar mi compra en tiket_arg:\n\n🎤 *Artista/Show:* ${selectedConcert.title}\n📍 *Lugar:* ${selectedConcert.location}\n📅 *Fecha:* ${selectedConcert.date}\n\n🎟️ *Entradas:* ${ticketsSummary}\n\n💰 *Total a Pagar:* $${total.toLocaleString()}\n💳 *Método de Pago:* ${paymentMethod}\n\n👤 *Titular:* ${name}\n📧 *Email:* ${email}`;
+            
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+            // Mostrar vista de éxito con QR de reserva
             document.getElementById('view-checkout').classList.add('hidden');
             document.getElementById('view-success').classList.remove('hidden');
 
@@ -776,10 +799,13 @@
                 const qrContainer = document.getElementById("qrcode");
                 qrContainer.innerHTML = "";
                 new QRCode(qrContainer, {
-                    text: `TIKEARG-OFICIAL-VERIFICADO-${selectedConcert.artist}-${name}`,
+                    text: `TIKEARG-WHATSAPP-RESERVA-${selectedConcert.artist}-${name}`,
                     width: 140,
                     height: 140
                 });
+
+                // Redirigir a WhatsApp en una nueva pestaña
+                window.open(whatsappUrl, '_blank');
             }, 100);
         }
 
