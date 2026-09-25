@@ -92,7 +92,7 @@
                 <div class="max-w-2xl mx-auto relative pt-4 flex flex-col sm:flex-row gap-3 justify-center items-center">
                     <div class="flex items-center px-4 bg-zinc-900/90 backdrop-blur rounded-2xl border-2 border-red-600/60 shadow-2xl shadow-red-950/30 flex-grow w-full">
                         <span class="text-zinc-500 text-lg mr-2">🔍</span>
-                        <input type="text" id="searchInput" oninput="filterConcerts()" onfocus="showSuggestions()" placeholder="Buscá tu artista (ej: Abel Pintos, Chango Spasiuk, Callejero Fino)..." class="w-full bg-transparent py-4 text-white placeholder-zinc-500 focus:outline-none text-sm font-semibold">
+                        <input type="text" id="searchInput" oninput="filterConcerts()" onfocus="showSuggestions()" placeholder="Buscá tu artista (ej: Lali, Tini, El Chaqueño Palavecino)..." class="w-full bg-transparent py-4 text-white placeholder-zinc-500 focus:outline-none text-sm font-semibold">
                     </div>
 
                     <!-- Botón "Buscar" que activa el Panel Lateral -->
@@ -643,6 +643,77 @@
                 tickets: [
                     { type: 'Campo General', description: 'Pista', price: 34000, qty: 0 },
                     { type: 'Platea Baja', description: 'Platea baja numerada', price: 62000, qty: 0 }
+                ]
+            },
+            // --- NUEVOS ARTISTAS AÑADIDOS ---
+            {
+                id: 26,
+                artist: 'El Chaqueño Palavecino',
+                title: 'El Chaqueño Palavecino - Gira Folklórica Nacional',
+                date: '20 de Marzo, 2027',
+                time: '21:00 hs',
+                location: 'Luna Park, Buenos Aires',
+                badge: 'Folklore Tradicional',
+                image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Campo', description: 'Pista general', price: 32000, qty: 0 },
+                    { type: 'Platea', description: 'Sector numerado', price: 58000, qty: 0 }
+                ]
+            },
+            {
+                id: 27,
+                artist: 'Lali',
+                title: 'Lali - Disciplina Tour / En Vivo',
+                date: '25 de Marzo, 2027',
+                time: '21:30 hs',
+                location: 'Movistar Arena, Buenos Aires',
+                badge: 'Pop Popstar',
+                image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Campo General', description: 'Pista', price: 49000, qty: 0 },
+                    { type: 'Platea Baja', description: 'Asiento preferencial', price: 85000, qty: 0 }
+                ]
+            },
+            {
+                id: 28,
+                artist: 'Tini',
+                title: 'Tini - Gira Grandes Éxitos',
+                date: '30 de Marzo, 2027',
+                time: '21:00 hs',
+                location: 'Estadio Hipódromo de Palermo, Buenos Aires',
+                badge: 'Pop Internacional',
+                image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Campo General', description: 'Pista libre', price: 47000, qty: 0 },
+                    { type: 'VIP Tini', description: 'Zona exclusiva cercana al escenario', price: 95000, qty: 0 }
+                ]
+            },
+            {
+                id: 29,
+                artist: 'Luciano Pereyra',
+                title: 'Luciano Pereyra - Concierto Acústico y Romántico',
+                date: '05 de Abril, 2027',
+                time: '21:00 hs',
+                location: 'Teatro Gran Rex, Buenos Aires',
+                badge: 'Baladas / Folklore',
+                image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Platea Baja', description: 'Platea preferencial', price: 40000, qty: 0 },
+                    { type: 'Platea Alta', description: 'Ubicación alta', price: 26000, qty: 0 }
+                ]
+            },
+            {
+                id: 30,
+                artist: 'El Reja',
+                title: 'El Reja - Fiesta Cumbia & Party Tour',
+                date: '10 de Abril, 2027',
+                time: '23:30 hs',
+                location: 'Teatro Vorterix, Buenos Aires',
+                badge: 'Cumbia / Party',
+                image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'General Pista', description: 'Campo de pie', price: 27000, qty: 0 },
+                    { type: 'Balcón', description: 'Sector superior', price: 42000, qty: 0 }
                 ]
             }
         ];
