@@ -64,7 +64,7 @@
             <div class="relative max-w-4xl mx-auto space-y-6">
                 <!-- Imagen del Recital / Concierto en el Cuerpo Principal -->
                 <div class="max-w-3xl mx-auto rounded-3xl overflow-hidden border border-red-500/30 shadow-2xl shadow-red-950/40 mb-8 relative group">
-                    <img src="" alt="Conciertos en Vivo 2026" class="w-full h-64 sm:h-80 object-cover group-hover:scale-105 transition duration-700">
+                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80" alt="Conciertos en Vivo 2026" class="w-full h-64 sm:h-80 object-cover group-hover:scale-105 transition duration-700">
                     <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent"></div>
                     <div class="absolute bottom-4 left-6 right-6 flex items-center justify-between text-xs font-bold text-zinc-300">
                         <span class="bg-red-600/90 text-white px-3 py-1.5 rounded-full uppercase tracking-wider backdrop-blur">🎸 Estadios Argentina 2026</span>
@@ -536,8 +536,8 @@
             const topArtists = concerts.slice(0, 8);
             container.innerHTML = topArtists.map(c => `
                 <div onclick="triggerQueue(${c.id})" class="bg-zinc-900/60 hover:bg-zinc-900 hover:border-red-600/50 border border-zinc-800 p-3 rounded-xl cursor-pointer transition group">
-                    <div class="w-10 h-10 bg-red-600/10 text-red-500 rounded-full flex items-center justify-center font-black text-xs mx-auto mb-1 group-hover:scale-110 transition border border-red-500/20">
-                        ${c.artist.substring(0, 2).toUpperCase()}
+                    <div class="w-12 h-12 rounded-full overflow-hidden mx-auto mb-2 border border-red-500/30 group-hover:scale-110 transition shadow-md bg-zinc-950">
+                        <img src="${c.image}" alt="${c.artist}" class="w-full h-full object-cover">
                     </div>
                     <h4 class="font-bold text-xs text-white truncate">${c.artist}</h4>
                 </div>
@@ -547,8 +547,8 @@
         function renderSuggestionsList() {
             const list = document.getElementById('suggestionsList');
             list.innerHTML = concerts.map(c => `
-                <div onclick="selectSuggestion('${c.artist}')" class="px-3 py-2 text-xs font-medium text-zinc-300 hover:bg-red-600/20 hover:text-white rounded-lg cursor-pointer transition truncate">
-                    🎤 ${c.artist}
+                <div onclick="selectSuggestion('${c.artist}')" class="px-3 py-2 text-xs font-medium text-zinc-300 hover:bg-red-600/20 hover:text-white rounded-lg cursor-pointer transition truncate flex items-center gap-2">
+                    <img src="${c.image}" class="w-5 h-5 rounded-full object-cover" alt=""> <span>${c.artist}</span>
                 </div>
             `).join('');
         }
@@ -587,15 +587,18 @@
         function renderCatalogDropdownList() {
             const listContainer = document.getElementById('catalogDropdownList');
             listContainer.innerHTML = concerts.map(c => `
-                <div onclick="selectArtistFromCatalog(${c.id})" class="bg-zinc-950 hover:bg-red-600/10 border border-zinc-800 hover:border-red-600/50 p-3.5 rounded-xl cursor-pointer transition group">
-                    <div class="flex justify-between items-center">
-                        <h4 class="font-black text-sm text-white group-hover:text-red-500 transition">🎤 ${c.artist}</h4>
-                        <span class="text-[10px] bg-red-600/20 text-red-500 px-2.5 py-0.5 rounded-full font-bold">${c.date.split(',')[0]}</span>
-                    </div>
-                    <p class="text-[11px] text-zinc-400 truncate mt-1">📍 ${c.location}</p>
-                    <div class="mt-2.5 pt-2 border-t border-zinc-800/80 flex justify-between items-center text-[11px]">
-                        <span class="text-zinc-500">Entradas y Precios:</span>
-                        <span class="font-bold text-red-400">Desde $${Math.min(...c.tickets.map(t => t.price)).toLocaleString()}</span>
+                <div onclick="selectArtistFromCatalog(${c.id})" class="bg-zinc-950 hover:bg-red-600/10 border border-zinc-800 hover:border-red-600/50 p-3.5 rounded-xl cursor-pointer transition group flex items-center gap-3">
+                    <img src="${c.image}" class="w-12 h-12 rounded-lg object-cover flex-shrink-0 border border-zinc-800" alt="">
+                    <div class="flex-grow min-w-0">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-black text-sm text-white group-hover:text-red-500 transition truncate">${c.artist}</h4>
+                            <span class="text-[10px] bg-red-600/20 text-red-500 px-2 py-0.5 rounded-full font-bold flex-shrink-0">${c.date.split(',')[0]}</span>
+                        </div>
+                        <p class="text-[11px] text-zinc-400 truncate mt-0.5">📍 ${c.location}</p>
+                        <div class="mt-1.5 pt-1.5 border-t border-zinc-800/80 flex justify-between items-center text-[11px]">
+                            <span class="text-zinc-500">Entradas y Precios:</span>
+                            <span class="font-bold text-red-400">Desde $${Math.min(...c.tickets.map(t => t.price)).toLocaleString()}</span>
+                        </div>
                     </div>
                 </div>
             `).join('');
@@ -658,7 +661,7 @@
                     <div class="bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800 hover:border-red-600/60 transition-all duration-300 group flex flex-col justify-between shadow-xl">
                         <div>
                             <div class="relative h-52 bg-zinc-950 overflow-hidden">
-                                <img src="${c.image}" alt="${c.artist}" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-80">
+                                <img src="${c.image}" alt="${c.artist}" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-85">
                                 <div class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/30 to-transparent"></div>
                                 <span class="absolute top-3 left-3 bg-red-600 text-white text-[11px] font-black px-3 py-1 rounded-full shadow-md uppercase tracking-wider">${c.badge}</span>
                                 <div class="absolute bottom-3 left-4 right-4">
