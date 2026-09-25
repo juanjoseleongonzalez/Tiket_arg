@@ -230,7 +230,7 @@
                         <p id="checkoutTotalText" class="text-2xl font-black text-red-500">$0</p>
                     </div>
                     <button type="submit" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 sm:px-8 py-4 rounded-2xl transition text-sm shadow-lg shadow-emerald-950/50 flex items-center gap-2">
-                        <span>Pagar por WhatsApp 💬</span>
+                        <span>Solicitar pago 💬</span>
                     </button>
                 </div>
             </form>
