@@ -77,7 +77,7 @@
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                       <span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
                     </span>
-                    <span>Estadios 2026 • Rock, Cumbia, Cuarteto, RKT & Trap</span>
+                    <span>Estadios 2026 • Rock, Folklore, Chamamé, Tango, Cumbia, RKT & Trap</span>
                 </div>
                 
                 <h1 class="text-4xl sm:text-7xl font-black tracking-tight text-white leading-tight">
@@ -92,7 +92,7 @@
                 <div class="max-w-2xl mx-auto relative pt-4 flex flex-col sm:flex-row gap-3 justify-center items-center">
                     <div class="flex items-center px-4 bg-zinc-900/90 backdrop-blur rounded-2xl border-2 border-red-600/60 shadow-2xl shadow-red-950/30 flex-grow w-full">
                         <span class="text-zinc-500 text-lg mr-2">🔍</span>
-                        <input type="text" id="searchInput" oninput="filterConcerts()" onfocus="showSuggestions()" placeholder="Buscá tu artista (ej: La Renga, Ke Personajes, Q' Lokura)..." class="w-full bg-transparent py-4 text-white placeholder-zinc-500 focus:outline-none text-sm font-semibold">
+                        <input type="text" id="searchInput" oninput="filterConcerts()" onfocus="showSuggestions()" placeholder="Buscá tu artista (ej: Abel Pintos, Chango Spasiuk, Callejero Fino)..." class="w-full bg-transparent py-4 text-white placeholder-zinc-500 focus:outline-none text-sm font-semibold">
                     </div>
 
                     <!-- Botón "Buscar" que activa el Panel Lateral -->
@@ -517,6 +517,132 @@
                 tickets: [
                     { type: 'Campo', description: 'Campo general', price: 39000, qty: 0 },
                     { type: 'Platea', description: 'Tribuna numerada', price: 68000, qty: 0 }
+                ]
+            },
+            {
+                id: 17,
+                artist: 'Abel Pintos',
+                title: 'Abel Pintos - Gira Folklore y Canciones',
+                date: '10 de Febrero, 2027',
+                time: '21:00 hs',
+                location: 'Movistar Arena, Buenos Aires',
+                badge: 'Folklore',
+                image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Campo General', description: 'Pista de pie', price: 38000, qty: 0 },
+                    { type: 'Platea Preferencial', description: 'Asiento numerado', price: 74000, qty: 0 }
+                ]
+            },
+            {
+                id: 18,
+                artist: 'Soledad',
+                title: 'Soledad Pastorutti - Fiesta y Tradición',
+                date: '14 de Febrero, 2027',
+                time: '21:30 hs',
+                location: 'Luna Park, Buenos Aires',
+                badge: 'Folklore',
+                image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Pista', description: 'Campo general', price: 32000, qty: 0 },
+                    { type: 'Platea', description: 'Sector numerado', price: 60000, qty: 0 }
+                ]
+            },
+            {
+                id: 19,
+                artist: 'Chango Spasiuk',
+                title: 'Chango Spasiuk - Antología del Chamamé',
+                date: '18 de Febrero, 2027',
+                time: '20:30 hs',
+                location: 'Centro Cultural Kirchner (CCK), Buenos Aires',
+                badge: 'Chamamé',
+                image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Auditorio General', description: 'Ubicación general', price: 25000, qty: 0 },
+                    { type: 'Palco VIP', description: 'Palco preferencial', price: 45000, qty: 0 }
+                ]
+            },
+            {
+                id: 20,
+                artist: 'Los Alonsitos',
+                title: 'Los Alonsitos - Puro Chamamé',
+                date: '22 de Febrero, 2027',
+                time: '21:00 hs',
+                location: 'Teatro Gran Rex, Buenos Aires',
+                badge: 'Chamamé',
+                image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Platea Baja', description: 'Sector preferencial', price: 30000, qty: 0 },
+                    { type: 'Platea Alta', description: 'Ubicación alta', price: 20000, qty: 0 }
+                ]
+            },
+            {
+                id: 21,
+                artist: 'Raúl Lavié',
+                title: 'Raúl Lavié - Noche de Tango y Leyenda',
+                date: '26 de Febrero, 2027',
+                time: '20:30 hs',
+                location: 'Teatro Cúpula / Café Tortoni, Buenos Aires',
+                badge: 'Tango',
+                image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Mesa Preferencial', description: 'Mesa con consumición y vista cercana', price: 42000, qty: 0 },
+                    { type: 'General', description: 'Asiento general', price: 28000, qty: 0 }
+                ]
+            },
+            {
+                id: 22,
+                artist: 'Amelita Baltar',
+                title: 'Amelita Baltar - Vivir en Tango',
+                date: '03 de Marzo, 2027',
+                time: '21:00 hs',
+                location: 'Usina del Arte, Buenos Aires',
+                badge: 'Tango',
+                image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Platea Principal', description: 'Asiento numerado', price: 30000, qty: 0 },
+                    { type: 'Balcón', description: 'Sector superior', price: 22000, qty: 0 }
+                ]
+            },
+            {
+                id: 23,
+                artist: 'Gonzalo Nahuel',
+                title: 'Gonzalo Nahuel - Gira Acústica y Tropical',
+                date: '08 de Marzo, 2027',
+                time: '21:30 hs',
+                location: 'Teatro Broadway, Buenos Aires',
+                badge: 'Cumbia / Tropical',
+                image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Platea Baja', description: 'Ubicación preferencial', price: 29000, qty: 0 },
+                    { type: 'Pullman', description: 'Sector general', price: 19000, qty: 0 }
+                ]
+            },
+            {
+                id: 24,
+                artist: 'Ráfaga',
+                title: 'Ráfaga - Éxitos de Siempre Tour',
+                date: '12 de Marzo, 2027',
+                time: '22:00 hs',
+                location: 'Luna Park, Buenos Aires',
+                badge: 'Cumbia Clásica',
+                image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Pista', description: 'Pista de baile general', price: 31000, qty: 0 },
+                    { type: 'Platea', description: 'Asiento numerado', price: 54000, qty: 0 }
+                ]
+            },
+            {
+                id: 25,
+                artist: 'Agapornis',
+                title: 'Agapornis - Cumbia Pop Tour',
+                date: '16 de Marzo, 2027',
+                time: '21:00 hs',
+                location: 'Movistar Arena, Buenos Aires',
+                badge: 'Cumbia Pop',
+                image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Campo General', description: 'Pista', price: 34000, qty: 0 },
+                    { type: 'Platea Baja', description: 'Platea baja numerada', price: 62000, qty: 0 }
                 ]
             }
         ];
