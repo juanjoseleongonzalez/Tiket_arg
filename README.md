@@ -24,10 +24,9 @@
     <!-- ================= PASO 1: CABEZAL / HEADER OFICIAL ================= -->
     <header class="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur-md border-b border-zinc-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
-            <!-- Logo con Imagen Integrada -->
+            <!-- Logo con Imagen Integrada y Frase -->
             <div class="flex items-center space-x-3 cursor-pointer group" onclick="resetApp()">
                 <div class="w-12 h-12 rounded-xl overflow-hidden border border-red-500/40 shadow-lg shadow-red-950/40 flex-shrink-0 bg-zinc-900">
-                    <!-- Imagen añadida en el logo del header -->
                     <img src="1000171439.png" alt="tiket_arg Logo" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
                 </div>
                 <div class="flex flex-col">
@@ -35,7 +34,7 @@
                         <span class="text-3xl sm:text-4xl font-black tracking-tighter text-white group-hover:text-red-500 transition">tiket<span class="text-red-600">_arg</span></span>
                         <span class="text-[9px] uppercase font-extrabold bg-red-600/20 text-red-500 border border-red-500/30 px-2 py-0.5 rounded-full ml-1 self-start">Oficial</span>
                     </div>
-                    <span class="text-[11px] text-zinc-400 font-medium tracking-wide">Plataforma de eTickets</span>
+                    <span class="text-[11px] text-red-400 font-bold tracking-wide">la música en tus manos</span>
                 </div>
             </div>
 
@@ -260,7 +259,6 @@
             <h2 class="text-2xl font-bold text-white mb-1">¡Solicitud Enviada a WhatsApp!</h2>
             <p class="text-zinc-400 text-sm mb-6">Tu orden fue procesada. Se abrió WhatsApp para que completes tu pago y recibas tu código QR de acceso oficial.</p>
             
-            <!-- CARTEL DE AVISO AGREGADO -->
             <div class="bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 text-xs font-semibold p-3.5 rounded-2xl mb-6 flex items-center justify-center gap-2 shadow-inner">
                 <span>✨</span>
                 <span>Gracias por usar nuestra página, su entrada estará validada al finalizar el pago.</span>
