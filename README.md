@@ -63,7 +63,7 @@
                 <div class="max-w-2xl mx-auto relative pt-2 flex flex-col sm:flex-row gap-3 justify-center items-center">
                     <div class="flex items-center px-3 bg-zinc-900/90 backdrop-blur rounded-2xl border-2 border-red-600/60 shadow-2xl shadow-red-950/30 flex-grow w-full">
                         <span class="text-zinc-500 text-lg mr-2">🔍</span>
-                        <input type="text" id="searchInput" oninput="filterConcerts()" onfocus="showSuggestions()" placeholder="Buscá tu artista (ej: Maria Becerra, Duki, Emilia)..." class="w-full bg-transparent py-3.5 text-white placeholder-zinc-500 focus:outline-none text-sm font-semibold">
+                        <input type="text" id="searchInput" oninput="filterConcerts()" onfocus="showSuggestions()" placeholder="Buscá tu artista (ej: Maria Becerra, Charly García, Trueno)..." class="w-full bg-transparent py-3.5 text-white placeholder-zinc-500 focus:outline-none text-sm font-semibold">
                     </div>
 
                     <!-- Botón Lista con desplegable de Artistas y Precios -->
@@ -359,6 +359,62 @@
                 tickets: [
                     { type: 'Campo', description: 'Campo general', price: 43000, qty: 0 },
                     { type: 'Platea', description: 'Tribuna numerada', price: 71000, qty: 0 }
+                ]
+            },
+            {
+                id: 9,
+                artist: 'Charly García',
+                title: 'Charly García - Único en Vivo',
+                date: '10 de Enero, 2027',
+                time: '21:00 hs',
+                location: 'Teatro Colón, Buenos Aires',
+                badge: 'Leyenda',
+                image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Luneta', description: 'Planta baja preferencial', price: 95000, qty: 0 },
+                    { type: 'Tertulia', description: 'Primer piso numerado', price: 65000, qty: 0 }
+                ]
+            },
+            {
+                id: 10,
+                artist: 'La Konga',
+                title: 'La Konga - Cuarteto Tour',
+                date: '16 de Enero, 2027',
+                time: '23:30 hs',
+                location: 'Luna Park, Buenos Aires',
+                badge: 'Baile',
+                image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Pista General', description: 'Baile y pie', price: 32000, qty: 0 },
+                    { type: 'Platea VIP', description: 'Mesas exclusivas', price: 68000, qty: 0 }
+                ]
+            },
+            {
+                id: 11,
+                artist: 'Nicki Nicole',
+                title: 'Nicki Nicole - Alma Tour',
+                date: '24 de Enero, 2027',
+                time: '21:00 hs',
+                location: 'Movistar Arena, Buenos Aires',
+                badge: 'Destacado',
+                image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Campo', description: 'Pista principal', price: 44000, qty: 0 },
+                    { type: 'Platea Baja', description: 'Ubicación numerada', price: 74000, qty: 0 }
+                ]
+            },
+            {
+                id: 12,
+                artist: 'Airbag',
+                title: 'Airbag - Rock Nacional Tour',
+                date: '05 de Febrero, 2027',
+                time: '21:30 hs',
+                location: 'Estadio Luna Park, Buenos Aires',
+                badge: 'Rock',
+                image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
+                tickets: [
+                    { type: 'Campo', description: 'Pista de pie', price: 38000, qty: 0 },
+                    { type: 'Platea', description: 'Sector numerado', price: 60000, qty: 0 }
                 ]
             }
         ];
