@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tike_arg - Venta Oficial de Entradas en Argentina</title>
+    <title>tiket_arg - Venta Oficial de Entradas en Argentina</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Generador de QR -->
@@ -15,13 +15,22 @@
 </head>
 <body class="bg-zinc-950 text-zinc-100 antialiased selection:bg-red-600 selection:text-white">
 
+    <!-- ================= BANNER SUPERIOR INFORMATIVO ================= -->
+    <div class="bg-gradient-to-r from-red-700 via-rose-600 to-red-600 text-white text-xs font-bold py-2 px-4 text-center tracking-wide flex items-center justify-center gap-2 shadow-inner">
+        <span>🔥 Giras 2026 Confirmadas:</span>
+        <span class="underline underline-offset-2 opacity-95">¡Encontrá tus artistas favoritos al mejor precio y con cupos oficiales!</span>
+    </div>
+
     <!-- ================= PASO 1: CABEZAL / HEADER OFICIAL ================= -->
     <header class="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur-md border-b border-zinc-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Logo -->
-            <div class="flex items-center space-x-2 cursor-pointer group" onclick="resetApp()">
-                <span class="text-2xl font-black tracking-tight text-white group-hover:text-red-500 transition">tike<span class="text-red-600">_arg</span></span>
-                <span class="text-[10px] uppercase font-extrabold bg-red-600/20 text-red-500 border border-red-500/30 px-2 py-0.5 rounded-full">Oficial</span>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
+            <!-- Logo gigante con estilo -->
+            <div class="flex flex-col cursor-pointer group" onclick="resetApp()">
+                <div class="flex items-center space-x-1">
+                    <span class="text-3xl sm:text-4xl font-black tracking-tighter text-white group-hover:text-red-500 transition">tiket<span class="text-red-600">_arg</span></span>
+                    <span class="text-[9px] uppercase font-extrabold bg-red-600/20 text-red-500 border border-red-500/30 px-2 py-0.5 rounded-full ml-1 self-start">Oficial</span>
+                </div>
+                <span class="text-[11px] text-zinc-400 font-medium tracking-wide">Plataforma de eTickets</span>
             </div>
 
             <!-- Navegación -->
@@ -33,43 +42,50 @@
 
             <!-- Seguridad SSL -->
             <div class="flex items-center space-x-2">
-                <span class="text-xs bg-zinc-900 text-zinc-300 border border-zinc-800 px-3.5 py-1.5 rounded-full font-medium flex items-center gap-1.5 shadow-inner">
+                <span class="text-xs bg-zinc-900 text-zinc-300 border border-zinc-800 px-3.5 py-2 rounded-full font-medium flex items-center gap-1.5 shadow-inner">
                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Venta Segura SSL
                 </span>
             </div>
         </div>
     </header>
 
-    <!-- ================= PASO 2: VISTA PRINCIPAL (INICIO, HERO Y SPONSORS) ================= -->
+    <!-- ================= PASO 2: VISTA PRINCIPAL (INICIO, HERO Y BANNER VISUAL) ================= -->
     <div id="view-home">
-        <!-- Hero / Presentación Atractiva -->
+        <!-- Hero / Presentación con Banner de Conciertos y Artistas -->
         <section class="relative py-20 lg:py-28 overflow-hidden border-b border-zinc-800/80 bg-gradient-to-b from-zinc-900 to-zinc-950 text-center px-4">
-            <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#dc2626_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            <!-- Banner Visual de Fondo / Destacado -->
+            <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#dc2626_1px,transparent_1px)] [background-size:16px_16px]"></div>
             
             <div class="relative max-w-4xl mx-auto space-y-6">
-                <div class="inline-flex items-center gap-2 bg-red-600/10 border border-red-600/30 text-red-500 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm">
-                    ⚡ Plataforma Nº1 de Venta de Entradas en Argentina
+                <!-- Mini Banner Rotativo de Conciertos -->
+                <div class="inline-flex items-center gap-2.5 bg-zinc-900/90 border border-zinc-800 text-zinc-300 text-xs font-bold px-5 py-2 rounded-full shadow-lg">
+                    <span class="flex h-2 w-2 relative">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+                    </span>
+                    <span>Estadios 2026 • Shows Internacionales • Trap, Rock & Cuarteto</span>
                 </div>
                 
-                <h1 class="text-4xl sm:text-7xl font-black tracking-tight text-white">
-                    Vivir la música <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-rose-600">nunca fue tan fácil</span>
+                <h1 class="text-4xl sm:text-7xl font-black tracking-tight text-white leading-tight">
+                    Viví la música en vivo <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-500 to-red-600">sin límites</span>
                 </h1>
                 
                 <p class="text-zinc-400 text-base sm:text-xl max-w-2xl mx-auto font-medium">
-                    Encontrá tus artistas favoritos, consultá fechas, horarios y estadios, y asegurá tus entradas oficiales en segundos.
+                    Encontrá cartelera de artistas, ubicaciones en estadios y comprá tus entradas oficiales en segundos de forma 100% segura.
                 </p>
                 
-                <!-- Buscador Rápido y Botón Lista de Artistas y Precios -->
-                <div class="max-w-2xl mx-auto relative pt-2 flex flex-col sm:flex-row gap-3 justify-center items-center">
-                    <div class="flex items-center px-3 bg-zinc-900/90 backdrop-blur rounded-2xl border-2 border-red-600/60 shadow-2xl shadow-red-950/30 flex-grow w-full">
+                <!-- Buscador Rápido y Nuevo Botón Estilizado ("Buscar" / Catálogo) -->
+                <div class="max-w-2xl mx-auto relative pt-4 flex flex-col sm:flex-row gap-3 justify-center items-center">
+                    <div class="flex items-center px-4 bg-zinc-900/90 backdrop-blur rounded-2xl border-2 border-red-600/60 shadow-2xl shadow-red-950/30 flex-grow w-full">
                         <span class="text-zinc-500 text-lg mr-2">🔍</span>
-                        <input type="text" id="searchInput" oninput="filterConcerts()" onfocus="showSuggestions()" placeholder="Buscá tu artista (ej: Maria Becerra, Charly García, Trueno)..." class="w-full bg-transparent py-3.5 text-white placeholder-zinc-500 focus:outline-none text-sm font-semibold">
+                        <input type="text" id="searchInput" oninput="filterConcerts()" onfocus="showSuggestions()" placeholder="Buscá tu artista (ej: Maria Becerra, Duki, Wos)..." class="w-full bg-transparent py-4 text-white placeholder-zinc-500 focus:outline-none text-sm font-semibold">
                     </div>
 
-                    <!-- Botón Lista con desplegable de Artistas y Precios -->
+                    <!-- Botón "Buscar" que cumple exactamente la misma función de desplegar el catálogo y precios -->
                     <div class="relative w-full sm:w-auto">
-                        <button type="button" onclick="toggleCatalogDropdown()" class="w-full bg-zinc-800 hover:bg-zinc-700 text-white font-bold px-6 py-4 rounded-2xl transition text-sm border border-zinc-700 flex items-center justify-center gap-2 shadow-xl whitespace-nowrap">
-                            📋 Lista de Artistas y Precios ▾
+                        <button type="button" onclick="toggleCatalogDropdown()" class="w-full sm:w-auto bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold px-8 py-4 rounded-2xl transition text-sm border border-red-500/40 flex items-center justify-center gap-2 shadow-xl shadow-red-950/50 whitespace-nowrap cursor-pointer">
+                            <span>🔍 Buscar</span>
+                            <span class="text-xs opacity-75 font-normal">▾</span>
                         </button>
 
                         <!-- Menú Desplegable con los Artistas y sus Precios -->
@@ -85,7 +101,7 @@
                     </div>
 
                     <!-- Sugerencias de búsqueda -->
-                    <div id="suggestionsBox" class="absolute left-0 right-0 top-20 mt-2 bg-zinc-900 border border-zinc-800 rounded-2xl shadow-2xl z-50 hidden max-h-64 overflow-y-auto p-2 text-left">
+                    <div id="suggestionsBox" class="absolute left-0 right-0 top-24 mt-2 bg-zinc-900 border border-zinc-800 rounded-2xl shadow-2xl z-50 hidden max-h-64 overflow-y-auto p-2 text-left">
                         <div class="px-3 py-2 text-xs font-bold text-zinc-400 uppercase tracking-wider border-b border-zinc-800 mb-1">Artistas sugeridos:</div>
                         <div id="suggestionsList" class="grid grid-cols-2 gap-1"></div>
                     </div>
@@ -133,7 +149,7 @@
         <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 sm:p-12 shadow-2xl space-y-6">
             <div class="w-16 h-16 bg-red-600/10 text-red-500 rounded-full flex items-center justify-center text-2xl mx-auto border border-red-500/20 animate-pulse">⏳</div>
             <div>
-                <span class="text-xs uppercase font-bold text-red-500 tracking-wider">Sala de Espera Virtual tike_arg</span>
+                <span class="text-xs uppercase font-bold text-red-500 tracking-wider">Sala de Espera Virtual tiket_arg</span>
                 <h2 class="text-2xl font-black text-white mt-1">Estás formado en la fila</h2>
                 <p class="text-zinc-400 text-sm mt-2">Hay alta demanda para este show. Aguardá unos segundos para ingresar al sistema seguro de ubicaciones.</p>
             </div>
@@ -240,7 +256,7 @@
             </div>
 
             <button onclick="resetApp()" class="w-full bg-white hover:bg-zinc-200 text-zinc-950 font-bold py-3.5 rounded-2xl transition text-sm shadow">
-                Volver al Inicio de tike_arg
+                Volver al Inicio de tiket_arg
             </button>
         </div>
     </div>
@@ -468,7 +484,7 @@
             }
         }
 
-        // Desplegable del botón "Lista de Artistas y Precios"
+        // Desplegable del botón "Buscar" (Catálogo y Precios)
         function toggleCatalogDropdown() {
             const dropdown = document.getElementById('catalogDropdown');
             const isHidden = dropdown.classList.contains('hidden');
