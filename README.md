@@ -21,39 +21,23 @@
         <span class="underline underline-offset-2 opacity-95">¡Encontrá tus artistas favoritos al mejor precio y con cupos oficiales!</span>
     </div>
 
-        <!-- ================= PASO 1: CABEZAL / HEADER OFICIAL ================= -->
+    <!-- ================= PASO 1: CABEZAL / HEADER OFICIAL ================= -->
     <header class="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur-md border-b border-zinc-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
-            <!-- Logo con Imagen Integrada -->
-            <div class="flex items-center space-x-3 cursor-pointer group" onclick="resetApp()">
-                <div class="w-12 h-12 rounded-xl overflow-hidden border border-red-500/40 shadow-lg shadow-red-950/40 flex-shrink-0 bg-zinc-900">
-                    <!-- Imagen añadida en el logo del header -->
-                    <img src="1000171439.png" alt="ticket_arg Logo" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+            <!-- Logo con Imagen Integrada Optimizada -->
+            <div class="flex items-center space-x-3.5 cursor-pointer group" onclick="resetApp()">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden border-2 border-red-500/60 shadow-xl shadow-red-950/60 flex-shrink-0 bg-zinc-900 relative">
+                    <img src="1000171439.png" alt="tiket_arg Logo" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-red-950/30 to-transparent pointer-events-none"></div>
                 </div>
                 <div class="flex flex-col">
                     <div class="flex items-center space-x-1">
-                        <span class="text-3xl sm:text-4xl font-black tracking-tighter text-white group-hover:text-red-500 transition">ticket<span class="text-red-600">_arg</span></span>
+                        <span class="text-3xl sm:text-4xl font-black tracking-tighter text-white group-hover:text-red-500 transition">tiket<span class="text-red-600">_arg</span></span>
                         <span class="text-[9px] uppercase font-extrabold bg-red-600/20 text-red-500 border border-red-500/30 px-2 py-0.5 rounded-full ml-1 self-start">Oficial</span>
                     </div>
-                    <span class="text-[11px] text-zinc-400 font-medium tracking-wide">boletos y entradas para todos los conciertos</span>
+                    <span class="text-[11px] text-zinc-400 font-medium tracking-wide">Plataforma de eTickets</span>
                 </div>
             </div>
-
-            <!-- Navegación -->
-            <nav class="hidden md:flex space-x-8 text-sm font-semibold text-zinc-300">
-                <a href="#" onclick="resetApp(); return false;" class="hover:text-red-500 transition">Conciertos</a>
-                <a href="#" onclick="filterByGira(); return false;" class="hover:text-red-500 transition">Giras 2026</a>
-                <a href="#" onclick="showMyTicketsInfo(); return false;" class="hover:text-red-500 transition">Mis #eTickets</a>
-            </nav>
-
-            <!-- Seguridad SSL -->
-            <div class="flex items-center space-x-2">
-                <span class="text-xs bg-zinc-900 text-zinc-300 border border-zinc-800 px-3.5 py-2 rounded-full font-medium flex items-center gap-1.5 shadow-inner">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Venta Segura SSL
-                </span>
-            </div>
-        </div>
-    </header>
 
             <!-- Navegación -->
             <nav class="hidden md:flex space-x-8 text-sm font-semibold text-zinc-300">
@@ -661,7 +645,6 @@
                     { type: 'Platea Baja', description: 'Platea baja numerada', price: 62000, qty: 0 }
                 ]
             },
-            // --- NUEVOS ARTISTAS AÑADIDOS ---
             {
                 id: 26,
                 artist: 'El Chaqueño Palavecino',
