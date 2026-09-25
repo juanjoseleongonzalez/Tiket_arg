@@ -13,12 +13,18 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
     </style>
 </head>
-<body class="bg-zinc-950 text-zinc-100 antialiased selection:bg-red-600 selection:text-whiterounded-lgcursor-pointer<!-- ================= BANNER SUPERIOR INFORMATIVO ================= -->
+<body class="bg-zinc-950 text-zinc-100 antialiased selection:bg-red-600 selection:text-white">
+
+    <!-- ================= BANNER SUPERIOR INFORMATIVO ================= -->
     <div class="bg-gradient-to-r from-red-700 via-rose-600 to-red-600 text-white text-xs font-bold py-2 px-4 text-center tracking-wide flex items-center justify-center gap-2 shadow-inner">
         <span>🔥 Giras 2026 Confirmadas:</span>
-        <span class="underline underline-offset-2 opacity-95">¡Encontrá tus artistas favoritos al mejor precio y con cupos oficiales!</!-- ================= PASO 1: CABEZAL / HEADER OFICIAL ================= -->
+        <span class="underline underline-offset-2 opacity-95">¡Encontrá tus artistas favoritos al mejor precio y con cupos oficiales!</span>
+    </div>
+
+    <!-- ================= PASO 1: CABEZAL / HEADER OFICIAL ================= -->
     <header class="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur-md border-b border-zinc-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">!-- Logo gigante con estilo -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
+            <!-- Logo gigante con estilo -->
             <div class="flex flex-col cursor-pointer group" onclick="resetApp()">
                 <div class="flex items-center space-x-1">
                     <span class="text-3xl sm:text-4xl font-black tracking-tighter text-white group-hover:text-red-500 transition">tiket<span class="text-red-600">_arg</span></span>
@@ -26,7 +32,8 @@
                 </div>
                 <span class="text-[11px] text-zinc-400 font-medium tracking-wide">Plataforma de eTickets</span>
             </div>
- !-- Navegación -->
+
+            <!-- Navegación -->
             <nav class="hidden md:flex space-x-8 text-sm font-semibold text-zinc-300">
                 <a href="#" onclick="resetApp(); return false;" class="hover:text-red-500 transition">Conciertos</a>
                 <a href="#" onclick="filterByGira(); return false;" class="hover:text-red-500 transition">Giras 2026</a>
@@ -42,15 +49,13 @@
         </div>
     </header>
 
-    <!-- ================= PASO 2: VISTA PRINCIPAL (INICIO, HERO Y BANNER VISUAL) ================= -->
+    <!-- ================= PASO 2: VISTA PRINCIPAL (INICIO, HERO Y CATÁLOGO) ================= -->
     <div id="view-home">
-        <!-- Hero / Presentación con Banner de Conciertos y Artistas -->
+        <!-- Hero / Presentación -->
         <section class="relative py-20 lg:py-28 overflow-hidden border-b border-zinc-800/80 bg-gradient-to-b from-zinc-900 to-zinc-950 text-center px-4">
-            <!-- Banner Visual de Fondo / Destacado -->
             <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#dc2626_1px,transparent_1px)] [background-size:16px_16px]"></div>
             
             <div class="relative max-w-4xl mx-auto space-y-6">
-                <!-- Mini Banner Rotativo de Conciertos -->
                 <div class="inline-flex items-center gap-2.5 bg-zinc-900/90 border border-zinc-800 text-zinc-300 text-xs font-bold px-5 py-2 rounded-full shadow-lg">
                     <span class="flex h-2 w-2 relative">
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -67,14 +72,14 @@
                     Encontrá cartelera de artistas, ubicaciones en estadios y comprá tus entradas oficiales en segundos de forma 100% segura.
                 </p>
                 
-                <!-- Buscador Rápido y Botón "Buscar" (Catálogo y Precios) -->
+                <!-- Buscador Rápido y Botón con Catálogo y Precios -->
                 <div class="max-w-2xl mx-auto relative pt-4 flex flex-col sm:flex-row gap-3 justify-center items-center">
                     <div class="flex items-center px-4 bg-zinc-900/90 backdrop-blur rounded-2xl border-2 border-red-600/60 shadow-2xl shadow-red-950/30 flex-grow w-full">
                         <span class="text-zinc-500 text-lg mr-2">🔍</span>
                         <input type="text" id="searchInput" oninput="filterConcerts()" onfocus="showSuggestions()" placeholder="Buscá tu artista (ej: La Renga, Ke Personajes, Q' Lokura)..." class="w-full bg-transparent py-4 text-white placeholder-zinc-500 focus:outline-none text-sm font-semibold">
                     </div>
 
-                    <!-- Botón "Buscar" que despliega el catálogo y precios -->
+                    <!-- Botón "Buscar" y Menú de Precios -->
                     <div class="relative w-full sm:w-auto">
                         <button type="button" onclick="toggleCatalogDropdown()" class="w-full sm:w-auto bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold px-8 py-4 rounded-2xl transition text-sm border border-red-500/40 flex items-center justify-center gap-2 shadow-xl shadow-red-950/50 whitespace-nowrap cursor-pointer">
                             <span>🔍 Buscar</span>
@@ -87,9 +92,7 @@
                                 <span>Seleccioná un Artista</span>
                                 <span class="text-[10px] text-red-500">Ver precios</span>
                             </div>
-                            <div id="catalogDropdownList" class="space-y-2">
-                                <!-- Se llena por JavaScript -->
-                            </div>
+                            <div id="catalogDropdownList" class="space-y-2"></div>
                         </div>
                     </div>
 
@@ -102,18 +105,16 @@
             </div>
         </section>
 
-        <!-- Galería de Sponsors / Artistas Destacados del Año -->
+        <!-- Galería de Sponsors / Artistas Destacados -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 border-b border-zinc-900">
             <div class="flex items-center justify-between mb-6">
                 <h3 class="text-xs font-bold uppercase tracking-widest text-zinc-400">⭐ Sponsors y Shows Destacados 2026</h3>
                 <span class="text-[10px] bg-red-600/10 text-red-500 border border-red-500/20 px-2.5 py-1 rounded-md font-bold uppercase">Oficiales</span>
             </div>
-            <div id="quickArtistsGrid" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-3 text-center">
-                <!-- Se llena por JS dinámicamente -->
-            </div>
+            <div id="quickArtistsGrid" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-3 text-center"></div>
         </section>
 
-        <!-- Cuerpo de la Página: Cartelera Completa -->
+        <!-- Cartelera Completa de Conciertos -->
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div class="mb-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
@@ -132,7 +133,7 @@
                 <button onclick="clearSearch()" class="mt-4 bg-red-600 text-white px-6 py-2.5 rounded-xl text-sm font-bold shadow hover:bg-red-700 transition">Ver todos los eventos</button>
             </div>
 
-            <!-- Grilla Dinámica de Conciertos -->
+            <!-- Grilla Dinámica -->
             <div id="concertsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
         </main>
     </div>
@@ -254,7 +255,7 @@
         </div>
     </div>
 
-    <!-- ================= SCRIPT DE LÓGICA PASO A PASO ================= -->
+    <!-- ================= SCRIPT DE LÓGICA COMPLETA ================= -->
     <script>
         const concerts = [
             {
@@ -494,7 +495,6 @@
             renderSuggestionsList();
         }
 
-        // Renderiza los artistas sponsors en el hero
         function renderQuickArtists() {
             const container = document.getElementById('quickArtistsGrid');
             const topArtists = concerts.slice(0, 8);
@@ -508,7 +508,6 @@
             `).join('');
         }
 
-        // Renderiza sugerencias rápidas en el buscador
         function renderSuggestionsList() {
             const list = document.getElementById('suggestionsList');
             list.innerHTML = concerts.map(c => `
@@ -533,7 +532,6 @@
             }
         }
 
-        // Desplegable del botón "Buscar" (Catálogo y Precios)
         function toggleCatalogDropdown() {
             const dropdown = document.getElementById('catalogDropdown');
             const isHidden = dropdown.classList.contains('hidden');
@@ -547,10 +545,10 @@
             }
         }
 
-function renderCatalogDropdownList() {
+        function renderCatalogDropdownList() {
             const listContainer = document.getElementById('catalogDropdownList');
             listContainer.innerHTML = concerts.map(c => `
-<div onclick="selectArtistFromCatalog(${c.id})" class="bg-zinc-950 hover:bg-red-600/10 border border-zinc-800 hover:border-red-600/50 p-3 rounded-xl cursor-pointer transition group">
+                <div onclick="selectArtistFromCatalog(${c.id})" class="bg-zinc-950 hover:bg-red-600/10 border border-zinc-800 hover:border-red-600/50 p-3 rounded-xl cursor-pointer transition group">
                     <div class="flex justify-between items-center">
                         <h4 class="font-black text-sm text-white group-hover:text-red-500 transition">🎤 ${c.artist}</h4>
                         <span class="text-[10px] bg-red-600/20 text-red-500 px-2 py-0.5 rounded-full font-bold">${c.date.split(',')[0]}</span>
@@ -564,28 +562,27 @@ function renderCatalogDropdownList() {
             `).join('');
         }
 
-function selectArtistFromCatalog(id) {
+        function selectArtistFromCatalog(id) {
             document.getElementById('catalogDropdown').classList.add('hidden');
             triggerQueue(id);
         }
 
-// Buscador inteligente en tiempo real
         function filterConcerts() {
             const query = document.getElementById('searchInput').value.toLowerCase().trim();
             document.getElementById('suggestionsBox').classList.add('hidden');
 
-if (!query) {
+            if (!query) {
                 renderConcerts(concerts);
                 return;
             }
 
-const foundConcert = concerts.find(c => 
+            const foundConcert = concerts.find(c => 
                 c.artist.toLowerCase().includes(query) || 
                 c.title.toLowerCase().includes(query) ||
                 c.location.toLowerCase().includes(query)
             );
 
- if (foundConcert && (query.length > 2 || concerts.some(c => c.artist.toLowerCase() === query))) {
+            if (foundConcert && (query.length > 2 || concerts.some(c => c.artist.toLowerCase() === query))) {
                 triggerQueue(foundConcert.id);
             } else {
                 const filtered = concerts.filter(c => 
@@ -598,26 +595,25 @@ const foundConcert = concerts.find(c =>
             }
         }
 
-// Renderizado de la cartelera principal
         function renderConcerts(list) {
             const grid = document.getElementById('concertsGrid');
             const noResults = document.getElementById('noResults');
             const eventCount = document.getElementById('eventCount');
             const btnClear = document.getElementById('btnClear');
 
- eventCount.innerText = `${list.length} evento${list.length !== 1 ? 's' : ''}`;
+            eventCount.innerText = `${list.length} evento${list.length !== 1 ? 's' : ''}`;
             if (list.length > 0) btnClear.classList.remove('hidden');
             else btnClear.classList.add('hidden');
 
-if (list.length === 0) {
+            if (list.length === 0) {
                 grid.innerHTML = '';
                 noResults.classList.remove('hidden');
                 return;
             }
 
-noResults.classList.add('hidden');
+            noResults.classList.add('hidden');
             
-grid.innerHTML = list.map(c => {
+            grid.innerHTML = list.map(c => {
                 const minPrice = Math.min(...c.tickets.map(t => t.price));
                 return `
                     <div class="bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800 hover:border-red-600/60 transition-all duration-300 group flex flex-col justify-between shadow-xl">
@@ -631,7 +627,7 @@ grid.innerHTML = list.map(c => {
                                 </div>
                             </div>
                             
- <div class="p-6 space-y-4">
+                            <div class="p-6 space-y-4">
                                 <div class="flex items-center justify-between text-xs font-bold text-red-500 uppercase tracking-wider">
                                     <span class="flex items-center gap-1">📅 ${c.date}</span>
                                     <span class="bg-zinc-950 px-2.5 py-1 rounded-lg border border-zinc-800 text-zinc-300">🕒 ${c.time}</span>
@@ -646,8 +642,8 @@ grid.innerHTML = list.map(c => {
                             </div>
                         </div>
 
-<div class="p-6 pt-0">
- <button onclick="triggerQueue(${c.id})" class="w-full bg-zinc-800 hover:bg-red-600 text-white font-bold py-3.5 rounded-2xl transition shadow-md text-sm flex items-center justify-center gap-2">
+                        <div class="p-6 pt-0">
+                            <button onclick="triggerQueue(${c.id})" class="w-full bg-zinc-800 hover:bg-red-600 text-white font-bold py-3.5 rounded-2xl transition shadow-md text-sm flex items-center justify-center gap-2">
                                 Comprar Entradas Oficiales 🎟️
                             </button>
                         </div>
@@ -656,31 +652,30 @@ grid.innerHTML = list.map(c => {
             }).join('');
         }
 
- function clearSearch() {
+        function clearSearch() {
             document.getElementById('searchInput').value = '';
             document.getElementById('suggestionsBox').classList.add('hidden');
             renderConcerts(concerts);
         }
 
-function filterByGira() {
+        function filterByGira() {
             resetApp();
             window.scrollTo({ top: 400, behavior: 'smooth' });
         }
 
-function showMyTicketsInfo() {
+        function showMyTicketsInfo() {
             alert("Para ver tus #eTickets comprados, completá el proceso de compra de cualquier concierto para generar tu código QR oficial.");
         }
 
-// Fila virtual de espera
         function triggerQueue(id) {
             selectedConcert = JSON.parse(JSON.stringify(concerts.find(c => c.id === id)));
             selectedConcert.tickets.forEach(t => t.qty = 0);
 
- document.getElementById('view-home').classList.add('hidden');
+            document.getElementById('view-home').classList.add('hidden');
             document.getElementById('view-queue').classList.remove('hidden');
             document.getElementById('queuePosText').innerText = Math.floor(Math.random() * 50) + 10;
 
- setTimeout(() => {
+            setTimeout(() => {
                 document.getElementById('view-queue').classList.add('hidden');
                 document.getElementById('view-select').classList.remove('hidden');
                 setupSelectTickets();
@@ -688,14 +683,14 @@ function showMyTicketsInfo() {
             }, 1500);
         }
 
-// Selección de ubicaciones y precios
         function setupSelectTickets() {
             document.getElementById('selConcertMeta').innerText = selectedConcert.date + ' - ' + selectedConcert.time;
             document.getElementById('selConcertTitle').innerText = selectedConcert.title;
             document.getElementById('selConcertLoc').innerText = selectedConcert.location;
 
-const container = document.getElementById('ticketsListContainer');
-            container.innerHTML = selectedConcert.tickets.map((t, idx) =>  <div class="flex items-center justify-between bg-zinc-950 p-4 sm:p-5 rounded-2xl border border-zinc-800">
+            const container = document.getElementById('ticketsListContainer');
+            container.innerHTML = selectedConcert.tickets.map((t, idx) => `
+                <div class="flex items-center justify-between bg-zinc-950 p-4 sm:p-5 rounded-2xl border border-zinc-800">
                     <div>
                         <h4 class="font-bold text-base text-white">${t.type}</h4>
                         <p class="text-xs text-zinc-400">${t.description}</p>
@@ -711,22 +706,23 @@ const container = document.getElementById('ticketsListContainer');
             updateTotal();
         }
 
-function changeQty(idx, delta) {
+        function changeQty(idx, delta) {
             selectedConcert.tickets[idx].qty = Math.max(0, selectedConcert.tickets[idx].qty + delta);
             document.getElementById(`qty-${idx}`).innerText = selectedConcert.tickets[idx].qty;
             updateTotal();
         }
-    function updateTotal() {
+
+        function updateTotal() {
             let total = selectedConcert.tickets.reduce((sum, t) => sum + (t.price * t.qty), 0);
             document.getElementById('totalPriceText').innerText = '$' + total.toLocaleString();
             document.getElementById('checkoutTotalText').innerText = '$' + total.toLocaleString();
             
-  const btn = document.getElementById('btnCheckout');
+            const btn = document.getElementById('btnCheckout');
             if (total > 0) btn.removeAttribute('disabled');
             else btn.setAttribute('disabled', 'true');
         }
 
-function startTimer() {
+        function startTimer() {
             timerSeconds = 300;
             clearInterval(timerInterval);
             timerInterval = setInterval(() => {
@@ -741,26 +737,27 @@ function startTimer() {
                     resetApp();
                 }
             }, 1000);
+        }
+
         function proceedToCheckout() {
             clearInterval(timerInterval);
             document.getElementById('view-select').classList.add('hidden');
             document.getElementById('view-checkout').classList.remove('hidden');
         }
 
-// Procesamiento de pago seguro y generación de QR
         function processPayment(e) {
             e.preventDefault();
             const name = document.getElementById('buyerName').value;
 
-document.getElementById('view-checkout').classList.add('hidden');
+            document.getElementById('view-checkout').classList.add('hidden');
             document.getElementById('view-success').classList.remove('hidden');
 
-document.getElementById('successTitle').innerText = selectedConcert.title;
+            document.getElementById('successTitle').innerText = selectedConcert.title;
             document.getElementById('successDate').innerText = selectedConcert.date + ' - ' + selectedConcert.time;
             document.getElementById('successBuyer').innerText = name;
             document.getElementById('successLoc').innerText = selectedConcert.location;
 
-setTimeout(() => {
+            setTimeout(() => {
                 const qrContainer = document.getElementById("qrcode");
                 qrContainer.innerHTML = "";
                 new QRCode(qrContainer, {
@@ -771,7 +768,7 @@ setTimeout(() => {
             }, 100);
         }
 
-function resetApp() {
+        function resetApp() {
             clearInterval(timerInterval);
             document.getElementById('view-queue').classList.add('hidden');
             document.getElementById('view-select').classList.add('hidden');
@@ -782,7 +779,6 @@ function resetApp() {
             clearSearch();
         }
 
-// Cierre de menús al hacer clic fuera
         document.addEventListener('click', function(e) {
             const dropdown = document.getElementById('catalogDropdown');
             const catalogBtn = document.querySelector('button[onclick="toggleCatalogDropdown()"]');
@@ -791,7 +787,6 @@ function resetApp() {
             }
         });
 
-        // Inicialización general
         initApp();
     </script>
 </body>
