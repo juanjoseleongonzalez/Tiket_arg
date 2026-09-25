@@ -12,181 +12,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body class="bg-white text-zinc-900 font-sans antialiased" x-data="ticketApp()">
-<script>
-    function ticketApp() {
-        return {
-            view: 'home',
-            searchQuery: '',
-            selectedConcert: null,
-            queuePosition: 118,
-            timerSeconds: 300,
-            timerInterval: null,
-            buyer: { name: '', email: '', paymentMethod: 'mercadopago' },
-            concerts: [
-                {
-                    id: 1,
-                    artist: 'Maria Becerra',
-                    title: 'Maria Becerra - Gira Oficial',
-                    date: '13 de Noviembre, 2026',
-                    time: '21:00 hs',
-                    location: 'Movistar Arena, Buenos Aires',
-                    badge: '¡Alta Demanda!',
-                    tickets: [
-                        { type: 'Campo General', description: 'Acceso a pista general de pie', price: 48000, qty: 0 },
-                        { type: 'Platea Baja', description: 'Ubicación numerada preferencial', price: 79000, qty: 0 },
-                        { type: 'Experiencia VIP', description: 'Acceso prioritario + Merchandising', price: 128000, qty: 0 }
-                    ]
-                },
-                {
-                    id: 2,
-                    artist: 'Duki',
-                    title: 'Duki - Estadios Tour',
-                    date: '25 de Octubre, 2026',
-                    time: '20:30 hs',
-                    location: 'Estadio Vélez Sarsfield, Buenos Aires',
-                    badge: 'Últimas Entradas',
-                    tickets: [
-                        { type: 'Campo', description: 'Pista general', price: 45000, qty: 0 },
-                        { type: 'Platea Preferencial', description: 'Sector baja numerado', price: 82000, qty: 0 }
-                    ]
-                },
-                {
-                    id: 3,
-                    artist: 'Ed Sheeran',
-                    title: 'Ed Sheeran - Mathematics Tour',
-                    date: '29 de Noviembre, 2026',
-                    time: '21:00 hs',
-                    location: 'Estadio Tomás Adolfo Ducó (Huracán), Buenos Aires',
-                    badge: 'Internacional',
-                    tickets: [
-                        { type: 'Campo General', description: 'Sector general', price: 65000, qty: 0 },
-                        { type: 'Platea Baja', description: 'Asiento numerado', price: 110000, qty: 0 },
-                        { type: 'VIP Gold', description: 'Cercanía al escenario principal', price: 195000, qty: 0 }
-                    ]
-                },
-                {
-                    id: 4,
-                    artist: 'Coldplay',
-                    title: 'Coldplay - Music of the Spheres',
-                    date: '12 de Diciembre, 2026',
-                    time: '21:00 hs',
-                    location: 'Estadio Monumental, Buenos Aires',
-                    badge: 'Preventa',
-                    tickets: [
-                        { type: 'Campo General', description: 'Acceso a campo', price: 58000, qty: 0 },
-                        { type: 'Platea San Martín / Belgrano', description: 'Inferior numerada', price: 105000, qty: 0 }
-                    ]
-                },
-                {
-                    id: 5,
-                    artist: 'Shakira',
-                    title: 'Shakira - Las Mujeres Ya No Lloran Tour',
-                    date: '04 de Diciembre, 2026',
-                    time: '20:00 hs',
-                    location: 'Campo Argentino de Polo, Buenos Aires',
-                    badge: 'Destacado',
-                    tickets: [
-                        { type: 'Campo Delantero', description: 'Cerca del escenario', price: 95000, qty: 0 },
-                        { type: 'Campo General', description: 'Pista general', price: 50000, qty: 0 },
-                        { type: 'Platea VIP', description: 'Asiento reservado', price: 140000, qty: 0 }
-                    ]
-                },
-                {
-                    id: 6,
-                    artist: 'Maná',
-                    title: 'Maná - México Lindo y Querido Tour',
-                    date: '10 de Diciembre, 2026',
-                    time: '21:00 hs',
-                    location: 'Estadio Mâs Monumental, Buenos Aires',
-                    badge: 'Disponible',
-                    tickets: [
-                        { type: 'Campo', description: 'Acceso general', price: 42000, qty: 0 },
-                        { type: 'Platea Baja', description: 'Ubicación numerada', price: 88000, qty: 0 }
-                    ]
-                }
-            ],
-            // Buscador corregido y ampliado para artistas, fechas y horarios
-            get filteredConcerts() {
-                if (!this.searchQuery || this.searchQuery.trim() === '') {
-                    return this.concerts;
-                }
-                const query = this.searchQuery.toLowerCase().trim();
-                return this.concerts.filter(c => 
-                    c.artist.toLowerCase().includes(query) || 
-                    c.title.toLowerCase().includes(query) || 
-                    c.location.toLowerCase().includes(query) ||
-                    c.date.toLowerCase().includes(query) ||
-                    c.time.toLowerCase().includes(query)
-                );
-            },
-            triggerQueue(concert) {
-                concert.tickets.forEach(t => t.qty = 0);
-                this.selectedConcert = concert;
-                this.queuePosition = Math.floor(Math.random() * 150) + 20;
-                this.view = 'queue';
 
-                setTimeout(() => {
-                    this.view = 'select-tickets';
-                    this.startTimer();
-                }, 3000);
-            },
-            startTimer() {
-                this.timerSeconds = 300;
-                clearInterval(this.timerInterval);
-                this.timerInterval = setInterval(() => {
-                    if (this.timerSeconds > 0) {
-                        this.timerSeconds--;
-                    } else {
-                        clearInterval(this.timerInterval);
-                        alert('El tiempo de reserva expiró. Volviendo al inicio.');
-                        this.resetApp();
-                    }
-                }, 1000);
-            },
-            formatTime(seconds) {
-                const m = Math.floor(seconds / 60);
-                const s = seconds % 60;
-                return `${m}:${s < 10 ? '0' : ''}${s}`;
-            },
-            incrementTicket(ticket) {
-                ticket.qty++;
-            },
-            decrementTicket(ticket) {
-                if (ticket.qty > 0) ticket.qty--;
-            },
-            calculateTotal() {
-                if (!this.selectedConcert) return 0;
-                return this.selectedConcert.tickets.reduce((sum, t) => sum + (t.price * t.qty), 0);
-            },
-            proceedToCheckout() {
-                clearInterval(this.timerInterval);
-                this.view = 'checkout';
-            },
-            processPayment() {
-                this.view = 'success';
-                setTimeout(() => {
-                    const qrContainer = document.getElementById("qrcode");
-                    if (qrContainer) {
-                        qrContainer.innerHTML = "";
-                        new QRCode(qrContainer, {
-                            text: `TIKEARG-OFICIAL-VERIFICADO-${this.selectedConcert.artist}-${this.buyer.name}`,
-                            width: 140,
-                            height: 140
-                        });
-                    }
-                }, 100);
-            },
-            resetApp() {
-                clearInterval(this.timerInterval);
-                this.view = 'home';
-                this.searchQuery = '';
-                this.selectedConcert = null;
-                this.buyer = { name: '', email: '', paymentMethod: 'mercadopago' };
-            }
-        }
-    }
-</script>
-
+    <!-- BARRA DE NAVEGACIÓN -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-zinc-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-2 cursor-pointer" @click="resetApp()">
+                <span class="text-2xl font-black tracking-wider text-red-600">tike<span class="text-zinc-900">_arg</span></span>
+                <span class="text-xs bg-red-100 text-red-700 font-bold px-2 py-0.5 rounded">Oficial</span>
+            </div>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium text-zinc-600">
+                <a href="#" @click.prevent="resetApp()" class="hover:text-red-600 transition">Conciertos</a>
+                <a href="#" @click.prevent="resetApp()" class="hover:text-red-600 transition">Giras 2026</a>
                 <a href="#" @click.prevent="resetApp()" class="hover:text-red-600 transition">Mis #eTickets</a>
             </nav>
             <div>
@@ -197,8 +33,8 @@
         </div>
     </header>
 
->    <!-- ================= VISTA 1: PRESENTACIÓN E INICIO ================= -->
-    <div x-show="view === 'home'">
+    <!-- ================= VISTA 1: PRESENTACIÓN E INICIO ================= -->
+    <div x-show="view === 'home'" x-cloak>
         <!-- Presentación Principal y Buscador -->
         <section class="relative py-20 bg-gradient-to-b from-zinc-50 to-white border-b border-zinc-200 text-center px-4">
             <div class="max-w-4xl mx-auto">
@@ -212,15 +48,15 @@
                     Encontrá de forma rápida y cómoda a tus artistas favoritos, consultá sus horarios y asegurá tus entradas oficiales.
                 </p>
                 
-                <!-- Buscador ultra cómodo -->
+                <!-- Buscador principal conectado a searchQuery -->
                 <div class="max-w-2xl mx-auto flex flex-col sm:flex-row gap-3 bg-white p-2 rounded-2xl border-2 border-red-500 shadow-2xl">
-                    <input type="text" x-model.debounce.300ms="searchQuery" placeholder="Buscá por artista (ej: Maria Becerra, Duki, Ed Sheeran)..." class="flex-grow bg-transparent px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:outline-none text-sm sm:text-base font-medium">
+                    <input type="text" x-model="searchQuery" placeholder="Buscá por artista (ej: Maria Becerra, Duki, Ed Sheeran)..." class="flex-grow bg-transparent px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:outline-none text-sm sm:text-base font-medium">
                     <button type="button" class="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-3.5 rounded-xl transition text-sm shadow-md">
-                        Buscar Artista
+                        Buscar
                     </button>
                 </div>
             </div>
-        </section
+        </section>
 
         <!-- Galería de Presentación: Artistas Destacados de la Argentina -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-zinc-100">
@@ -260,7 +96,10 @@
                     <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-zinc-900">Próximos Conciertos y Shows</h2>
                     <p class="text-zinc-500 text-sm mt-1">Fechas oficiales, horarios de apertura y estadios en Argentina.</p>
                 </div>
-                <div class="text-xs bg-zinc-100 text-zinc-600 font-bold px-3 py-1.5 rounded-lg uppercase tracking-wider" x-text="filteredConcerts.length + ' eventos disponibles'"></div>
+                <div class="flex items-center gap-3">
+                    <button x-show="searchQuery.length > 0" @click="searchQuery = ''" class="text-xs text-red-600 hover:underline font-bold">Limpiar búsqueda ✕</button>
+                    <div class="text-xs bg-zinc-100 text-zinc-600 font-bold px-3 py-1.5 rounded-lg uppercase tracking-wider" x-text="filteredConcerts.length + ' eventos'"></div>
+                </div>
             </div>
 
             <!-- Sin resultados -->
@@ -307,7 +146,7 @@
     </div>
 
     <!-- ================= VISTA 2: FILA VIRTUAL ================= -->
-    <div x-show="view === 'queue'" class="max-w-xl mx-auto px-4 py-24 text-center">
+    <div x-show="view === 'queue'" x-cloak class="max-w-xl mx-auto px-4 py-24 text-center">
         <div class="bg-white border border-zinc-200 rounded-3xl p-8 sm:p-12 shadow-2xl space-y-6">
             <div class="w-16 h-16 bg-red-50 text-red-600 rounded-full flex items-center justify-center text-2xl mx-auto border border-red-200 animate-pulse">⏳</div>
             <div>
@@ -327,7 +166,7 @@
     </div>
 
     <!-- ================= VISTA 3: SELECCIÓN DE ENTRADAS + CRONÓMETRO ================= -->
-    <div x-show="view === 'select-tickets'" class="max-w-4xl mx-auto px-4 py-12">
+    <div x-show="view === 'select-tickets'" x-cloak class="max-w-4xl mx-auto px-4 py-12">
         <div class="bg-red-600 text-white px-6 py-3.5 rounded-2xl mb-6 flex items-center justify-between shadow-md">
             <span class="text-xs font-semibold uppercase tracking-wider">⏱ Tiempo reservado para completar tu compra:</span>
             <span class="text-lg font-black" x-text="formatTime(timerSeconds)"></span>
@@ -374,7 +213,7 @@
     </div>
 
     <!-- ================= VISTA 4: PAGO SEGURO ================= -->
-    <div x-show="view === 'checkout'" class="max-w-2xl mx-auto px-4 py-12">
+    <div x-show="view === 'checkout'" x-cloak class="max-w-2xl mx-auto px-4 py-12">
         <div class="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-10 shadow-xl">
             <h2 class="text-2xl font-bold text-zinc-900 mb-2">Finalizar Compra (#eTicket)</h2>
             <p class="text-zinc-500 text-sm mb-6">Ingresá tus datos para emitir las entradas oficiales con código QR.</p>
@@ -409,7 +248,7 @@
     </div>
 
     <!-- ================= VISTA 5: #eTICKET EXITOSO Y QR ================= -->
-    <div x-show="view === 'success'" class="max-w-xl mx-auto px-4 py-12 text-center">
+    <div x-show="view === 'success'" x-cloak class="max-w-xl mx-auto px-4 py-12 text-center">
         <div class="bg-white border border-zinc-200 rounded-3xl p-8 sm:p-10 shadow-xl">
             <div class="w-16 h-16 bg-red-50 text-red-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 border border-red-200">✓</div>
             <h2 class="text-2xl font-bold text-zinc-900 mb-1">¡Compra Exitosa (#eTicket)!</h2>
@@ -440,7 +279,7 @@
         </div>
     </div>
 
-    <!-- Script de lógica con la cartelera real, fechas, horarios y presentación -->
+    <!-- Script Principal -->
     <script>
         function ticketApp() {
             return {
@@ -542,7 +381,9 @@
                     return this.concerts.filter(c => 
                         c.artist.toLowerCase().includes(q) || 
                         c.title.toLowerCase().includes(q) || 
-                        c.location.toLowerCase().includes(q)
+                        c.location.toLowerCase().includes(q) ||
+                        c.date.toLowerCase().includes(q) ||
+                        c.time.toLowerCase().includes(q)
                     );
                 },
                 triggerQueue(concert) {
