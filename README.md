@@ -21,8 +21,8 @@
             </div>
             <nav class="hidden md:flex space-x-8 text-sm font-medium text-zinc-600">
                 <a href="#" @click.prevent="view = 'home'" class="hover:text-red-600 transition">Conciertos</a>
-                <a href="#" class="hover:text-red-600 transition">Festivales</a>
-                <a href="#" class="hover:text-red-600 transition">Mi Cuenta / eTicket</a>
+                <a href="#" @click.prevent="view = 'home'" class="hover:text-red-600 transition">Festivales</a>
+                <a href="#" @click.prevent="view = 'home'" class="hover:text-red-600 transition">Mi Cuenta / eTicket</a>
             </nav>
             <div>
                 <span class="text-xs bg-red-50 text-red-600 border border-red-200 px-3 py-1.5 rounded-full font-medium">
@@ -43,31 +43,42 @@
                     Sentí la música en vivo <br><span class="text-red-600">asegurate tu lugar</span>
                 </h1>
                 <p class="text-zinc-600 text-lg mb-10">
-                    Encuentra la cartelera oficial de conciertos, preventas exclusivas y sistema de fila virtual segura.
+                    Encontrá la cartelera completa con todos los conciertos del año, preventas y fila virtual segura.
                 </p>
                 
                 <div class="flex flex-col sm:flex-row gap-3 bg-white p-2 rounded-2xl border border-zinc-200 shadow-xl">
-                    <input type="text" x-model="searchQuery" placeholder="Busca por artista, banda o estadio..." class="flex-grow bg-transparent px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:outline-none text-sm">
+                    <input type="text" x-model="searchQuery" placeholder="Buscá por artista (ej: Coldplay, Duki, Shakira), banda o estadio..." class="flex-grow bg-transparent px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:outline-none text-sm">
                     <button class="bg-red-600 hover:bg-red-700 text-white font-medium px-8 py-3 rounded-xl transition text-sm shadow-md">
-                        Buscar Concierto
+                        Buscar
                     </button>
                 </div>
             </div>
         </section>
 
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div class="mb-10">
-                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900">Conciertos y Eventos Disponibles</h2>
-                <p class="text-zinc-500 text-sm mt-1">Ingresá al evento para acceder a la fila virtual de compra.</p>
+            <div class="mb-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900">Cartelera Completa 2026</h2>
+                    <p class="text-zinc-500 text-sm mt-1">Mostrando todos los eventos musicales disponibles para la venta.</p>
+                </div>
+                <div class="text-xs text-zinc-400 font-semibold uppercase tracking-wider" x-text="filteredConcerts.length + ' conciertos encontrados'"></div>
             </div>
 
+            <!-- Si no hay resultados -->
+            <div x-show="filteredConcerts.length === 0" class="text-center py-20 bg-zinc-50 rounded-2xl border border-zinc-200">
+                <p class="text-zinc-500 text-lg font-medium">No se encontraron conciertos con ese nombre.</p>
+                <button @click="searchQuery = ''" class="mt-4 text-red-600 font-semibold hover:underline text-sm">Ver todos los conciertos</button>
+            </div>
+
+            <!-- Grilla de Conciertos -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <template x-for="concert in filteredConcerts" :key="concert.id">
                     <div class="bg-white rounded-2xl overflow-hidden border border-zinc-200 hover:border-red-300 transition group flex flex-col justify-between shadow-sm hover:shadow-md">
                         <div>
-                            <div class="relative h-48 bg-zinc-100 overflow-hidden flex items-center justify-center">
-                                <span class="text-zinc-400 font-bold text-xl group-hover:scale-105 transition duration-500" x-text="concert.title"></span>
-                                <span class="absolute top-3 left-3 z-20 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow" x-text="concert.badge"></span>
+                            <div class="relative h-48 bg-zinc-900 overflow-hidden flex items-center justify-center p-4 text-center">
+                                <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-900/60 to-transparent z-10"></div>
+                                <span class="relative z-20 text-white font-black text-xl group-hover:scale-105 transition duration-500" x-text="concert.title"></span>
+                                <span class="absolute top-3 left-3 z-30 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow" x-text="concert.badge"></span>
                             </div>
                             <div class="p-6">
                                 <p class="text-red-600 text-xs font-semibold uppercase tracking-wider mb-1" x-text="concert.date"></p>
@@ -86,7 +97,7 @@
         </main>
     </div>
 
-    <!-- ================= VISTA 2: FILA VIRTUAL (ESTILO TICKETEK) ================= -->
+    <!-- ================= VISTA 2: FILA VIRTUAL ================= -->
     <div x-show="view === 'queue'" class="max-w-xl mx-auto px-4 py-24 text-center">
         <div class="bg-white border border-zinc-200 rounded-3xl p-8 sm:p-12 shadow-xl space-y-6">
             <div class="w-16 h-16 bg-red-50 text-red-600 rounded-full flex items-center justify-center text-2xl mx-auto border border-red-200 animate-pulse">⏳</div>
@@ -108,7 +119,6 @@
 
     <!-- ================= VISTA 3: SELECCIÓN DE ENTRADAS + CRONÓMETRO ================= -->
     <div x-show="view === 'select-tickets'" class="max-w-4xl mx-auto px-4 py-12">
-        <!-- Barra superior de tiempo límite estilo ticketek -->
         <div class="bg-red-600 text-white px-6 py-3 rounded-2xl mb-6 flex items-center justify-between shadow-md">
             <span class="text-xs font-semibold uppercase tracking-wider">⏱ Tiempo reservado para tu compra:</span>
             <span class="text-lg font-black" x-text="formatTime(timerSeconds)"></span>
@@ -217,7 +227,7 @@
         </div>
     </div>
 
-    <!-- Script de lógica con Fila Virtual y Cronómetro -->
+    <!-- Script con la cartelera completa de conciertos -->
     <script>
         function ticketApp() {
             return {
@@ -225,63 +235,97 @@
                 searchQuery: '',
                 selectedConcert: null,
                 queuePosition: 142,
-                timerSeconds: 300, // 5 minutos de tiempo límite de compra
+                timerSeconds: 300,
                 timerInterval: null,
                 buyer: { name: '', email: '', paymentMethod: 'mercadopago' },
                 concerts: [
                     {
                         id: 1,
-                        title: 'Gira Mundial "Rock & Tour"',
-                        date: '15 de Octubre, 2026',
+                        title: 'Coldplay - Music of the Spheres',
+                        date: '12 de Noviembre, 2026',
                         location: 'Estadio Monumental, Buenos Aires',
                         badge: '¡Últimas Entradas!',
                         tickets: [
-                            { type: 'Campo General', description: 'Acceso general al sector campo', price: 45000, qty: 0 },
-                            { type: 'Platea Baja Numerada', description: 'Asiento preferencial numerado', price: 85000, qty: 0 },
-                            { type: 'VIP Experience', description: 'Meet & Greet + Sector exclusivo', price: 150000, qty: 0 }
+                            { type: 'Campo General', description: 'Acceso general al campo', price: 55000, qty: 0 },
+                            { type: 'Platea Baja', description: 'Asiento preferencial numerado', price: 98000, qty: 0 },
+                            { type: 'VIP Package', description: 'Acceso exclusivo + Merchandising', price: 180000, qty: 0 }
                         ]
                     },
                     {
                         id: 2,
-                        title: 'Festival Urbano Summer',
-                        date: '03 de Noviembre, 2026',
-                        location: 'Movistar Arena, Buenos Aires',
-                        badge: 'Disponible',
+                        title: 'Duki - Gira Mundial',
+                        date: '25 de Octubre, 2026',
+                        location: 'Estadio Vélez Sarsfield, Buenos Aires',
+                        badge: 'Alta Demanda',
                         tickets: [
-                            { type: 'Campo', description: 'Acceso general', price: 40000, qty: 0 },
-                            { type: 'Platea Alta', description: 'Vista panorámica del escenario', price: 60000, qty: 0 }
+                            { type: 'Campo', description: 'Sector general de pie', price: 42000, qty: 0 },
+                            { type: 'Platea Preferencial', description: 'Ubicación numerada en platea baja', price: 75000, qty: 0 }
                         ]
                     },
                     {
                         id: 3,
-                        title: 'Concierto Acústico Íntimo',
-                        date: '20 de Diciembre, 2026',
-                        location: 'Teatro Vorterix, Buenos Aires',
+                        title: 'Shakira - Las Mujeres Ya No Lloran World Tour',
+                        date: '04 de Diciembre, 2026',
+                        location: 'Campo Argentino de Polo, Buenos Aires',
                         badge: 'Preventa Exclusiva',
                         tickets: [
-                            { type: 'General', description: 'Entrada general de pie', price: 35000, qty: 0 },
-                            { type: 'Palco Alto', description: 'Ubicación exclusiva para 2 personas', price: 90000, qty: 0 }
+                            { type: 'Campo Delantero', description: 'Cerca del escenario principal', price: 95000, qty: 0 },
+                            { type: 'Campo General', description: 'Acceso general', price: 50000, qty: 0 },
+                            { type: 'Platea VIP', description: 'Asiento reservado', price: 140000, qty: 0 }
+                        ]
+                    },
+                    {
+                        id: 4,
+                        title: 'Airbag - Tour 2026',
+                        date: '18 de Noviembre, 2026',
+                        location: 'Luna Park, Buenos Aires',
+                        badge: 'Disponible',
+                        tickets: [
+                            { type: 'Platea', description: 'Asiento numerado', price: 38000, qty: 0 },
+                            { type: 'Cabecera / General', description: 'Sin numerar', price: 25000, qty: 0 }
+                        ]
+                    },
+                    {
+                        id: 5,
+                        title: 'Bizarrap - Live Sessions Arena',
+                        date: '30 de Octubre, 2026',
+                        location: 'Movistar Arena, Buenos Aires',
+                        badge: 'Últimos Lugares',
+                        tickets: [
+                            { type: 'Campo General', description: 'Pista de pie', price: 45000, qty: 0 },
+                            { type: 'Platea Baja', description: 'Sector baja numerado', price: 70000, qty: 0 }
+                        ]
+                    },
+                    {
+                        id: 6,
+                        title: 'Lali - Disciplina Tour',
+                        date: '05 de Diciembre, 2026',
+                        location: 'Movistar Arena, Buenos Aires',
+                        badge: 'Disponible',
+                        tickets: [
+                            { type: 'Campo', description: 'Acceso al campo', price: 39000, qty: 0 },
+                            { type: 'Platea Alta', description: 'Visita panorámica', price: 48000, qty: 0 }
                         ]
                     }
                 ],
                 get filteredConcerts() {
                     if (!this.searchQuery) return this.concerts;
+                    const q = this.searchQuery.toLowerCase();
                     return this.concerts.filter(c => 
-                        c.title.toLowerCase().includes(this.searchQuery.toLowerCase()) || 
-                        c.location.toLowerCase().includes(this.searchQuery.toLowerCase())
+                        c.title.toLowerCase().includes(q) || 
+                        c.location.toLowerCase().includes(q)
                     );
                 },
                 triggerQueue(concert) {
                     concert.tickets.forEach(t => t.qty = 0);
                     this.selectedConcert = concert;
-                    this.queuePosition = Math.floor(Math.random() * 200) + 50; // Posición aleatoria en fila
+                    this.queuePosition = Math.floor(Math.random() * 250) + 30;
                     this.view = 'queue';
 
-                    // Simula la espera en la fila virtual y pasa a la selección de asientos en 3 segundos
                     setTimeout(() => {
                         this.view = 'select-tickets';
                         this.startTimer();
-                    }, 3500);
+                    }, 3000);
                 },
                 startTimer() {
                     this.timerSeconds = 300;
