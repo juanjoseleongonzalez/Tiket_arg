@@ -16,13 +16,13 @@
     <!-- BARRA DE NAVEGACIÓN -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-zinc-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3 cursor-pointer" @click="view = 'home'">
+            <div class="flex items-center space-x-3 cursor-pointer" @click="resetApp()">
                 <span class="text-2xl font-black tracking-wider text-red-600">tike<span class="text-zinc-900">_arg</span></span>
             </div>
             <nav class="hidden md:flex space-x-8 text-sm font-medium text-zinc-600">
-                <a href="#" @click.prevent="view = 'home'" class="hover:text-red-600 transition">Conciertos</a>
-                <a href="#" @click.prevent="view = 'home'" class="hover:text-red-600 transition">Festivales</a>
-                <a href="#" @click.prevent="view = 'home'" class="hover:text-red-600 transition">Mi Cuenta / eTicket</a>
+                <a href="#" @click.prevent="resetApp()" class="hover:text-red-600 transition">Conciertos</a>
+                <a href="#" @click.prevent="resetApp()" class="hover:text-red-600 transition">Festivales</a>
+                <a href="#" @click.prevent="resetApp()" class="hover:text-red-600 transition">Mi Cuenta / eTicket</a>
             </nav>
             <div>
                 <span class="text-xs bg-red-50 text-red-600 border border-red-200 px-3 py-1.5 rounded-full font-medium">
@@ -46,9 +46,10 @@
                     Encontrá la cartelera completa con todos los conciertos del año, preventas y fila virtual segura.
                 </p>
                 
-                <div class="flex flex-col sm:flex-row gap-3 bg-white p-2 rounded-2xl border border-zinc-200 shadow-xl">
-                    <input type="text" x-model="searchQuery" placeholder="Buscá por artista (ej: Coldplay, Duki, Shakira), banda o estadio..." class="flex-grow bg-transparent px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:outline-none text-sm">
-                    <button class="bg-red-600 hover:bg-red-700 text-white font-medium px-8 py-3 rounded-xl transition text-sm shadow-md">
+                <!-- Buscador optimizado -->
+                <div class="flex flex-col sm:flex-row gap-3 bg-white p-2 rounded-2xl border border-zinc-200 shadow-xl" @submit.prevent>
+                    <input type="text" x-model.debounce.300ms="searchQuery" placeholder="Buscá por artista (ej: Coldplay, Duki, Shakira), banda o estadio..." class="flex-grow bg-transparent px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:outline-none text-sm">
+                    <button type="button" class="bg-red-600 hover:bg-red-700 text-white font-medium px-8 py-3 rounded-xl transition text-sm shadow-md">
                         Buscar
                     </button>
                 </div>
@@ -227,7 +228,7 @@
         </div>
     </div>
 
-    <!-- Script con la cartelera completa de conciertos -->
+    <!-- Script con buscador reactivo corregido -->
     <script>
         function ticketApp() {
             return {
@@ -309,8 +310,10 @@
                     }
                 ],
                 get filteredConcerts() {
-                    if (!this.searchQuery) return this.concerts;
-                    const q = this.searchQuery.toLowerCase();
+                    if (!this.searchQuery || this.searchQuery.trim() === '') {
+                        return this.concerts;
+                    }
+                    const q = this.searchQuery.toLowerCase().trim();
                     return this.concerts.filter(c => 
                         c.title.toLowerCase().includes(q) || 
                         c.location.toLowerCase().includes(q)
@@ -362,12 +365,15 @@
                 processPayment() {
                     this.view = 'success';
                     setTimeout(() => {
-                        document.getElementById("qrcode").innerHTML = "";
-                        new QRCode(document.getElementById("qrcode"), {
-                            text: `TIKEARG-ETICKET-VERIFICADO-${this.selectedConcert.title}-${this.buyer.name}`,
-                            width: 140,
-                            height: 140
-                        });
+                        const qrContainer = document.getElementById("qrcode");
+                        if (qrContainer) {
+                            qrContainer.innerHTML = "";
+                            new QRCode(qrContainer, {
+                                text: `TIKEARG-ETICKET-VERIFICADO-${this.selectedConcert.title}-${this.buyer.name}`,
+                                width: 140,
+                                height: 140
+                            });
+                        }
                     }, 100);
                 },
                 resetApp() {
