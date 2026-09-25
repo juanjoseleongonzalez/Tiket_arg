@@ -6,14 +6,14 @@
     <title>tike_arg - Venta Oficial de Entradas</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Alpine.js para la interactividad de la aplicación -->
+    <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <!-- Librería para generar códigos QR visuales -->
+    <!-- Generador de QR -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body class="bg-white text-zinc-900 font-sans antialiased" x-data="ticketApp()">
 
-    <!-- 1. BARRA DE NAVEGACIÓN -->
+    <!-- BARRA DE NAVEGACIÓN -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-zinc-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3 cursor-pointer" @click="view = 'home'">
@@ -22,48 +22,43 @@
             <nav class="hidden md:flex space-x-8 text-sm font-medium text-zinc-600">
                 <a href="#" @click.prevent="view = 'home'" class="hover:text-red-600 transition">Conciertos</a>
                 <a href="#" class="hover:text-red-600 transition">Festivales</a>
-                <a href="#" class="hover:text-red-600 transition">Ayuda y Seguridad</a>
+                <a href="#" class="hover:text-red-600 transition">Mi Cuenta / eTicket</a>
             </nav>
             <div>
                 <span class="text-xs bg-red-50 text-red-600 border border-red-200 px-3 py-1.5 rounded-full font-medium">
-                    🔒 Conexión Segura SSL
+                    🔒 Sitio Oficial Protegido
                 </span>
             </div>
         </div>
     </header>
 
-    <!-- ========================================== -->
-    <!-- VISTA 1: HOME (CARTELERA Y BUSCADOR)       -->
-    <!-- ========================================== -->
+    <!-- ================= VISTA 1: HOME ================= -->
     <div x-show="view === 'home'">
-        <!-- Hero / Buscador -->
         <section class="relative py-20 bg-zinc-50 border-b border-zinc-200 text-center px-4">
             <div class="max-w-3xl mx-auto">
                 <span class="inline-block bg-red-100 text-red-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-4 border border-red-200">
-                    Sitio Oficial de Venta Segura
+                    Plataforma Oficial de Venta de Entradas
                 </span>
                 <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 text-zinc-900">
-                    Vivir la música en vivo <br><span class="text-red-600">nunca fue tan fácil</span>
+                    Sentí la música en vivo <br><span class="text-red-600">asegurate tu lugar</span>
                 </h1>
                 <p class="text-zinc-600 text-lg mb-10">
-                    Encuentra entradas oficiales para los mejores conciertos del año con máxima seguridad garantizada.
+                    Encuentra la cartelera oficial de conciertos, preventas exclusivas y sistema de fila virtual segura.
                 </p>
                 
-                <!-- Buscador funcional -->
                 <div class="flex flex-col sm:flex-row gap-3 bg-white p-2 rounded-2xl border border-zinc-200 shadow-xl">
                     <input type="text" x-model="searchQuery" placeholder="Busca por artista, banda o estadio..." class="flex-grow bg-transparent px-4 py-3 text-zinc-900 placeholder-zinc-400 focus:outline-none text-sm">
-                    <button class="bg-red-600 hover:bg-red-700 text-white font-medium px-8 py-3 rounded-xl transition text-sm shadow-md shadow-red-600/20">
+                    <button class="bg-red-600 hover:bg-red-700 text-white font-medium px-8 py-3 rounded-xl transition text-sm shadow-md">
                         Buscar Concierto
                     </button>
                 </div>
             </div>
         </section>
 
-        <!-- Cartelera de Conciertos -->
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div class="mb-10">
-                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900">Próximos Conciertos del Año</h2>
-                <p class="text-zinc-500 text-sm mt-1">Selecciona tu evento favorito para asegurar tus lugares oficiales.</p>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900">Conciertos y Eventos Disponibles</h2>
+                <p class="text-zinc-500 text-sm mt-1">Ingresá al evento para acceder a la fila virtual de compra.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -71,7 +66,6 @@
                     <div class="bg-white rounded-2xl overflow-hidden border border-zinc-200 hover:border-red-300 transition group flex flex-col justify-between shadow-sm hover:shadow-md">
                         <div>
                             <div class="relative h-48 bg-zinc-100 overflow-hidden flex items-center justify-center">
-                                <div class="absolute inset-0 bg-gradient-to-t from-zinc-900/40 via-transparent to-transparent z-10"></div>
                                 <span class="text-zinc-400 font-bold text-xl group-hover:scale-105 transition duration-500" x-text="concert.title"></span>
                                 <span class="absolute top-3 left-3 z-20 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow" x-text="concert.badge"></span>
                             </div>
@@ -82,7 +76,7 @@
                             </div>
                         </div>
                         <div class="p-6 pt-0">
-                            <button @click="selectConcert(concert)" class="w-full bg-zinc-900 hover:bg-red-600 text-white font-medium py-3 rounded-xl transition text-sm shadow">
+                            <button @click="triggerQueue(concert)" class="w-full bg-zinc-900 hover:bg-red-600 text-white font-medium py-3 rounded-xl transition text-sm shadow">
                                 Comprar Entradas
                             </button>
                         </div>
@@ -92,21 +86,43 @@
         </main>
     </div>
 
-    <!-- ========================================== -->
-    <!-- VISTA 2: SELECCIÓN DE ENTRADAS             -->
-    <!-- ========================================== -->
-    <div x-show="view === 'select-tickets'" class="max-w-4xl mx-auto px-4 py-12">
-        <button @click="view = 'home'" class="text-sm text-zinc-500 hover:text-zinc-900 mb-6 flex items-center gap-2 font-medium">← Volver a Conciertos</button>
-        
-        <div class="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-10 shadow-lg">
-            <span class="text-xs font-semibold text-red-600 uppercase tracking-widest" x-text="selectedConcert.date"></span>
-            <h2 class="text-3xl font-extrabold text-zinc-900 mt-1 mb-2" x-text="selectedConcert.title"></h2>
-            <p class="text-zinc-500 text-sm mb-8" x-text="selectedConcert.location"></p>
+    <!-- ================= VISTA 2: FILA VIRTUAL (ESTILO TICKETEK) ================= -->
+    <div x-show="view === 'queue'" class="max-w-xl mx-auto px-4 py-24 text-center">
+        <div class="bg-white border border-zinc-200 rounded-3xl p-8 sm:p-12 shadow-xl space-y-6">
+            <div class="w-16 h-16 bg-red-50 text-red-600 rounded-full flex items-center justify-center text-2xl mx-auto border border-red-200 animate-pulse">⏳</div>
+            <div>
+                <span class="text-xs uppercase font-bold text-red-600 tracking-wider">Sistema de Alta Demanda</span>
+                <h2 class="text-2xl font-black text-zinc-900 mt-1">Estás en la Fila Virtual</h2>
+                <p class="text-zinc-500 text-sm mt-2">Para garantizar una experiencia justa y evitar caídas en el sistema, aguardá un momento mientras te asignamos tu turno.</p>
+            </div>
 
-            <h3 class="text-lg font-bold text-zinc-900 mb-4 border-b border-zinc-100 pb-2">Selecciona tus ubicaciones y cantidad:</h3>
+            <div class="bg-zinc-50 p-6 rounded-2xl border border-zinc-200 space-y-2">
+                <p class="text-xs text-zinc-400">Tu número aproximado en fila:</p>
+                <p class="text-4xl font-black text-red-600" x-text="queuePosition"></p>
+                <p class="text-xs text-zinc-500 pt-2">Tiempo estimado de acceso: <span class="font-bold text-zinc-800">Menos de 1 minuto</span></p>
+            </div>
+
+            <p class="text-xs text-zinc-400">No cierres ni recargues esta ventana o perderás tu lugar asignado.</p>
+        </div>
+    </div>
+
+    <!-- ================= VISTA 3: SELECCIÓN DE ENTRADAS + CRONÓMETRO ================= -->
+    <div x-show="view === 'select-tickets'" class="max-w-4xl mx-auto px-4 py-12">
+        <!-- Barra superior de tiempo límite estilo ticketek -->
+        <div class="bg-red-600 text-white px-6 py-3 rounded-2xl mb-6 flex items-center justify-between shadow-md">
+            <span class="text-xs font-semibold uppercase tracking-wider">⏱ Tiempo reservado para tu compra:</span>
+            <span class="text-lg font-black" x-text="formatTime(timerSeconds)"></span>
+        </div>
+
+        <div class="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-10 shadow-lg">
+            <span class="text-xs font-semibold text-red-600 uppercase tracking-widest" x-text="selectedConcert?.date"></span>
+            <h2 class="text-3xl font-extrabold text-zinc-900 mt-1 mb-2" x-text="selectedConcert?.title"></h2>
+            <p class="text-zinc-500 text-sm mb-8" x-text="selectedConcert?.location"></p>
+
+            <h3 class="text-lg font-bold text-zinc-900 mb-4 border-b border-zinc-100 pb-2">Seleccioná tus ubicaciones:</h3>
             
             <div class="space-y-4 mb-8">
-                <template x-for="ticket in selectedConcert.tickets" :key="ticket.type">
+                <template x-for="ticket in selectedConcert?.tickets" :key="ticket.type">
                     <div class="flex items-center justify-between bg-zinc-50 p-4 rounded-2xl border border-zinc-200">
                         <div>
                             <h4 class="font-bold text-base text-zinc-900" x-text="ticket.type"></h4>
@@ -122,102 +138,95 @@
                 </template>
             </div>
 
-            <!-- Resumen y botón de pago -->
             <div class="bg-zinc-50 p-6 rounded-2xl border border-zinc-200 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div>
                     <p class="text-xs text-zinc-500">Total a pagar:</p>
                     <p class="text-2xl font-black text-red-600" x-text=" '$' + calculateTotal().toLocaleString() "></p>
                 </div>
-                <button @click="proceedToCheckout()" :disabled="calculateTotal() === 0" class="w-full sm:w-auto bg-red-600 hover:bg-red-700 disabled:bg-zinc-200 disabled:text-zinc-400 text-white font-semibold px-8 py-3.5 rounded-xl transition text-sm shadow-md shadow-red-600/20">
-                    Continuar al Pago Seguro →
+                <button @click="proceedToCheckout()" :disabled="calculateTotal() === 0" class="w-full sm:w-auto bg-red-600 hover:bg-red-700 disabled:bg-zinc-200 disabled:text-zinc-400 text-white font-semibold px-8 py-3.5 rounded-xl transition text-sm shadow-md">
+                    Avanzar al Pago →
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- ========================================== -->
-    <!-- VISTA 3: PASARELA DE PAGO                   -->
-    <!-- ========================================== -->
+    <!-- ================= VISTA 4: PAGO SEGURO ================= -->
     <div x-show="view === 'checkout'" class="max-w-2xl mx-auto px-4 py-12">
-        <button @click="view = 'select-tickets'" class="text-sm text-zinc-500 hover:text-zinc-900 mb-6 flex items-center gap-2 font-medium">← Volver</button>
-        
         <div class="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-10 shadow-lg">
-            <h2 class="text-2xl font-bold text-zinc-900 mb-2">Finalizar Compra</h2>
-            <p class="text-zinc-500 text-sm mb-6">Ingresa tus datos personales para enviarte las entradas con código QR.</p>
+            <h2 class="text-2xl font-bold text-zinc-900 mb-2">Datos de Facturación y #eTicket</h2>
+            <p class="text-zinc-500 text-sm mb-6">Completá tus datos para emitir las entradas oficiales con código QR dinámico.</p>
             
             <form @submit.prevent="processPayment" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-semibold uppercase text-zinc-500 mb-1">Nombre Completo</label>
+                    <label class="block text-xs font-semibold uppercase text-zinc-500 mb-1">Nombre y Apellido (Titular)</label>
                     <input type="text" required x-model="buyer.name" placeholder="Ej: León Pérez" class="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:border-red-600">
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold uppercase text-zinc-500 mb-1">Correo Electrónico (Donde enviaremos el QR)</label>
+                    <label class="block text-xs font-semibold uppercase text-zinc-500 mb-1">Correo Electrónico (Para recibir el #eTicket)</label>
                     <input type="email" required x-model="buyer.email" placeholder="tu@correo.com" class="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:border-red-600">
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold uppercase text-zinc-500 mb-1">Método de Pago</label>
+                    <label class="block text-xs font-semibold uppercase text-zinc-500 mb-1">Medio de Pago Seleccionado</label>
                     <select x-model="buyer.paymentMethod" class="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-red-600 text-zinc-900">
-                        <option value="mercadopago">Mercado Pago / QR / Dinero en Cuenta</option>
-                        <option value="tarjeta">Tarjeta de Crédito o Débito</option>
+                        <option value="mercadopago">Tarjeta de Crédito / Débito / Mercado Pago</option>
                     </select>
                 </div>
 
                 <div class="pt-4 border-t border-zinc-100 flex items-center justify-between">
                     <div>
-                        <p class="text-xs text-zinc-500">Total a abonar:</p>
+                        <p class="text-xs text-zinc-500">Total final:</p>
                         <p class="text-xl font-bold text-red-600" x-text=" '$' + calculateTotal().toLocaleString() "></p>
                     </div>
-                    <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-3.5 rounded-xl transition text-sm shadow-md shadow-red-600/20">
-                        Pagar de Forma Segura 🔒
+                    <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-3.5 rounded-xl transition text-sm shadow-md">
+                        Confirmar y Pagar 🔒
                     </button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- ========================================== -->
-    <!-- VISTA 4: ÉXITO Y GENERACIÓN DE QR           -->
-    <!-- ========================================== -->
+    <!-- ================= VISTA 5: #eTICKET EXITOSO Y QR ================= -->
     <div x-show="view === 'success'" class="max-w-xl mx-auto px-4 py-12 text-center">
         <div class="bg-white border border-zinc-200 rounded-3xl p-8 sm:p-10 shadow-xl">
             <div class="w-16 h-16 bg-red-50 text-red-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 border border-red-200">✓</div>
-            <h2 class="text-2xl font-bold text-zinc-900 mb-1">¡Compra Exitosa!</h2>
-            <p class="text-zinc-500 text-sm mb-6">Hemos procesado tu pago correctamente. Tu entrada digital ya está lista.</p>
+            <h2 class="text-2xl font-bold text-zinc-900 mb-1">¡Compra Exitosa (#eTicket)!</h2>
+            <p class="text-zinc-500 text-sm mb-6">Tu operación fue procesada de forma segura. Presentá este código QR directamente desde tu celular en la puerta del evento.</p>
             
-            <!-- Ticket Visual con QR -->
             <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-6 text-left mb-6 space-y-3 shadow-inner">
                 <div class="flex justify-between items-center border-b border-zinc-200 pb-3">
-                    <span class="text-xs uppercase font-bold text-red-600" x-text="selectedConcert.title"></span>
-                    <span class="text-xs text-zinc-500" x-text="selectedConcert.date"></span>
+                    <span class="text-xs uppercase font-bold text-red-600" x-text="selectedConcert?.title"></span>
+                    <span class="text-xs text-zinc-500" x-text="selectedConcert?.date"></span>
                 </div>
                 <div>
-                    <p class="text-xs text-zinc-400">Comprador:</p>
+                    <p class="text-xs text-zinc-400">Titular:</p>
                     <p class="text-sm font-semibold text-zinc-800" x-text="buyer.name"></p>
                 </div>
                 <div>
-                    <p class="text-xs text-zinc-400">Lugar:</p>
-                    <p class="text-sm font-semibold text-zinc-800" x-text="selectedConcert.location"></p>
+                    <p class="text-xs text-zinc-400">Ubicación / Recinto:</p>
+                    <p class="text-sm font-semibold text-zinc-800" x-text="selectedConcert?.location"></p>
                 </div>
                 <div class="pt-3 border-t border-zinc-200 flex flex-col items-center justify-center">
-                    <p class="text-xs text-zinc-400 mb-2">Código QR de Acceso en Puerta:</p>
-                    <!-- Contenedor del código QR -->
+                    <p class="text-xs text-zinc-400 mb-2">Código QR Dinámico de Acceso:</p>
                     <div id="qrcode" class="bg-white p-3 rounded-xl border border-zinc-200 shadow-sm"></div>
                 </div>
             </div>
 
             <button @click="resetApp()" class="w-full bg-zinc-900 hover:bg-zinc-800 text-white font-semibold py-3 rounded-xl transition text-sm shadow">
-                Volver al Inicio
+                Volver al Inicio de tike_arg
             </button>
         </div>
     </div>
 
-    <!-- Script de lógica de la aplicación -->
+    <!-- Script de lógica con Fila Virtual y Cronómetro -->
     <script>
         function ticketApp() {
             return {
                 view: 'home',
                 searchQuery: '',
                 selectedConcert: null,
+                queuePosition: 142,
+                timerSeconds: 300, // 5 minutos de tiempo límite de compra
+                timerInterval: null,
                 buyer: { name: '', email: '', paymentMethod: 'mercadopago' },
                 concerts: [
                     {
@@ -262,10 +271,35 @@
                         c.location.toLowerCase().includes(this.searchQuery.toLowerCase())
                     );
                 },
-                selectConcert(concert) {
+                triggerQueue(concert) {
                     concert.tickets.forEach(t => t.qty = 0);
                     this.selectedConcert = concert;
-                    this.view = 'select-tickets';
+                    this.queuePosition = Math.floor(Math.random() * 200) + 50; // Posición aleatoria en fila
+                    this.view = 'queue';
+
+                    // Simula la espera en la fila virtual y pasa a la selección de asientos en 3 segundos
+                    setTimeout(() => {
+                        this.view = 'select-tickets';
+                        this.startTimer();
+                    }, 3500);
+                },
+                startTimer() {
+                    this.timerSeconds = 300;
+                    clearInterval(this.timerInterval);
+                    this.timerInterval = setInterval(() => {
+                        if (this.timerSeconds > 0) {
+                            this.timerSeconds--;
+                        } else {
+                            clearInterval(this.timerInterval);
+                            alert('El tiempo de reserva expiró. Volviendo al inicio.');
+                            this.resetApp();
+                        }
+                    }, 1000);
+                },
+                formatTime(seconds) {
+                    const m = Math.floor(seconds / 60);
+                    const s = seconds % 60;
+                    return `${m}:${s < 10 ? '0' : ''}${s}`;
                 },
                 incrementTicket(ticket) {
                     ticket.qty++;
@@ -278,6 +312,7 @@
                     return this.selectedConcert.tickets.reduce((sum, t) => sum + (t.price * t.qty), 0);
                 },
                 proceedToCheckout() {
+                    clearInterval(this.timerInterval);
                     this.view = 'checkout';
                 },
                 processPayment() {
@@ -285,13 +320,14 @@
                     setTimeout(() => {
                         document.getElementById("qrcode").innerHTML = "";
                         new QRCode(document.getElementById("qrcode"), {
-                            text: `TIKEARG-VERIFICADO-${this.selectedConcert.title}-${this.buyer.name}`,
+                            text: `TIKEARG-ETICKET-VERIFICADO-${this.selectedConcert.title}-${this.buyer.name}`,
                             width: 140,
                             height: 140
                         });
                     }, 100);
                 },
                 resetApp() {
+                    clearInterval(this.timerInterval);
                     this.view = 'home';
                     this.searchQuery = '';
                     this.selectedConcert = null;
