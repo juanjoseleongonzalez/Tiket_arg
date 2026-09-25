@@ -778,8 +778,8 @@
                 }
             });
 
-            // Número de WhatsApp al que llegará el pedido (reemplazá con tu número real sin el + y con código de país/área, ej: 5491112345678)
-            const whatsappNumber = "5491112345678";
+            // Número de WhatsApp configurado (5492364281582)
+            const whatsappNumber = "5492364281582";
 
             // Armar texto del mensaje codificado para URL
             const message = `Hola! 👋 Quiero confirmar mi compra en tiket_arg:\n\n🎤 *Artista/Show:* ${selectedConcert.title}\n📍 *Lugar:* ${selectedConcert.location}\n📅 *Fecha:* ${selectedConcert.date}\n\n🎟️ *Entradas:* ${ticketsSummary}\n\n💰 *Total a Pagar:* $${total.toLocaleString()}\n💳 *Método de Pago:* ${paymentMethod}\n\n👤 *Titular:* ${name}\n📧 *Email:* ${email}`;
