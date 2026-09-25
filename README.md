@@ -26,8 +26,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
             <!-- Logo con Imagen Integrada -->
             <div class="flex items-center space-x-3 cursor-pointer group" onclick="resetApp()">
-                <div class="w-12 h-12 rounded-xl overflow-hidden border border-red-500/40 shadow-lg shadow-red-950/40 flex-shrink-0">
-                    <img src="" alt="tiket_arg Logo" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                <div class="w-12 h-12 rounded-xl overflow-hidden border border-red-500/40 shadow-lg shadow-red-950/40 flex-shrink-0 bg-zinc-900">
+                    <!-- Imagen añadida en el logo del header -->
+                    <img src="1000171439.png" alt="tiket_arg Logo" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
                 </div>
                 <div class="flex flex-col">
                     <div class="flex items-center space-x-1">
