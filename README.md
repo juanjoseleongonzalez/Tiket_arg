@@ -24,13 +24,18 @@
     <!-- ================= PASO 1: CABEZAL / HEADER OFICIAL ================= -->
     <header class="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur-md border-b border-zinc-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
-            <!-- Logo gigante con estilo -->
-            <div class="flex flex-col cursor-pointer group" onclick="resetApp()">
-                <div class="flex items-center space-x-1">
-                    <span class="text-3xl sm:text-4xl font-black tracking-tighter text-white group-hover:text-red-500 transition">tiket<span class="text-red-600">_arg</span></span>
-                    <span class="text-[9px] uppercase font-extrabold bg-red-600/20 text-red-500 border border-red-500/30 px-2 py-0.5 rounded-full ml-1 self-start">Oficial</span>
+            <!-- Logo con Imagen Integrada -->
+            <div class="flex items-center space-x-3 cursor-pointer group" onclick="resetApp()">
+                <div class="w-12 h-12 rounded-xl overflow-hidden border border-red-500/40 shadow-lg shadow-red-950/40 flex-shrink-0">
+                    <img src="" alt="tiket_arg Logo" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
                 </div>
-                <span class="text-[11px] text-zinc-400 font-medium tracking-wide">Plataforma de eTickets</span>
+                <div class="flex flex-col">
+                    <div class="flex items-center space-x-1">
+                        <span class="text-3xl sm:text-4xl font-black tracking-tighter text-white group-hover:text-red-500 transition">tiket<span class="text-red-600">_arg</span></span>
+                        <span class="text-[9px] uppercase font-extrabold bg-red-600/20 text-red-500 border border-red-500/30 px-2 py-0.5 rounded-full ml-1 self-start">Oficial</span>
+                    </div>
+                    <span class="text-[11px] text-zinc-400 font-medium tracking-wide">Plataforma de eTickets</span>
+                </div>
             </div>
 
             <!-- Navegación -->
@@ -56,6 +61,16 @@
             <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#dc2626_1px,transparent_1px)] [background-size:16px_16px]"></div>
             
             <div class="relative max-w-4xl mx-auto space-y-6">
+                <!-- Imagen del Recital / Concierto en el Cuerpo Principal -->
+                <div class="max-w-3xl mx-auto rounded-3xl overflow-hidden border border-red-500/30 shadow-2xl shadow-red-950/40 mb-8 relative group">
+                    <img src="" alt="Conciertos en Vivo 2026" class="w-full h-64 sm:h-80 object-cover group-hover:scale-105 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent"></div>
+                    <div class="absolute bottom-4 left-6 right-6 flex items-center justify-between text-xs font-bold text-zinc-300">
+                        <span class="bg-red-600/90 text-white px-3 py-1.5 rounded-full uppercase tracking-wider backdrop-blur">🎸 Estadios Argentina 2026</span>
+                        <span class="bg-zinc-900/80 px-3 py-1.5 rounded-full border border-zinc-700 backdrop-blur">Cupos Oficiales Disponibles</span>
+                    </div>
+                </div>
+
                 <div class="inline-flex items-center gap-2.5 bg-zinc-900/90 border border-zinc-800 text-zinc-300 text-xs font-bold px-5 py-2 rounded-full shadow-lg">
                     <span class="flex h-2 w-2 relative">
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -774,7 +789,6 @@
             const email = document.getElementById('buyerEmail').value;
             const paymentMethod = document.getElementById('paymentMethod').value;
 
-            // Calcular total y entradas seleccionadas para el mensaje de WhatsApp
             let total = 0;
             let ticketsSummary = "";
             selectedConcert.tickets.forEach(t => {
@@ -784,15 +798,10 @@
                 }
             });
 
-            // Número de WhatsApp configurado (5492364281582)
             const whatsappNumber = "5492364281582";
-
-            // Armar texto del mensaje codificado para URL
             const message = `Hola! 👋 Quiero confirmar mi compra en tiket_arg:\n\n🎤 *Artista/Show:* ${selectedConcert.title}\n📍 *Lugar:* ${selectedConcert.location}\n📅 *Fecha:* ${selectedConcert.date}\n\n🎟️ *Entradas:* ${ticketsSummary}\n\n💰 *Total a Pagar:* $${total.toLocaleString()}\n💳 *Método de Pago:* ${paymentMethod}\n\n👤 *Titular:* ${name}\n📧 *Email:* ${email}`;
-            
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
-            // Mostrar vista de éxito con QR de reserva
             document.getElementById('view-checkout').classList.add('hidden');
             document.getElementById('view-success').classList.remove('hidden');
 
@@ -810,7 +819,6 @@
                     height: 140
                 });
 
-                // Redirigir a WhatsApp en una nueva pestaña
                 window.open(whatsappUrl, '_blank');
             }, 100);
         }
