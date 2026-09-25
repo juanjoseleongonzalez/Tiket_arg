@@ -244,6 +244,12 @@
             <h2 class="text-2xl font-bold text-white mb-1">¡Solicitud Enviada a WhatsApp!</h2>
             <p class="text-zinc-400 text-sm mb-6">Tu orden fue procesada. Se abrió WhatsApp para que completes tu pago y recibas tu código QR de acceso oficial.</p>
             
+            <!-- CARTEL DE AVISO AGREGADO -->
+            <div class="bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 text-xs font-semibold p-3.5 rounded-2xl mb-6 flex items-center justify-center gap-2 shadow-inner">
+                <span>✨</span>
+                <span>Gracias por usar nuestra página, su entrada estará validada al finalizar el pago.</span>
+            </div>
+
             <div class="bg-zinc-950 border border-zinc-800 rounded-2xl p-6 text-left mb-6 space-y-3 shadow-inner">
                 <div class="flex justify-between items-center border-b border-zinc-800 pb-3">
                     <span id="successTitle" class="text-xs uppercase font-bold text-red-500"></span>
