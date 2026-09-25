@@ -9,9 +9,7 @@
     <!-- Generador de QR -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
-<body class="bg-white text-zinc-900 font-sans antialiased">
-
-    <!-- BARRA DE NAVEGACIÓN -->
+<body class="bg-white text-zinc-900 font-sans antialiased><!-- BARRA DE NAVEGACIÓN -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-zinc-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-2 cursor-pointer" onclick="resetApp()">
@@ -31,6 +29,8 @@
         </div>
     </header>
 
+
+    
     <!-- ================= VISTA 1: PRESENTACIÓN E INICIO ================= -->
     <div id="view-home">
         <!-- Presentación Principal y Buscador -->
