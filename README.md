@@ -1165,14 +1165,58 @@ if (!query) {
             document.getElementById('view-home').classList.remove('hidden');
             clearSearch();
         }
-// Función para el botón "Lista": muestra todos los eventos y hace scroll hacia la cartelera
+<button type="button" onclick="openCatalogModal()" class="bg-zinc-800 hover:bg-zinc-700 text-white font-bold px-6 py-3.5 rounded-xl transition text-sm border border-zinc-700 flex items-center gap-2">
+    📋 Lista
+</button>
+
         function showFullCatalog() {
             document.getElementById('searchInput').value = '';
             document.getElementById('suggestionsBox').classList.add('hidden');
             renderConcerts(concerts);
             window.scrollTo({ top: 500, behavior: 'smooth' });
         }
+ // Función para abrir la tabla general con el botón "Lista"
+        function openCatalogModal() {
+            const container = document.getElementById('catalogTableContainer');
+            
+// Genera la tabla/lista completa de todos los artistas con sus precios
+            container.innerHTML = concerts.map(c => `
+ <div class="bg-zinc-950 border border-zinc-800 p-4 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:border-red-600/50 transition">
+                    <div class="flex items-center gap-4">
+                        <img src="${c.image}" alt="${c.artist}" class="w-14 h-14 rounded-xl object-cover border border-zinc-800">
+                        <div>
+                            <span class="text-[10px] bg-red-600/20 text-red-500 border border-red-500/30 px-2 py-0.5 rounded-full font-bold uppercase">${c.badge}</span>
+                            <h4 class="text-base font-black text-white mt-1">${c.title}</h4>
+                            <p class="text-xs text-zinc-400">📍 ${c.location} | 📅 ${c.date}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between w-full sm:w-auto gap-4 border-t sm:border-t-0 pt-3 sm:pt-0 border-zinc-800">
+                        <div class="text-left sm:text-right">
+                            <span class="text-[10px] text-zinc-500 uppercase block font-bold">Precios desde</span>
+                            <span class="text-base font-black text-red-500">$${Math.min(...c.tickets.map(t => t.price)).toLocaleString()}</span>
+                        </div>
+                        <button onclick="selectConcertFromModal(${c.id})" class="bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition shadow-md whitespace-nowrap">
+                            Ver Entradas y Pagar →
+                        </button>
+                    </div>
+                </div>
+            `).join('');
 
-        initApp();
+        
+document.getElementById('modal-catalog').classList.remove('hidden');
+        }
+
+// Función para cerrar el modal
+        function closeCatalogModal() {
+            document.getElementById('modal-catalog').classList.add('hidden');
+        }
+
+ // Función para saltar directo a la selección de entradas desde la tabla
+        function selectConcertFromModal(id) {
+            closeCatalogModal();
+            triggerQueue(id);
+        }
+
+ initApp();
     </script>
 
