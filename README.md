@@ -492,7 +492,7 @@
             document.getElementById('searchInput').value = artistName;
             document.getElementById('suggestionsBox').classList.add('hidden');
             
-            // NUEVO: Busca el concierto del artista seleccionado y lo abre directamente
+// NUEVO: Busca el concierto del artista seleccionado y lo abre directamente
             const foundConcert = concerts.find(c => c.artist.toLowerCase() === artistName.toLowerCase());
             if (foundConcert) {
                 triggerQueue(foundConcert.id);
@@ -502,25 +502,35 @@
         }
 
 
-        function renderConcerts(list) {
-            const grid = document.getElementById('concertsGrid');
-            const noResults = document.getElementById('noResults');
-            const eventCount = document.getElementById('eventCount');
-            const btnClear = document.getElementById('btnClear');
+function filterConcerts() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            document.getElementById('suggestionsBox').classList.add('hidden');
 
-            eventCount.innerText = list.length + ' eventos';
-            
-            if (list.length > 0 && list.length < concerts.length) {
-                btnClear.classList.remove('hidden');
-            } else {
-                btnClear.classList.add('hidden');
-            }
-
-            if (list.length === 0) {
-                grid.innerHTML = '';
-                noResults.classList.remove('hidden');
+if (!query) {
+                renderConcerts(concerts);
                 return;
             }
+
+// Busca si coincide exactamente o de forma parcial con algún artista o título
+            const foundConcert = concerts.find(c => 
+                c.artist.toLowerCase().includes(query) || 
+                c.title.toLowerCase().includes(query) ||
+                c.location.toLowerCase().includes(query)
+            )// Si encuentra un artista directo, lo lleva a la vista de entradas al instante
+            if (foundConcert && (query.length > 2 || concerts.some(c => c.artist.toLowerCase() === query))) {
+                triggerQueue(foundConcert.id);
+            } else {
+                // Si es una búsqueda general, filtra la grilla normalmente
+                const filtered = concerts.filter(c => 
+                    c.artist.toLowerCase().includes(query) || 
+                    c.title.toLowerCase().includes(query) || 
+                    c.location.toLowerCase().includes(query) ||
+                    c.date.toLowerCase().includes(query)
+                );
+                renderConcerts(filtered);
+            }
+        }
+
 
             noResults.classList.add('hidden');
             
