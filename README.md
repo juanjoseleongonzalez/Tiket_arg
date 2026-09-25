@@ -33,7 +33,7 @@
         </div>
     </header>
 
-    <!-- ================= VISTA 1: PRESENTACIÓN E INICIO ================= -->
+>    <!-- ================= VISTA 1: PRESENTACIÓN E INICIO ================= -->
     <div x-show="view === 'home'">
         <!-- Presentación Principal y Buscador -->
         <section class="relative py-20 bg-gradient-to-b from-zinc-50 to-white border-b border-zinc-200 text-center px-4">
@@ -56,7 +56,7 @@
                     </button>
                 </div>
             </div>
-        </section>
+        </section
 
         <!-- Galería de Presentación: Artistas Destacados de la Argentina -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-zinc-100">
