@@ -488,11 +488,19 @@
             }
         });
 
-        function selectSuggestion(artistName) {
+  function selectSuggestion(artistName) {
             document.getElementById('searchInput').value = artistName;
             document.getElementById('suggestionsBox').classList.add('hidden');
-            filterConcerts();
+            
+            // NUEVO: Busca el concierto del artista seleccionado y lo abre directamente
+            const foundConcert = concerts.find(c => c.artist.toLowerCase() === artistName.toLowerCase());
+            if (foundConcert) {
+                triggerQueue(foundConcert.id);
+            } else {
+                filterConcerts();
+            }
         }
+
 
         function renderConcerts(list) {
             const grid = document.getElementById('concertsGrid');
